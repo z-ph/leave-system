@@ -7,7 +7,7 @@ interface GetWeChatCodeUrlOptions {
 import { computed, onMounted } from "vue";
 import { useRoute } from "vue-router";
 const CONFIG = {
-  appId: "wx64e54eb19f699276",
+  appId: "wx7bbdf981cf3342ff",
   scope: "snsapi_base",
   state: "123",
 };
