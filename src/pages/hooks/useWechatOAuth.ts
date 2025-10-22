@@ -62,11 +62,10 @@ export function useLogin() {
   const loginMutation = useMutation({
     mutationFn: (code: string) => DefaultService.postLogin(code),
     onSuccess: (data) => {
-      if (data.code === 1) {
-        TokenManager.setToken(data.data as string);
-        TokenManager.setTokenPayload(TokenManager.getTokenPayload());
-        router.push("/");
-      }
+      TokenManager.setToken(data.data as string);
+      TokenManager.setTokenPayload(TokenManager.getTokenPayload());
+      ElMessage.success("登录成功");
+      router.push("/");
     },
     onError: (error) => {
       ElMessage.error(error.message);

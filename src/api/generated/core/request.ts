@@ -312,7 +312,9 @@ export const request = <T>(config: OpenAPIConfig, options: ApiRequestOptions): C
                 };
                 console.log('resHeader', responseHeader);
                 catchErrorCodes(options, result);
-
+                if(result.body.code !==1){
+                    throw new ApiError(options, result, result.body.msg);
+                }
                 resolve(result.body);
             }
         } catch (error) {
