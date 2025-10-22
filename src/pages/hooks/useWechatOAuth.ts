@@ -10,6 +10,7 @@ import { DefaultService } from "../../api/generated/services/DefaultService";
 import { useMutation } from "@tanstack/vue-query";
 import { TokenManager } from "../../auth/tokenManager";
 import { useRouter } from "vue-router";
+import { ElMessage } from "element-plus";
 const CONFIG = {
   appId: "wx7bbdf981cf3342ff",
   scope: "snsapi_base",
@@ -66,6 +67,9 @@ export function useLogin() {
         TokenManager.setTokenPayload(TokenManager.getTokenPayload());
         router.push("/");
       }
+    },
+    onError: (error) => {
+      ElMessage.error(error.message);
     },
   });
   onMounted(() => {
