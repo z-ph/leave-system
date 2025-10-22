@@ -62,7 +62,7 @@ export function useLogin() {
   const loginMutation = useMutation({
     mutationFn: (code: string) => DefaultService.postLogin(code),
     onSuccess: (data) => {
-      if (data.code === 0) {
+      if (data.code === 1) {
         TokenManager.setToken(data.data as string);
         TokenManager.setTokenPayload(TokenManager.getTokenPayload());
         router.push("/");
