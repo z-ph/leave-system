@@ -21,7 +21,9 @@ onMounted(() => {
   <div style="width: 100vw; height: 100vh">
     <el-skeleton :rows="5" animated />
     <!-- 5s后显示刷新按钮 -->
-     <p style="text-align: center;margin-top: 20px;">等待太久了？点击刷新</p>
-    <el-button @click="refreshCode" v-show="showRefreshButton">Refresh Code</el-button>
+     <template v-show="showRefreshButton">
+      <p style="text-align: center;margin-top: 20px;">等待太久了？点击刷新</p>
+      <el-button @click="refreshCode">Refresh Code</el-button>
+     </template>
   </div>
 </template>
