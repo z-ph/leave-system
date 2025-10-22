@@ -22,14 +22,10 @@ export class DefaultService {
      */
     public static postLogin(
         code?: string,
-        token: string = 'eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjEwNDAxMTM1NDM1fQ.LUA1j7hpIcmlc337zKcNqfn4w4HFdBQfE9d4u8DJGzU',
     ): CancelablePromise<Result> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/login',
-            headers: {
-                'token': token,
-            },
             query: {
                 'code': code,
             },
