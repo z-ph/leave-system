@@ -56,7 +56,7 @@ export function useWeCode() {
 }
 
 export function useLogin() {
-  const {code} = useWeCode();
+  const { code } = useWeCode();
   const router = useRouter();
   const loginMutation = useMutation({
     mutationFn: (code: string) => DefaultService.postLogin(code),
