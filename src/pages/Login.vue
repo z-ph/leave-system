@@ -13,14 +13,14 @@ onBeforeUnmount(() => {
 onMounted(() => {
   timer.value = window.setTimeout(() => {
     showRefreshButton.value = true;
-  }, 1000);
+  }, 4000);
 });
 </script>
 
 <template>
   <div style="width: 100vw; height: 100vh">
     <el-skeleton :rows="5" animated />
-     <template v-show="showRefreshButton">
+     <template v-if="showRefreshButton">
       <p style="text-align: center;margin-top: 20px;">等待太久了？点击刷新</p>
       <el-button @click="refreshCode">Refresh Code</el-button>
      </template>
