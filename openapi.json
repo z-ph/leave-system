@@ -1,0 +1,1035 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+      "title": "Sinin",
+      "description": "",
+      "version": "1.0.0"
+    },
+    "tags": [],
+    "paths": {
+      "/login": {
+        "post": {
+          "summary": "登录接口(自动注册)",
+          "deprecated": false,
+          "description": "",
+          "tags": [],
+          "parameters": [
+            {
+              "name": "code",
+              "in": "query",
+              "description": "微信登录凭证（code）",
+              "required": false,
+              "example": "031SH81w3TnVR53QXZZv30EwNw2SH81o",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "token",
+              "in": "header",
+              "description": "",
+              "example": "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjEwNDAxMTM1NDM1fQ.LUA1j7hpIcmlc337zKcNqfn4w4HFdBQfE9d4u8DJGzU",
+              "schema": {
+                "type": "string",
+                "default": "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjEwNDAxMTM1NDM1fQ.LUA1j7hpIcmlc337zKcNqfn4w4HFdBQfE9d4u8DJGzU"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ResultString",
+                    "description": "登录凭证（JWT）"
+                  },
+                  "example": {
+                    "code": 0,
+                    "msg": "",
+                    "data": ""
+                  }
+                }
+              },
+              "headers": {}
+            }
+          },
+          "security": []
+        }
+      },
+      "/": {
+        "get": {
+          "summary": "获取用户列表",
+          "deprecated": false,
+          "description": "",
+          "tags": [],
+          "parameters": [
+            {
+              "name": "pageNum",
+              "in": "query",
+              "description": "页码",
+              "required": false,
+              "schema": {
+                "type": "integer"
+              }
+            },
+            {
+              "name": "pageSize",
+              "in": "query",
+              "description": "每页数量",
+              "required": false,
+              "schema": {
+                "type": "integer"
+              }
+            },
+            {
+              "name": "token",
+              "in": "header",
+              "description": "",
+              "example": "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjEwNDAxMTM1NDM1fQ.LUA1j7hpIcmlc337zKcNqfn4w4HFdBQfE9d4u8DJGzU",
+              "schema": {
+                "type": "string",
+                "default": "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjEwNDAxMTM1NDM1fQ.LUA1j7hpIcmlc337zKcNqfn4w4HFdBQfE9d4u8DJGzU"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ResultPageUserDO",
+                    "description": "用户列表分页信息"
+                  },
+                  "example": {
+                    "code": 0,
+                    "msg": "",
+                    "data": {
+                      "records": [
+                        {
+                          "id": 0,
+                          "openid": "",
+                          "username": "",
+                          "role": 0
+                        }
+                      ],
+                      "total": 0,
+                      "size": 0,
+                      "current": 0,
+                      "orders": [
+                        {
+                          "column": "",
+                          "asc": false
+                        }
+                      ],
+                      "optimizeCountSql": false,
+                      "searchCount": false,
+                      "optimizeJoinOfCountSql": false,
+                      "maxLimit": 0,
+                      "countId": ""
+                    }
+                  }
+                }
+              },
+              "headers": {}
+            }
+          },
+          "security": []
+        },
+        "post": {
+          "summary": "更新当前用户名",
+          "deprecated": false,
+          "description": "",
+          "tags": [],
+          "parameters": [
+            {
+              "name": "token",
+              "in": "header",
+              "description": "",
+              "example": "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjEwNDAxMTM1NDM1fQ.LUA1j7hpIcmlc337zKcNqfn4w4HFdBQfE9d4u8DJGzU",
+              "schema": {
+                "type": "string",
+                "default": "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjEwNDAxMTM1NDM1fQ.LUA1j7hpIcmlc337zKcNqfn4w4HFdBQfE9d4u8DJGzU"
+              }
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserDO",
+                  "description": "com.csmht.sinin.DO.UserDO"
+                },
+                "examples": {}
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ResultBoolean",
+                    "description": "是否更新成功"
+                  },
+                  "example": {
+                    "code": 0,
+                    "msg": "",
+                    "data": false
+                  }
+                }
+              },
+              "headers": {}
+            }
+          },
+          "security": []
+        }
+      },
+      "/my": {
+        "get": {
+          "summary": "获取当前登录用户信息",
+          "deprecated": false,
+          "description": "",
+          "tags": [],
+          "parameters": [
+            {
+              "name": "token",
+              "in": "header",
+              "description": "",
+              "example": "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjEwNDAxMTM1NDM1fQ.LUA1j7hpIcmlc337zKcNqfn4w4HFdBQfE9d4u8DJGzU",
+              "schema": {
+                "type": "string",
+                "default": "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjEwNDAxMTM1NDM1fQ.LUA1j7hpIcmlc337zKcNqfn4w4HFdBQfE9d4u8DJGzU"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ResultUserDO",
+                    "description": "当前登录用户信息"
+                  },
+                  "example": {
+                    "code": 0,
+                    "msg": "",
+                    "data": {
+                      "id": 0,
+                      "openid": "",
+                      "username": "",
+                      "role": 0
+                    }
+                  }
+                }
+              },
+              "headers": {}
+            }
+          },
+          "security": []
+        }
+      },
+      "/admin": {
+        "post": {
+          "summary": "添加管理员",
+          "deprecated": false,
+          "description": "",
+          "tags": [],
+          "parameters": [
+            {
+              "name": "token",
+              "in": "header",
+              "description": "",
+              "example": "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjEwNDAxMTM1NDM1fQ.LUA1j7hpIcmlc337zKcNqfn4w4HFdBQfE9d4u8DJGzU",
+              "schema": {
+                "type": "string",
+                "default": "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjEwNDAxMTM1NDM1fQ.LUA1j7hpIcmlc337zKcNqfn4w4HFdBQfE9d4u8DJGzU"
+              }
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "description": "用户id"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ResultBoolean",
+                    "description": "是否更新成功"
+                  },
+                  "example": {
+                    "code": 0,
+                    "msg": "",
+                    "data": false
+                  }
+                }
+              },
+              "headers": {}
+            }
+          },
+          "security": []
+        }
+      },
+      "/hello": {
+        "get": {
+          "summary": "hello",
+          "deprecated": false,
+          "description": "",
+          "tags": [],
+          "parameters": [
+            {
+              "name": "token",
+              "in": "header",
+              "description": "",
+              "example": "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjEwNDAxMTM1NDM1fQ.LUA1j7hpIcmlc337zKcNqfn4w4HFdBQfE9d4u8DJGzU",
+              "schema": {
+                "type": "string",
+                "default": "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjEwNDAxMTM1NDM1fQ.LUA1j7hpIcmlc337zKcNqfn4w4HFdBQfE9d4u8DJGzU"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "example": ""
+                }
+              },
+              "headers": {}
+            }
+          },
+          "security": []
+        }
+      },
+      "/from/leave": {
+        "put": {
+          "summary": "申请请假",
+          "deprecated": false,
+          "description": "",
+          "tags": [],
+          "parameters": [
+            {
+              "name": "token",
+              "in": "header",
+              "description": "",
+              "example": "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjEwNDAxMTM1NDM1fQ.LUA1j7hpIcmlc337zKcNqfn4w4HFdBQfE9d4u8DJGzU",
+              "schema": {
+                "type": "string",
+                "default": "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjEwNDAxMTM1NDM1fQ.LUA1j7hpIcmlc337zKcNqfn4w4HFdBQfE9d4u8DJGzU"
+              }
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FormDO",
+                  "description": "com.csmht.sinin.DO.FormDO"
+                },
+                "examples": {}
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ResultBoolean",
+                    "description": "是否更新成功"
+                  },
+                  "example": {
+                    "code": 0,
+                    "msg": "",
+                    "data": false
+                  }
+                }
+              },
+              "headers": {}
+            }
+          },
+          "security": []
+        }
+      },
+      "/from/approve": {
+        "post": {
+          "summary": "批假",
+          "deprecated": false,
+          "description": "",
+          "tags": [],
+          "parameters": [
+            {
+              "name": "formID",
+              "in": "query",
+              "description": "申请ID",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              }
+            },
+            {
+              "name": "status",
+              "in": "query",
+              "description": "0-未处理 1-已同意 2-未通过",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              }
+            },
+            {
+              "name": "token",
+              "in": "header",
+              "description": "",
+              "example": "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjEwNDAxMTM1NDM1fQ.LUA1j7hpIcmlc337zKcNqfn4w4HFdBQfE9d4u8DJGzU",
+              "schema": {
+                "type": "string",
+                "default": "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjEwNDAxMTM1NDM1fQ.LUA1j7hpIcmlc337zKcNqfn4w4HFdBQfE9d4u8DJGzU"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ResultBoolean",
+                    "description": "是否更新成功"
+                  },
+                  "example": {
+                    "code": 0,
+                    "msg": "",
+                    "data": false
+                  }
+                }
+              },
+              "headers": {}
+            }
+          },
+          "security": []
+        }
+      },
+      "/from/list": {
+        "get": {
+          "summary": "获取所有请假申请列表（未处理在前）",
+          "deprecated": false,
+          "description": "",
+          "tags": [],
+          "parameters": [
+            {
+              "name": "pageNum",
+              "in": "query",
+              "description": "页码",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              }
+            },
+            {
+              "name": "pageSize",
+              "in": "query",
+              "description": "页数",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              }
+            },
+            {
+              "name": "token",
+              "in": "header",
+              "description": "",
+              "example": "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjEwNDAxMTM1NDM1fQ.LUA1j7hpIcmlc337zKcNqfn4w4HFdBQfE9d4u8DJGzU",
+              "schema": {
+                "type": "string",
+                "default": "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjEwNDAxMTM1NDM1fQ.LUA1j7hpIcmlc337zKcNqfn4w4HFdBQfE9d4u8DJGzU"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ResultPageFormDO",
+                    "description": ""
+                  },
+                  "example": {
+                    "code": 0,
+                    "msg": "",
+                    "data": {
+                      "records": [
+                        {
+                          "id": 0,
+                          "center": "",
+                          "type": "",
+                          "status": 0,
+                          "startTime": "",
+                          "endTime": "",
+                          "createTime": "",
+                          "reason": "",
+                          "day": 0,
+                          "userId": ""
+                        }
+                      ],
+                      "total": 0,
+                      "size": 0,
+                      "current": 0,
+                      "orders": [
+                        {
+                          "column": "",
+                          "asc": false
+                        }
+                      ],
+                      "optimizeCountSql": false,
+                      "searchCount": false,
+                      "optimizeJoinOfCountSql": false,
+                      "maxLimit": 0,
+                      "countId": ""
+                    }
+                  }
+                }
+              },
+              "headers": {}
+            }
+          },
+          "security": []
+        }
+      },
+      "/from/userFrom": {
+        "get": {
+          "summary": "条件查询用户请假申请列表",
+          "deprecated": false,
+          "description": "",
+          "tags": [],
+          "parameters": [
+            {
+              "name": "userId",
+              "in": "query",
+              "description": "用户ID（与用户名同时输入优先使用用户ID）",
+              "required": false,
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            },
+            {
+              "name": "userName",
+              "in": "query",
+              "description": "用户名",
+              "required": false,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "status",
+              "in": "query",
+              "description": "申请状态",
+              "required": false,
+              "schema": {
+                "type": "integer"
+              }
+            },
+            {
+              "name": "type",
+              "in": "query",
+              "description": "申请类型",
+              "required": false,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "center",
+              "in": "query",
+              "description": "申请中心",
+              "required": false,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "pageNum",
+              "in": "query",
+              "description": "",
+              "required": false,
+              "schema": {
+                "type": "integer"
+              }
+            },
+            {
+              "name": "pageSize",
+              "in": "query",
+              "description": "",
+              "required": false,
+              "schema": {
+                "type": "integer"
+              }
+            },
+            {
+              "name": "token",
+              "in": "header",
+              "description": "",
+              "example": "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjEwNDAxMTM1NDM1fQ.LUA1j7hpIcmlc337zKcNqfn4w4HFdBQfE9d4u8DJGzU",
+              "schema": {
+                "type": "string",
+                "default": "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjEwNDAxMTM1NDM1fQ.LUA1j7hpIcmlc337zKcNqfn4w4HFdBQfE9d4u8DJGzU"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ResultPageFormDO",
+                    "description": ""
+                  },
+                  "example": {
+                    "code": 0,
+                    "msg": "",
+                    "data": {
+                      "records": [
+                        {
+                          "id": 0,
+                          "center": "",
+                          "type": "",
+                          "status": 0,
+                          "startTime": "",
+                          "endTime": "",
+                          "createTime": "",
+                          "reason": "",
+                          "day": 0,
+                          "userId": ""
+                        }
+                      ],
+                      "total": 0,
+                      "size": 0,
+                      "current": 0,
+                      "orders": [
+                        {
+                          "column": "",
+                          "asc": false
+                        }
+                      ],
+                      "optimizeCountSql": false,
+                      "searchCount": false,
+                      "optimizeJoinOfCountSql": false,
+                      "maxLimit": 0,
+                      "countId": ""
+                    }
+                  }
+                }
+              },
+              "headers": {}
+            }
+          },
+          "security": []
+        }
+      },
+      "/from/my": {
+        "get": {
+          "summary": "获取当前用户请假申请列表（未处理在前）",
+          "deprecated": false,
+          "description": "",
+          "tags": [],
+          "parameters": [
+            {
+              "name": "pageNum",
+              "in": "query",
+              "description": "页码",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              }
+            },
+            {
+              "name": "pageSize",
+              "in": "query",
+              "description": "页数",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              }
+            },
+            {
+              "name": "token",
+              "in": "header",
+              "description": "",
+              "example": "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjEwNDAxMTM1NDM1fQ.LUA1j7hpIcmlc337zKcNqfn4w4HFdBQfE9d4u8DJGzU",
+              "schema": {
+                "type": "string",
+                "default": "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjEwNDAxMTM1NDM1fQ.LUA1j7hpIcmlc337zKcNqfn4w4HFdBQfE9d4u8DJGzU"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ResultPageFormDO",
+                    "description": ""
+                  },
+                  "example": {
+                    "code": 0,
+                    "msg": "",
+                    "data": {
+                      "records": [
+                        {
+                          "id": 0,
+                          "center": "",
+                          "type": "",
+                          "status": 0,
+                          "startTime": "",
+                          "endTime": "",
+                          "createTime": "",
+                          "reason": "",
+                          "day": 0,
+                          "userId": ""
+                        }
+                      ],
+                      "total": 0,
+                      "size": 0,
+                      "current": 0,
+                      "orders": [
+                        {
+                          "column": "",
+                          "asc": false
+                        }
+                      ],
+                      "optimizeCountSql": false,
+                      "searchCount": false,
+                      "optimizeJoinOfCountSql": false,
+                      "maxLimit": 0,
+                      "countId": ""
+                    }
+                  }
+                }
+              },
+              "headers": {}
+            }
+          },
+          "security": []
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "PageFormDO": {
+          "type": "object",
+          "properties": {
+            "records": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/FormDO",
+                "description": "com.csmht.sinin.DO.FormDO"
+              },
+              "description": ""
+            },
+            "total": {
+              "type": "integer",
+              "description": "",
+              "format": "int64"
+            },
+            "size": {
+              "type": "integer",
+              "description": "",
+              "format": "int64"
+            },
+            "current": {
+              "type": "integer",
+              "description": "",
+              "format": "int64"
+            },
+            "orders": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/OrderItem",
+                "description": "com.baomidou.mybatisplus.core.metadata.OrderItem"
+              },
+              "description": ""
+            },
+            "optimizeCountSql": {
+              "type": "boolean",
+              "description": ""
+            },
+            "searchCount": {
+              "type": "boolean",
+              "description": ""
+            },
+            "optimizeJoinOfCountSql": {
+              "type": "boolean",
+              "description": ""
+            },
+            "maxLimit": {
+              "type": "integer",
+              "description": "",
+              "format": "int64"
+            },
+            "countId": {
+              "type": "string",
+              "description": ""
+            }
+          }
+        },
+        "OrderItem": {
+          "type": "object",
+          "properties": {
+            "column": {
+              "type": "string",
+              "description": ""
+            },
+            "asc": {
+              "type": "boolean",
+              "description": ""
+            }
+          }
+        },
+        "FormDO": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "description": "",
+              "format": "int64",
+              "title": "申请ID"
+            },
+            "center": {
+              "type": "string",
+              "description": "申请中心",
+              "title": "所在中心"
+            },
+            "type": {
+              "type": "string",
+              "description": "申请类型",
+              "title": "申请类型"
+            },
+            "status": {
+              "type": "integer",
+              "description": "申请状态",
+              "title": "申请状态（0-未审批 1-已通过 2-已拒绝）"
+            },
+            "startTime": {
+              "type": "string",
+              "description": "申请开始时间",
+              "title": "开始时间（YYYY-MM-DD HH:MM:SS）"
+            },
+            "endTime": {
+              "type": "string",
+              "description": "申请结束时间",
+              "title": "结束时间（YYYY-MM-DD HH:MM:SS）"
+            },
+            "createTime": {
+              "type": "string",
+              "description": "创建时间",
+              "title": "创建时间（YYYY-MM-DD HH:MM:SS）"
+            },
+            "reason": {
+              "type": "string",
+              "description": "申请原因",
+              "title": "请假事由"
+            },
+            "day": {
+              "type": "integer",
+              "description": "申请天数",
+              "title": "请假天数"
+            },
+            "userId": {
+              "type": "string",
+              "description": "用户openid",
+              "title": "用户ID"
+            }
+          }
+        },
+        "PageUserDO": {
+          "type": "object",
+          "properties": {
+            "records": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/UserDO",
+                "description": "com.csmht.sinin.DO.UserDO"
+              },
+              "description": ""
+            },
+            "total": {
+              "type": "integer",
+              "description": "",
+              "format": "int64"
+            },
+            "size": {
+              "type": "integer",
+              "description": "",
+              "format": "int64"
+            },
+            "current": {
+              "type": "integer",
+              "description": "",
+              "format": "int64"
+            },
+            "orders": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/OrderItem",
+                "description": "com.baomidou.mybatisplus.core.metadata.OrderItem"
+              },
+              "description": ""
+            },
+            "optimizeCountSql": {
+              "type": "boolean",
+              "description": ""
+            },
+            "searchCount": {
+              "type": "boolean",
+              "description": ""
+            },
+            "optimizeJoinOfCountSql": {
+              "type": "boolean",
+              "description": ""
+            },
+            "maxLimit": {
+              "type": "integer",
+              "description": "",
+              "format": "int64"
+            },
+            "countId": {
+              "type": "string",
+              "description": ""
+            }
+          }
+        },
+        "UserDO": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "description": "",
+              "format": "int64"
+            },
+            "openid": {
+              "type": "string",
+              "description": "微信openid"
+            },
+            "username": {
+              "type": "string",
+              "description": "用户名",
+              "title": "用户名"
+            },
+            "role": {
+              "type": "integer",
+              "description": "角色 0-学生 1-老师",
+              "title": "0-学生 1-老师"
+            }
+          }
+        },
+        "ResultPageFormDO": {
+          "type": "object",
+          "properties": {
+            "code": {
+              "type": "integer",
+              "description": ""
+            },
+            "msg": {
+              "type": "string",
+              "description": ""
+            },
+            "data": {
+              "$ref": "#/components/schemas/PageFormDO",
+              "description": ""
+            }
+          }
+        },
+        "ResultString": {
+          "type": "object",
+          "properties": {
+            "code": {
+              "type": "integer",
+              "description": ""
+            },
+            "msg": {
+              "type": "string",
+              "description": ""
+            },
+            "data": {
+              "type": "string",
+              "description": ""
+            }
+          }
+        },
+        "ResultUserDO": {
+          "type": "object",
+          "properties": {
+            "code": {
+              "type": "integer",
+              "description": ""
+            },
+            "msg": {
+              "type": "string",
+              "description": ""
+            },
+            "data": {
+              "$ref": "#/components/schemas/UserDO",
+              "description": "com.csmht.sinin.DO.UserDO"
+            }
+          }
+        },
+        "ResultBoolean": {
+          "type": "object",
+          "properties": {
+            "code": {
+              "type": "integer",
+              "description": ""
+            },
+            "msg": {
+              "type": "string",
+              "description": ""
+            },
+            "data": {
+              "type": "boolean",
+              "description": ""
+            }
+          }
+        },
+        "ResultPageUserDO": {
+          "type": "object",
+          "properties": {
+            "code": {
+              "type": "integer",
+              "description": ""
+            },
+            "msg": {
+              "type": "string",
+              "description": ""
+            },
+            "data": {
+              "$ref": "#/components/schemas/PageUserDO",
+              "description": ""
+            }
+          }
+        }
+      },
+      "securitySchemes": {}
+    },
+    "servers": []
+  }

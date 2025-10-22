@@ -14,4 +14,17 @@ export default defineConfig({
       resolvers: [ElementPlusResolver()],
     }),
   ],
+  //兼容旧版本浏览器
+  build: {
+    polyfillModulePreload: true,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'element-plus': ['element-plus'],
+        },
+      },
+    },
+  },
 });
+
+

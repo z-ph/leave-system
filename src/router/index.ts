@@ -1,6 +1,7 @@
 import { createWebHistory, createRouter } from "vue-router";
 
 import routes from "./routes";
+import { TokenManager } from "../auth/tokenManager";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -21,6 +22,6 @@ router.beforeEach((to, _from, next) => {
   });
 });
 function isAuthed() {
-  return false;
+  return TokenManager.isAuthed();
 }
 export default router;

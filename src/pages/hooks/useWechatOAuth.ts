@@ -6,6 +6,10 @@ interface GetWeChatCodeUrlOptions {
 }
 import { computed, onMounted } from "vue";
 import { useRoute } from "vue-router";
+import { DefaultService } from "../../api/generated/services/DefaultService";
+import { useMutation } from "@tanstack/vue-query";
+import { TokenManager } from "../../auth/tokenManager";
+import { useRouter } from "vue-router";
 const CONFIG = {
   appId: "wx7bbdf981cf3342ff",
   scope: "snsapi_base",
@@ -48,5 +52,28 @@ export function useWeCode() {
   return {
     code,
     refreshCode,
+  };
+}
+
+export function useLogin() {
+  const {code} = useWeCode();
+  const router = useRouter();
+  const loginMutation = useMutation({
+    mutationFn: (code: string) => DefaultService.postLogin(code),
+    onSuccess: (data) => {
+      if (data.code === 0) {
+        TokenManager.setToken(data.data as string);
+        TokenManager.setTokenPayload(TokenManager.getTokenPayload());
+        router.push("/");
+      }
+    },
+  });
+  onMounted(() => {
+    if (code.value) {
+      loginMutation.mutate(code.value);
+    }
+  });
+  return {
+    loginMutation,
   };
 }
