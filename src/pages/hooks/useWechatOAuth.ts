@@ -11,6 +11,7 @@ import { useMutation } from "@tanstack/vue-query";
 import { TokenManager } from "../../auth/tokenManager";
 import { useRouter } from "vue-router";
 import { ElMessage } from "element-plus";
+import { jwtDecode } from "jwt-decode";
 const CONFIG = {
   appId: "wx7bbdf981cf3342ff",
   scope: "snsapi_base",
@@ -63,7 +64,7 @@ export function useLogin() {
     mutationFn: (code: string) => DefaultService.postLogin(code),
     onSuccess: (data) => {
       TokenManager.setToken(data.data as string);
-      TokenManager.setTokenPayload(TokenManager.getTokenPayload());
+      TokenManager.setTokenPayload(jwtDecode(data.data as string));
       ElMessage.success("登录成功");
       router.push("/");
     },
