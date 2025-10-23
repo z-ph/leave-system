@@ -19,4 +19,8 @@ export default [
     path: '/form',
     component: () => import('../pages/Form.vue'),
   },
+  {
+    path: '/leave-list',
+    component: () => import('../pages/LeaveList.vue'),
+  },
 ]

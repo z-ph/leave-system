@@ -17,7 +17,6 @@ export default defineConfig({
           prefix: "Icon",
         }),
       ],
-      // 自动导入图标组件
     }),
     Components({
       resolvers: [ElementPlusResolver()],

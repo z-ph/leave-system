@@ -106,7 +106,7 @@ const handleAdminChange = (value: number) => {
 </script>
 
 <template>
-  <NavLayout>
+  <NavLayout title="请假申请">
     <div style="padding: 16px">
       <h2 style="text-align: center; margin: 0 0 16px">
         实验教学部教职工请假申请表
