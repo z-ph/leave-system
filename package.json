@@ -7,10 +7,12 @@
     "dev": "vite",
     "build": "vue-tsc -b && vite build",
     "preview": "vite preview",
-    "generate:api": "openapi --input openapi.json --output src/api/generated/"
+    "generate:api": "openapi --input openapi.json --output src/api/generated/",
+    "gen:api": "npx swagger-typescript-api generate -p ./openapi.yaml -o ./src/api/axios --axios"
   },
   "dependencies": {
     "@tanstack/vue-query": "^5.90.5",
+    "axios": "^1.12.2",
     "element-plus": "^2.11.5",
     "jwt-decode": "^4.0.0",
     "vue": "^3.5.22",
@@ -21,6 +23,7 @@
     "@vitejs/plugin-vue": "^6.0.1",
     "@vue/tsconfig": "^0.8.1",
     "openapi-typescript-codegen": "^0.29.0",
+    "swagger-typescript-api": "^13.2.16",
     "typescript": "~5.9.3",
     "unplugin-auto-import": "^20.2.0",
     "unplugin-vue-components": "^30.0.0",
