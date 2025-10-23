@@ -7,8 +7,9 @@ const router = createRouter({
   history: createWebHistory(),
   routes,
 });
+const publicRoutes = ["/login","/test/login"];
 router.beforeEach((to, _from, next) => {
-  if (to.path === "/login") {
+  if (publicRoutes.includes(to.path)) {
     next();
     return;
   }

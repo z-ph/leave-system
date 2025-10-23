@@ -7,4 +7,8 @@ export default [
     path: '/',
     component: () => import('../pages/Form.vue'),
   },
+  {
+    path: '/test/login',
+    component: () => import('../pages/TestLogin.vue'),
+  },
 ]
