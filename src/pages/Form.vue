@@ -175,17 +175,6 @@ const handleAdminChange = (value: number) => {
           </el-col>
 
           <el-col :span="24">
-            <el-form-item label="申请时间">
-              <el-date-picker
-                v-model="form.createTime"
-                type="datetime"
-                style="width: 100%"
-                disabled
-              />
-            </el-form-item>
-          </el-col>
-
-          <el-col :span="24">
             <el-form-item label="审核人" prop="adminId">
               <el-select
                 v-model="form.adminId"
