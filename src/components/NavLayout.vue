@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { useRouter } from "vue-router";
-import { computed } from "vue";
 
 const props = defineProps<{ title?: string }>();
 const router = useRouter();
