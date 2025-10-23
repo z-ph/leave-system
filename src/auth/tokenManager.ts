@@ -1,4 +1,5 @@
 import {jwtDecode} from 'jwt-decode';
+
 export class TokenManager {
   //存储在localStorage中 'token'
   static KEY = "leaveSystemToken";

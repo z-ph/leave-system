@@ -5,10 +5,18 @@ export default [
   },
   {
     path: '/',
-    component: () => import('../pages/Form.vue'),
+    component: () => import('../pages/index.vue'),
   },
   {
     path: '/test/login',
     component: () => import('../pages/TestLogin.vue'),
+  },
+  {
+    path: '/my',
+    component: () => import('../pages/My.vue'),
+  },
+  {
+    path: '/form',
+    component: () => import('../pages/Form.vue'),
   },
 ]

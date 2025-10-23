@@ -42,12 +42,12 @@ export interface FormDO {
    * 所在中心
    * 申请中心
    */
-  center?: string;
+  center: string;
   /**
    * 申请类型
    * 申请类型
    */
-  type?: string;
+  type: string;
   /**
    * 申请状态（0-未审批 1-已通过 2-已拒绝）
    * 申请状态
@@ -57,12 +57,12 @@ export interface FormDO {
    * 开始时间（YYYY-MM-DD HH:MM:SS）
    * 申请开始时间
    */
-  startTime?: string;
+  startTime: string;
   /**
    * 结束时间（YYYY-MM-DD HH:MM:SS）
    * 申请结束时间
    */
-  endTime?: string;
+  endTime: string;
   /**
    * 创建时间（YYYY-MM-DD HH:MM:SS）
    * 创建时间
@@ -72,12 +72,12 @@ export interface FormDO {
    * 请假事由
    * 申请原因
    */
-  reason?: string;
+  reason: string;
   /**
    * 请假天数
    * 申请天数
    */
-  day?: number;
+  day: number;
   /**
    * 用户ID
    * 用户openid
@@ -89,7 +89,7 @@ export interface FormDO {
    * 审核员ID
    * @format int64
    */
-  adminId?: number;
+  adminId: number;
 }
 
 export interface PageUserDO {
@@ -120,8 +120,8 @@ export interface UserDO {
    */
   username?: string;
   /**
-   * 0-学生 1-老师
-   * 角色 0-学生 1-老师
+   * 0-普通用户 1-审核人 2-管理员
+   * 角色 0-普通用户 1-审核人 2-管理员
    */
   role?: number;
 }
@@ -171,6 +171,7 @@ import type {
   ResponseType,
 } from "axios";
 import axios from "axios";
+import { TokenManager } from "../../auth/tokenManager";
 
 export type QueryParamsType = Record<string | number, any>;
 
@@ -228,6 +229,20 @@ export class HttpClient<SecurityDataType = unknown> {
     this.instance = axios.create({
       ...axiosConfig,
       baseURL: axiosConfig.baseURL || "",
+    });
+    this.instance.interceptors.request.use((config) => {
+      const token = TokenManager.getToken();
+      if (token) {
+        config.headers.token = token;
+      }
+      return config;
+    });
+    this.instance.interceptors.response.use((response) => {
+      const data = response.data;
+      if (data.code !== 1) {
+        throw new Error(data.msg);
+      }
+      return response;
     });
     this.secure = secure;
     this.format = format;

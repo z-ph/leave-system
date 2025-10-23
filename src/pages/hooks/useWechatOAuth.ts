@@ -6,12 +6,12 @@ interface GetWeChatCodeUrlOptions {
 }
 import { computed, onMounted } from "vue";
 import { useRoute } from "vue-router";
-import { DefaultService } from "../../api/generated/services/DefaultService";
 import { useMutation } from "@tanstack/vue-query";
 import { TokenManager } from "../../auth/tokenManager";
 import { useRouter } from "vue-router";
 import { ElMessage } from "element-plus";
 import { jwtDecode } from "jwt-decode";
+import { api } from "../../api/axios";
 const CONFIG = {
   appId: "wx7bbdf981cf3342ff",
   scope: "snsapi_base",
@@ -61,10 +61,10 @@ export function useLogin() {
   const { code } = useWeCode();
   const router = useRouter();
   const loginMutation = useMutation({
-    mutationFn: (code: string) => DefaultService.postLogin(code),
-    onSuccess: (data) => {
-      TokenManager.setToken(data.data as string);
-      TokenManager.setTokenPayload(jwtDecode(data.data as string));
+    mutationFn: (code: string) => api.login.loginCreate({ code }),
+    onSuccess: (res) => {
+      TokenManager.setToken(res.data.data as string);
+      TokenManager.setTokenPayload(jwtDecode(res.data.data as string));
       ElMessage.success("登录成功");
       router.push("/");
     },
