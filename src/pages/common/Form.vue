@@ -36,7 +36,7 @@ const form = reactive<LeaveForm>({
   endTime: "",
   reason: "",
   day: 0,
-  adminId: 0,
+  adminId: NaN,
 });
 
 function calculateWorkdays(
