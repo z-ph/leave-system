@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
 import { useRequestsQuery, type RequestFilters } from "@/pages/admin/hooks/useRequests";
+import { FormStatus, getFormStatusLabel, getFormStatusTagType } from "@/constants/formStatus";
 
 const filters = ref<RequestFilters>({ pageNum: 1, pageSize: 10 });
 const { data, isLoading } = useRequestsQuery(filters);
@@ -27,9 +28,9 @@ function onReset() {
       </el-form-item>
       <el-form-item label="状态">
         <el-select v-model="filters.status" clearable placeholder="全部" style="width: 140px">
-          <el-option :value="0" label="未审批" />
-          <el-option :value="1" label="已通过" />
-          <el-option :value="2" label="已拒绝" />
+          <el-option :value="FormStatus.Pending" :label="getFormStatusLabel(FormStatus.Pending)" />
+          <el-option :value="FormStatus.Approved" :label="getFormStatusLabel(FormStatus.Approved)" />
+          <el-option :value="FormStatus.Rejected" :label="getFormStatusLabel(FormStatus.Rejected)" />
         </el-select>
       </el-form-item>
       <el-form-item label="类型">
@@ -53,8 +54,8 @@ function onReset() {
       <el-table-column label="中心" prop="center" />
       <el-table-column label="状态">
         <template #default="{ row }">
-          <el-tag :type="row.status===1?'success':row.status===2?'danger':'warning'">
-            {{ row.status===1?'已通过':row.status===2?'已拒绝':'未审批' }}
+          <el-tag :type="getFormStatusTagType(row.status)">
+            {{ getFormStatusLabel(row.status) }}
           </el-tag>
         </template>
       </el-table-column>

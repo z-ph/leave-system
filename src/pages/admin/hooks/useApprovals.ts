@@ -3,6 +3,7 @@ import { api } from "@/api/axios";
 import type { PageFormDO } from "@/api/axios/Api";
 import { ElMessage } from "element-plus";
 import type { Ref } from "vue";
+import { FormStatus } from "@/constants/formStatus";
 
 export function useApprovalsQuery(params: Ref<{ pageNum: number; pageSize: number }>) {
   return useQuery({
@@ -18,7 +19,7 @@ export function useApprovalsQuery(params: Ref<{ pageNum: number; pageSize: numbe
 export function useApproveMutation() {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: async (payload: { formID: number; status: number; remark?: string }) => {
+    mutationFn: async (payload: { formID: number; status: FormStatus; remark?: string }) => {
       const res = await api.from.approveCreate(payload as any);
       return res.data;
     },

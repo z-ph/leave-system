@@ -1,29 +1,58 @@
 <script setup lang="ts">
-import { useRoute } from "vue-router";
-import { computed } from "vue";
+import { useRoute, useRouter } from "vue-router";
+import { computed, ref, onMounted, onBeforeUnmount } from "vue";
 import { hasRole, Role } from "@/auth/roles";
 import { useCurrentUserRole } from "@/auth/useCurrentUserRole";
 const { data: currentUserRole } = useCurrentUserRole();
 const route = useRoute();
+const router = useRouter();
 const active = computed(() => route.path);
+
+const windowWidth = ref<number>(
+  typeof window !== "undefined" ? window.innerWidth : 1024
+);
+const isMobile = computed(() => windowWidth.value < 768);
+
+function handleResize() {
+  windowWidth.value = window.innerWidth;
+}
+
+onMounted(() => {
+  window.addEventListener("resize", handleResize);
+});
+onBeforeUnmount(() => {
+  window.removeEventListener("resize", handleResize);
+});
 </script>
 
 <template>
   <el-container :style="{ minHeight: '100vh' }">
-    <el-aside>
-      <el-menu :default-active="active" router :style="{height: '100%'}">
-        <el-menu-item index="/admin/dashboard">仪表盘</el-menu-item>
+    <el-aside v-if="!isMobile" :style="{ width: '15%', minHeight: '100vh' }">
+      <el-menu :default-active="active" router :style="{ height: '100%' }">
+        <el-menu-item index="/admin/dashboard" v-if="isMobile">仪表盘</el-menu-item>
         <el-menu-item index="/admin/approvals">待审批</el-menu-item>
         <el-menu-item index="/admin/requests">申请管理</el-menu-item>
-        <el-menu-item index="/">返回首页</el-menu-item>
-        <el-menu-item index="/admin/admins" v-if="hasRole(currentUserRole, [Role.SuperAdmin])">审核员管理</el-menu-item>
+        <el-menu-item index="/">返回用户首页</el-menu-item>
+        <el-menu-item
+          index="/admin/admins"
+          v-if="hasRole(currentUserRole, [Role.SuperAdmin])"
+          >审核员管理</el-menu-item
+        >
       </el-menu>
     </el-aside>
     <el-container>
+      <el-button
+        v-if="isMobile"
+        @click="router.push('/admin/dashboard')"
+        :style="{ marginBottom: '10px' }"
+        >返回管理首页</el-button
+      >
       <el-header>
         <el-breadcrumb separator="/">
           <el-breadcrumb-item to="/admin/dashboard">管理端</el-breadcrumb-item>
-          <el-breadcrumb-item>{{ route.meta?.pageTitle ?? '' }}</el-breadcrumb-item>
+          <el-breadcrumb-item>{{
+            route.meta?.pageTitle ?? ""
+          }}</el-breadcrumb-item>
         </el-breadcrumb>
       </el-header>
       <el-main>
@@ -32,5 +61,3 @@ const active = computed(() => route.path);
     </el-container>
   </el-container>
 </template>
-
-

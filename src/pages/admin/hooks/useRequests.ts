@@ -2,13 +2,14 @@ import { useQuery } from "@tanstack/vue-query";
 import { api } from "@/api/axios";
 import type { PageFormDO } from "@/api/axios/Api";
 import type { Ref } from "vue";
+import { FormStatus } from "@/constants/formStatus";
 
 export type RequestFilters = {
   pageNum: number;
   pageSize: number;
   userId?: number;
   userName?: string;
-  status?: number;
+  status?: FormStatus;
   type?: string;
   center?: string;
 };
