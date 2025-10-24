@@ -567,7 +567,7 @@ export class Api<
      * @request GET:/from/userFrom
      */
     userFromList: (
-      query?: {
+      body: {
         /**
          * 用户ID（与用户名同时输入优先使用用户ID）
          * @format int64
@@ -588,8 +588,8 @@ export class Api<
     ) =>
       this.request<ResultPageFormDO, any>({
         path: `/from/userFrom`,
-        method: "GET",
-        query: query,
+        method: "POST",
+        body: body,
         format: "json",
         ...params,
       }),
