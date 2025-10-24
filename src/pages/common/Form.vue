@@ -14,7 +14,7 @@ interface LeaveForm extends FormDO {
   endTime: string;
   reason: string;
   day: number;
-  adminId: number;
+  adminId?: number;
 }
 const { data: adminList } = useGetAdminList();
 const { data: userInfo } = useUserInfo();
@@ -36,7 +36,7 @@ const form = reactive<LeaveForm>({
   endTime: "",
   reason: "",
   day: 0,
-  adminId: NaN,
+  adminId: undefined,
 });
 
 function calculateWorkdays(

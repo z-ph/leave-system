@@ -89,7 +89,7 @@ export interface FormDO {
    * 审核员ID
    * @format int64
    */
-  adminId: number;
+  adminId?: number;
 }
 
 export interface PageUserDO {
