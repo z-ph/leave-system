@@ -20,7 +20,6 @@ const activePath = computed(() => route.path);
       :default-active="activePath"
       :style="{
         display: 'flex',
-        justifyContent: 'space-around',
         position: 'fixed',
         left: '0',
         right: '0',
@@ -28,8 +27,8 @@ const activePath = computed(() => route.path);
       }"
       @select="(index: string) => go(index)"
     >
-      <el-menu-item index="/">首页</el-menu-item>
-      <el-menu-item index="/my">我的</el-menu-item>
+      <el-menu-item index="/" :style="{flex:1}">首页</el-menu-item>
+      <el-menu-item index="/my" :style="{flex:1}">我的</el-menu-item>
     </el-menu>
   </el-affix>
   
