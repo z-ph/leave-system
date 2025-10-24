@@ -16,4 +16,10 @@ export function getFormStatusTagType(status?: number): "success" | "warning" | "
   return "warning";
 }
 
-
+export enum LeaveType {
+  Leave = "事假",
+  SickLeave = "病假",
+  AdjustLeave = "调休",
+  AnnualLeave = "年休假",
+  Other = "其他",
+}

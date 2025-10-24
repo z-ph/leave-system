@@ -5,7 +5,7 @@ import { useGetAdminList } from "./hooks/useGetAdminList";
 import type { FormDO } from "@/api/axios/Api";
 import { useUserInfo } from "./hooks/useUserInfo";
 import { useSubmitForm } from "./hooks/useSubmitForm";
-type LeaveType = "事假" | "病假" | "调休" | "年休假" | "其他";
+import { LeaveType } from "@/constants/formStatus";
 import NavLayout from "@/components/NavLayout.vue";
 interface LeaveForm extends FormDO {
   center: string;
@@ -21,11 +21,11 @@ const { data: userInfo } = useUserInfo();
 const { mutate: submitForm } = useSubmitForm();
 const username = computed(() => userInfo.value?.username);
 const leaveTypeOptions: Array<{ label: LeaveType; value: LeaveType }> = [
-  { label: "事假", value: "事假" },
-  { label: "病假", value: "病假" },
-  { label: "调休", value: "调休" },
-  { label: "年休假", value: "年休假" },
-  { label: "其他", value: "其他" },
+  { label: LeaveType.Leave, value: LeaveType.Leave },
+  { label: LeaveType.SickLeave, value: LeaveType.SickLeave },
+  { label: LeaveType.AdjustLeave, value: LeaveType.AdjustLeave },
+  { label: LeaveType.AnnualLeave, value: LeaveType.AnnualLeave },
+  { label: LeaveType.Other, value: LeaveType.Other },
 ];
 
 const formRef = ref<FormInstance>();
