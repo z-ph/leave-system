@@ -1,7 +1,8 @@
-import { useMutation, useQuery } from "@tanstack/vue-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/vue-query";
 import { api } from "@/api/axios";
 import type {  PageFormDO } from "@/api/axios/Api";
 import { computed, type Ref } from "vue";
+import { ElMessage } from "element-plus";
 
 export function useUserInfo() {
     return useQuery({
@@ -12,8 +13,16 @@ export function useUserInfo() {
 }
 
 export function useUpdateUsername(){
+    const qc = useQueryClient();
     return useMutation({
         mutationFn: (username: string) => api.postRoot({ username }),
+        onSuccess: () => {
+            ElMessage.success("用户名已更新");
+            qc.invalidateQueries({ queryKey: ["userInfo"] });
+        },
+        onError: (e: any) => {
+            ElMessage.error(e?.message ?? "更新失败");
+        }
     });
 }
 export function useGetLeaveList({pageNum,pageSize}:{pageNum:Ref<number>,pageSize:Ref<number>}){
