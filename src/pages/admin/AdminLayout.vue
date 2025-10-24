@@ -7,11 +7,10 @@ const { data: currentUserRole } = useCurrentUserRole();
 const route = useRoute();
 const router = useRouter();
 const active = computed(() => route.path);
-
+import { isMobile } from "@/hooks/isMobile";
 const windowWidth = ref<number>(
   typeof window !== "undefined" ? window.innerWidth : 1024
 );
-const isMobile = computed(() => windowWidth.value < 768);
 
 function handleResize() {
   windowWidth.value = window.innerWidth;
@@ -29,7 +28,6 @@ onBeforeUnmount(() => {
   <el-container :style="{ minHeight: '100vh' }">
     <el-aside v-if="!isMobile" :style="{ width: '15%', minHeight: '100vh' }">
       <el-menu :default-active="active" router :style="{ height: '100%' }">
-        <el-menu-item index="/admin/dashboard" v-if="isMobile">仪表盘</el-menu-item>
         <el-menu-item index="/admin/approvals">待审批</el-menu-item>
         <el-menu-item index="/admin/requests">申请管理</el-menu-item>
         <el-menu-item index="/">返回用户首页</el-menu-item>

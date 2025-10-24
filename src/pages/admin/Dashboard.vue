@@ -3,8 +3,15 @@ import OptionCard from "@/components/OptionCard.vue";
 import { useRouter } from "vue-router";
 import { hasRole, Role } from "@/auth/roles";
 import { useCurrentUserRole } from "@/auth/useCurrentUserRole";
+import { onMounted } from "vue";
+import { isMobile } from "@/hooks/isMobile";
 const router = useRouter();
 const { data: currentUserRole } = useCurrentUserRole();
+onMounted(() => {
+  if (isMobile.value) {
+    router.push('/admin/approvals');
+  }
+});
 </script>
 
 <template>
