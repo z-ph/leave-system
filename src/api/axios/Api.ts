@@ -534,7 +534,7 @@ export class Api<
      * @request POST:/from/approve
      */
     approveCreate: (
-      query: {
+      body: {
         /** 申请ID */
         formID: number;
         /** 0-未处理 1-已同意 2-未通过 */
@@ -545,7 +545,7 @@ export class Api<
       this.request<ResultBoolean, any>({
         path: `/from/approve`,
         method: "POST",
-        query: query,
+        body: body,
         format: "json",
         ...params,
       }),
