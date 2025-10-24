@@ -14,7 +14,7 @@ const { mutate: updateUsername } = useUpdateUsername();
 watch(userInfo,(newVal)=>{
   // 检测到用户名为空时，弹出修改框，提示用户输入用户名
   if (newVal?.username==='未知用户') {
-    ElMessageBox.prompt("请输入用户名", "提示", {
+    ElMessageBox.prompt("请输入您的姓名", "第一次登录注册", {
       confirmButtonText: "确定",
       cancelButtonText: "取消",
       inputValue: userInfo.value?.username ?? "",

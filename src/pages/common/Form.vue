@@ -7,6 +7,7 @@ import { useUserInfo } from "./hooks/useUserInfo";
 import { useSubmitForm } from "./hooks/useSubmitForm";
 import { LeaveType } from "@/constants/formStatus";
 import NavLayout from "@/components/NavLayout.vue";
+import { Loading } from "@element-plus/icons-vue";
 interface LeaveForm extends FormDO {
   center: string;
   type: string;
@@ -171,7 +172,10 @@ const handleAdminChange = (value: number) => {
 
           <el-col :span="24">
             <el-form-item label="申请人" prop="applicant">
-              <el-input :value="username" readonly />
+              <el-input :value="username" readonly v-if="username"/>
+              <el-icon v-else>
+                <Loading />
+              </el-icon>
             </el-form-item>
           </el-col>
 
@@ -184,6 +188,7 @@ const handleAdminChange = (value: number) => {
           <el-col :span="24">
             <el-form-item label="审核人" prop="adminId">
               <el-select
+                v-if="adminList"
                 v-model="form.adminId"
                 placeholder="请选择审核人"
                 @change="handleAdminChange"
@@ -195,6 +200,9 @@ const handleAdminChange = (value: number) => {
                   :value="admin.id as number"
                 />
               </el-select>
+              <el-icon v-else>
+                <Loading />
+              </el-icon>
             </el-form-item>
           </el-col>
 
