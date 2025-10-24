@@ -85,11 +85,21 @@ export interface FormDO {
    */
   userId?: number;
   /**
+   * 用户名称
+   */
+  userName?: string;
+  /**
    * 指定审核员ID
    * 审核员ID
    * @format int64
    */
   adminId?: number;
+
+  /**
+   * 审核员名称
+   * 审核员名称
+   */
+  adminName?: string;
 }
 
 export interface PageUserDO {

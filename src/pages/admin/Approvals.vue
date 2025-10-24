@@ -24,8 +24,7 @@ function handleApprove(row: FormDO, status: FormStatus) {
     </template>
     <el-skeleton v-if="isLoading" :rows="5" animated />
     <el-table v-else :data="(data?.records?.filter((item) => item.status === FormStatus.Pending) ?? [])">
-      <el-table-column label="申请ID" prop="id" width="100" />
-      <el-table-column label="申请人ID" prop="userId" width="120" />
+      <el-table-column label="申请人" prop="userName" width="120" />
       <el-table-column label="类型" prop="type" />
       <el-table-column label="中心" prop="center" />
       <el-table-column label="时间" min-width="220">

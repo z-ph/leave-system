@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
 import { useRequestsQuery, type RequestFilters } from "@/pages/admin/hooks/useRequests";
-import { FormStatus, getFormStatusLabel, getFormStatusTagType } from "@/constants/formStatus";
+import { FormStatus, getFormStatusLabel, getFormStatusTagType, LeaveType } from "@/constants/formStatus";
 
 const filters = ref<RequestFilters>({ pageNum: 1, pageSize: 10 });
 const { data, isLoading } = useRequestsQuery(filters);
@@ -18,12 +18,12 @@ function onReset() {
 
 <template>
   <el-card shadow="never">
-    <template #header>申请管理</template>
+    <template #header>申请历史</template>
     <el-form inline>
-      <el-form-item label="用户ID">
+      <el-form-item label="申请人ID">
         <el-input v-model.number="filters.userId" placeholder="用户ID" style="width: 160px" />
       </el-form-item>
-      <el-form-item label="用户名">
+      <el-form-item label="申请人">
         <el-input v-model="filters.userName" placeholder="用户名" style="width: 160px" />
       </el-form-item>
       <el-form-item label="状态">
@@ -34,7 +34,9 @@ function onReset() {
         </el-select>
       </el-form-item>
       <el-form-item label="类型">
-        <el-input v-model="filters.type" placeholder="类型" style="width: 140px" />
+        <el-select v-model="filters.type" clearable placeholder="全部" style="width: 140px">
+            <el-option v-for="type in LeaveType" :value="type" :label="type" />
+        </el-select>
       </el-form-item>
       <el-form-item label="中心">
         <el-input v-model="filters.center" placeholder="中心" style="width: 140px" />
@@ -48,8 +50,8 @@ function onReset() {
     </el-form>
     <el-skeleton v-if="isLoading" :rows="5" animated />
     <el-table v-else :data="(data?.records ?? [])">
-      <el-table-column label="申请ID" prop="id" width="100" />
       <el-table-column label="申请人ID" prop="userId" width="120" />
+      <el-table-column label="申请人" prop="userName" width="120" />
       <el-table-column label="类型" prop="type" />
       <el-table-column label="中心" prop="center" />
       <el-table-column label="状态">
