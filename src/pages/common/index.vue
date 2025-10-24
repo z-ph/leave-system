@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import OptionCard from "../components/OptionCard.vue";
-import BottomNav from "../components/BottomNav.vue";
+import OptionCard from "@/components/OptionCard.vue";
+import BottomNav from "@/components/BottomNav.vue";
 import { useRouter } from "vue-router";
 const router = useRouter();
 const gotoForm = () => {

@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/vue-query";
-import { api } from "../../api/axios";
-import type { FormDO } from "../../api/axios/Api";
+import { api } from "@/api/axios";
+import type { FormDO } from "@/api/axios/Api";
 import { ElMessage } from "element-plus";
 
 

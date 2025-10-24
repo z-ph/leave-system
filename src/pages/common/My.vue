@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import BottomNav from "../components/BottomNav.vue";
+import BottomNav from "@/components/BottomNav.vue";
 import { useUserInfo } from "./hooks/useUserInfo";
-import OptionCard from "../components/OptionCard.vue";
+import OptionCard from "@/components/OptionCard.vue";
 const { data: userInfo } = useUserInfo();
 </script>
 

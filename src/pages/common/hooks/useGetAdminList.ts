@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/vue-query";
-import { api } from "../../api/axios";
+import { api } from "@/api/axios";
 
 export const useGetAdminList = () => {
   return useQuery({

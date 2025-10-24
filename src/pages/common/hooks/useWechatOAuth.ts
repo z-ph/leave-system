@@ -7,11 +7,11 @@ interface GetWeChatCodeUrlOptions {
 import { computed, onMounted } from "vue";
 import { useRoute } from "vue-router";
 import { useMutation } from "@tanstack/vue-query";
-import { TokenManager } from "../../auth/tokenManager";
+import { TokenManager } from "@/auth/tokenManager";
 import { useRouter } from "vue-router";
 import { ElMessage } from "element-plus";
 import { jwtDecode } from "jwt-decode";
-import { api } from "../../api/axios";
+import { api } from "@/api/axios";
 const CONFIG = {
   appId: "wx7bbdf981cf3342ff",
   scope: "snsapi_base",

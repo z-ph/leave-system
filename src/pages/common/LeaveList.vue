@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import NavLayout from "../components/NavLayout.vue";
+import NavLayout from "@/components/NavLayout.vue";
 import { useGetLeaveList } from "./hooks/useUserInfo";
-import type { FormDO } from "../api/axios/Api";
+import type { FormDO } from "@/api/axios/Api";
 const { data: leaveList } = useGetLeaveList();
 
 function statusType(status?: number) {

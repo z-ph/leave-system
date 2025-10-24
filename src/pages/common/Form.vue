@@ -2,11 +2,11 @@
 import { ref, reactive, computed } from "vue";
 import type { FormInstance, FormRules } from "element-plus";
 import { useGetAdminList } from "./hooks/useGetAdminList";
-import type { FormDO } from "../api/axios/Api";
+import type { FormDO } from "@/api/axios/Api";
 import { useUserInfo } from "./hooks/useUserInfo";
 import { useSubmitForm } from "./hooks/useSubmitForm";
 type LeaveType = "事假" | "病假" | "调休" | "年休假" | "其他";
-import NavLayout from "../components/NavLayout.vue";
+import NavLayout from "@/components/NavLayout.vue";
 interface LeaveForm extends FormDO {
   center: string;
   type: string;

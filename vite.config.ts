@@ -5,6 +5,7 @@ import Icons from "unplugin-icons/vite";
 import Components from "unplugin-vue-components/vite";
 import IconsResolver from "unplugin-icons/resolver";
 import { ElementPlusResolver } from "unplugin-vue-components/resolvers";
+import { fileURLToPath } from "url";
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
@@ -43,6 +44,11 @@ export default defineConfig({
         rewrite: (path) => path.replace(/^\/api/, ""),
         changeOrigin: true,
       },
+    },
+  },
+  resolve: {
+    alias: {
+      "@": fileURLToPath(new URL("./src", import.meta.url)),
     },
   },
 });

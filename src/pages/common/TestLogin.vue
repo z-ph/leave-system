@@ -1,6 +1,6 @@
 <script setup lang="ts" `>
 import { onMounted } from "vue";
-import { TokenManager } from "../auth/tokenManager";
+import { TokenManager } from "@/auth/tokenManager";
 import { jwtDecode } from "jwt-decode";
 import { useRouter } from "vue-router";
 const router = useRouter();
