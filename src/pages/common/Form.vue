@@ -137,6 +137,8 @@ const handleAdminChange = (value: number) => {
               <el-date-picker
                 v-model="form.startTime"
                 type="datetime"
+                format="YYYY-MM-DD HH:mm:ss"
+                value-format="YYYY-MM-DD HH:mm:ss"
                 placeholder="选择开始时间"
                 style="width: 100%"
               />
@@ -148,6 +150,8 @@ const handleAdminChange = (value: number) => {
               <el-date-picker
                 v-model="form.endTime"
                 type="datetime"
+                format="YYYY-MM-DD HH:mm:ss"
+                value-format="YYYY-MM-DD HH:mm:ss"
                 placeholder="选择结束时间"
                 style="width: 100%"
               />
