@@ -1,6 +1,7 @@
 import { useMutation, useQuery } from "@tanstack/vue-query";
 import { api } from "@/api/axios";
-import type { FormDO } from "@/api/axios/Api";
+import type {  PageFormDO } from "@/api/axios/Api";
+import { computed, type Ref } from "vue";
 
 export function useUserInfo() {
     return useQuery({
@@ -15,10 +16,10 @@ export function useUpdateUsername(){
         mutationFn: (username: string) => api.postRoot({ username }),
     });
 }
-export function useGetLeaveList(){
+export function useGetLeaveList({pageNum,pageSize}:{pageNum:Ref<number>,pageSize:Ref<number>}){
     return useQuery({
-        queryKey: ["leaveList"],
-        queryFn: () => api.from.getFrom({ pageNum: 1, pageSize: 9999999 }),
-        select: (res) => res.data.data?.records ?? [] as FormDO[],
+        queryKey: computed(() => ["leaveList", pageNum.value, pageSize.value]),
+        queryFn: () => api.from.getFrom({ pageNum: pageNum.value, pageSize: pageSize.value }),
+        select: (res) => res.data.data as PageFormDO,
     });
 }
