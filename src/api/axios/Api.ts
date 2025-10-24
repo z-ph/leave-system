@@ -245,21 +245,6 @@ export class HttpClient<SecurityDataType = unknown> {
       ...axiosConfig,
       baseURL: axiosConfig.baseURL || "",
     });
-    this.instance.interceptors.request.use((config) => {
-      const token = TokenManager.getToken();
-      console.log(token);
-      if (token) {
-        config.headers.token = token;
-      }
-      return config;
-    });
-    this.instance.interceptors.response.use((response) => {
-      const data = response.data;
-      if (data.code !== 1) {
-        throw new Error(data.msg);
-      }
-      return response;
-    });
     this.secure = secure;
     this.format = format;
     this.securityWorker = securityWorker;
