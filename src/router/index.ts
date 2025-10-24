@@ -2,25 +2,34 @@ import { createWebHistory, createRouter } from "vue-router";
 
 import routes from "./routes";
 import { TokenManager } from "../auth/tokenManager";
+import { hasRole, Role } from "@/auth/roles";
+import { getCurrentUserRole } from "@/auth/userSession";
 
 const router = createRouter({
   history: createWebHistory(),
   routes,
 });
-const publicRoutes = ["/login","/test/login"];
-router.beforeEach((to, _from, next) => {
-  if (publicRoutes.includes(to.path)) {
+router.beforeEach(async (to, _from, next) => {
+  const requiresAuth = to.meta?.requiresAuth ?? true;
+  if (!requiresAuth) {
     next();
     return;
   }
-  if (isAuthed()) {
+  if (!isAuthed()) {
+    next({ path: "/login", query: { redirect: to.fullPath } });
+    return;
+  }
+  const allowed = to.meta?.roles as Role[] | undefined;
+  if (!allowed || allowed.length === 0) {
     next();
     return;
   }
-  next({
-    path: "/login",
-    query: { redirect: to.fullPath },
-  });
+  const role = await getCurrentUserRole();
+  if (hasRole(role, allowed)) {
+    next();
+    return;
+  }
+  next("/403");
 });
 function isAuthed() {
   return TokenManager.isAuthed();

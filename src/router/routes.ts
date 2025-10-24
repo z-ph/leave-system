@@ -1,7 +1,39 @@
-export default [
+import type { RouteRecordRaw } from "vue-router";
+import { Role } from "@/auth/roles";
+
+const routes = [
   {
     path: '/login',
     component: () => import('../pages/common/Login.vue'),
+    meta: { requiresAuth: false },
+  },
+  {
+    path: '/admin',
+    component: () => import('../pages/admin/AdminLayout.vue'),
+    meta: { requiresAuth: true },
+    redirect: '/admin/dashboard',
+    children: [
+      {
+        path: 'dashboard',
+        component: () => import('../pages/admin/Dashboard.vue'),
+        meta: { requiresAuth: true, pageTitle: '仪表盘' },
+      },
+      {
+        path: 'approvals',
+        component: () => import('../pages/admin/Approvals.vue'),
+        meta: { requiresAuth: true, roles: [Role.Auditor, Role.SuperAdmin], pageTitle: '待审批' },
+      },
+      {
+        path: 'requests',
+        component: () => import('../pages/admin/Requests.vue'),
+        meta: { requiresAuth: true, roles: [Role.Auditor, Role.SuperAdmin], pageTitle: '申请管理' },
+      },
+      {
+        path: 'admins',
+        component: () => import('../pages/admin/Admins.vue'),
+        meta: { requiresAuth: true, roles: [Role.SuperAdmin], pageTitle: '审核员管理' },
+      },
+    ],
   },
   {
     path: '/',
@@ -9,7 +41,13 @@ export default [
   },
   {
     path: '/test/login',
-    component: () => import('../pages/common/TestLogin.vue'),
+    component: () => import('../pages/TestLogin.vue'),
+    meta: { requiresAuth: false },
+  },
+  {
+    path: '/403',
+    component: () => import('../pages/common/Forbidden.vue'),
+    meta: { requiresAuth: false },
   },
   {
     path: '/my',
@@ -23,4 +61,6 @@ export default [
     path: '/leave-list',
     component: () => import('../pages/common/LeaveList.vue'),
   },
-]
+] satisfies RouteRecordRaw[];
+
+export default routes;

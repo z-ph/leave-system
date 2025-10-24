@@ -6,7 +6,7 @@ import { useRouter } from "vue-router";
 const router = useRouter();
 onMounted(() => {
   const TEST_TOKEN =
-    "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjp7ImlkIjozLCJvcGVuaWQiOiJvZ2lTa3Z0dmRZamxOalhZYnNSRl9IOGhoNEpnIiwidXNlcm5hbWUiOiLmnKrnn6XnlKjmiLciLCJyb2xlIjoxfSwiZXhwIjoxMDQwMTIxMzM1MX0.yk1gR3Q_HI3EEloEOq9jVjFdTuRUZIMDv25h1_HK_yg";
+    "eyJhbGciOiJIUzI1NiJ9.eyJvcGVuaWQiOiJvZ2lTa3Z0dmRZamxOalhZYnNSRl9IOGhoNEpnIiwiZXhwIjoxNzYxMjgzODMwfQ.-96CMaiTvykdwr-A21velD8nSxyRX4rV6KUkUIUD2MU";
   TokenManager.setToken(TEST_TOKEN);
   TokenManager.setTokenPayload(jwtDecode(TEST_TOKEN));
   router.push("/");
