@@ -77,7 +77,7 @@ export interface FormDO {
    * 请假天数
    * 申请天数
    */
-  day: number;
+  day?: number;
   /**
    * 用户ID
    * 用户openid
@@ -100,6 +100,11 @@ export interface FormDO {
    * 审核员名称
    */
   adminName?: string;
+  /**
+   * 联系电话
+   * 联系电话
+   */
+  phone?: string;
 }
 
 export interface PageUserDO {

@@ -13,12 +13,13 @@ interface LeaveForm extends FormDO {
   startTime: string;
   endTime: string;
   reason: string;
-  day: number;
+  day?: number;
   adminId?: number;
+  phone: string;
 }
 const { data: adminList } = useGetAdminList();
 const { data: userInfo } = useUserInfo();
-const { mutate: submitForm } = useSubmitForm();
+const { mutate: submitForm,isPending: isSubmitting } = useSubmitForm({ onSuccess: () => handleReset() });
 const username = computed(() => userInfo.value?.username);
 const leaveTypeOptions: Array<{ label: LeaveType; value: LeaveType }> = [
   { label: LeaveType.Leave, value: LeaveType.Leave },
@@ -35,8 +36,7 @@ const form = reactive<LeaveForm>({
   startTime: "",
   endTime: "",
   reason: "",
-  day: 0,
-  adminId: undefined,
+  phone: "",
 });
 
 function calculateWorkdays(
@@ -86,6 +86,8 @@ const rules: FormRules<LeaveForm> = {
   ],
   userId: [{ required: true, message: "请输入申请人", trigger: "blur" }],
   reason: [{ required: true, message: "请填写请假事由", trigger: "blur" }],
+  phone: [{ required: true, message: "请输入联系电话", trigger: "blur" }],
+  adminId: [{ required: true, message: "请选择审核人", trigger: "change" }],
 };
 
 const handleSubmit = async () => {
@@ -102,6 +104,7 @@ const handleReset = () => {
 };
 const handleAdminChange = (value: number) => {
   form.adminId = value;
+  form.day = workdayCount.value;
 };
 </script>
 
@@ -160,7 +163,7 @@ const handleAdminChange = (value: number) => {
 
           <el-col :span="24">
             <el-form-item label="占用工作日">
-              <el-input :model-value="workdayCount" disabled>
+              <el-input :model-value="workdayCount" readonly>
                 <template #append>天</template>
               </el-input>
             </el-form-item>
@@ -168,13 +171,13 @@ const handleAdminChange = (value: number) => {
 
           <el-col :span="24">
             <el-form-item label="申请人" prop="applicant">
-              <el-input :value="username" disabled />
+              <el-input :value="username" readonly />
             </el-form-item>
           </el-col>
 
           <el-col :span="24">
             <el-form-item label="联系电话" prop="phone">
-              <el-input v-model="form.userId" placeholder="请输入联系电话" />
+              <el-input v-model="form.phone" placeholder="请输入联系电话" />
             </el-form-item>
           </el-col>
 
@@ -207,7 +210,7 @@ const handleAdminChange = (value: number) => {
           </el-col>
 
           <el-col :span="24" style="text-align: center; margin-top: 8px">
-            <el-button type="primary" @click="handleSubmit">提交</el-button>
+            <el-button type="primary" @click="handleSubmit" :loading="isSubmitting">提交</el-button>
             <el-button @click="handleReset">重置</el-button>
           </el-col>
         </el-row>
