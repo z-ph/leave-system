@@ -31,17 +31,22 @@ function statusText(status?: number) {
                 <el-empty v-if="total === 0" description="暂无记录" />
 
                 <el-table v-else :data="leaveList" border stripe>
-                    <el-table-column label="中心" prop="center" min-width="120" />
-                    <el-table-column label="类型" prop="type" min-width="120" />
-                    <el-table-column label="状态" min-width="120">
+                    <el-table-column label="申请人" prop="userName"  />
+                    <el-table-column label="类型" prop="type"  />
+                    <el-table-column label="原因" prop="reason"  />
+                    <el-table-column label="联系电话" prop="phone"  />
+                    <el-table-column label="审核人" prop="adminName"  />
+                    <el-table-column label="状态" >
                         <template #default="{ row }">
                             <el-tag :type="statusType(row.status)">{{ statusText(row.status) }}</el-tag>
                         </template>
                     </el-table-column>
-                    <el-table-column label="开始时间" prop="startTime" min-width="160" />
-                    <el-table-column label="结束时间" prop="endTime" min-width="160" />
+                    <el-table-column label="审核意见" prop="remark"  />
+                    <el-table-column label="中心" prop="center"  />
+                    <el-table-column label="开始时间" prop="startTime"  />
+                    <el-table-column label="结束时间" prop="endTime"  />
                     <el-table-column label="天数" prop="day" width="80" />
-                    <el-table-column label="创建时间" prop="createTime" min-width="160" />
+                    <el-table-column label="创建时间" prop="createTime"  />
                 </el-table>
                 <el-pagination
                     v-model:current-page="pageNum"

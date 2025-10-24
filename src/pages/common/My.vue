@@ -26,7 +26,9 @@ function handleChangeUsername() {
       <el-input :value="userInfo?.username" :loading="isUpdatingUsername" />
     </el-form-item>
   </el-form>
+<el-space direction="vertical" :size="16" :style="{ width: '100%' }" fill>
   <OptionCard title="修改用户名" @click="handleChangeUsername" />
   <OptionCard title="查看请假记录" @click="$router.push('/leave-list')" />
+</el-space>
   <BottomNav />
 </template>

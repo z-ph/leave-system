@@ -8,7 +8,7 @@ import { useUserInfo } from "../common/hooks/useUserInfo";
 const params = ref({ pageNum: 1, pageSize: 10 });
 const { data, isLoading } = useApprovalsQuery(params);
 const total = computed(() => data.value?.total ?? 0);
-const { mutate: approve } = useApproveMutation();
+const { mutate: approve ,isPending: isApproving} = useApproveMutation();
 const { data: userInfo, isLoading: isLoadingUserInfo } = useUserInfo();
 function handleApprove(row: FormDO, status: FormStatus) {
   ElMessageBox.prompt("请输入审批备注", "审批确认", { inputPlaceholder: "备注(可选)" })
@@ -36,8 +36,8 @@ function handleApprove(row: FormDO, status: FormStatus) {
       <el-table-column label="操作" width="220">
         <template #default="{ row }">
           <el-space>
-            <el-button type="success" size="small" @click="handleApprove(row, FormStatus.Approved)">同意</el-button>
-            <el-button type="danger" size="small" @click="handleApprove(row, FormStatus.Rejected)">拒绝</el-button>
+            <el-button type="success" :loading="isApproving" @click="handleApprove(row, FormStatus.Approved)">同意</el-button>
+            <el-button type="danger" :loading="isApproving" @click="handleApprove(row, FormStatus.Rejected)">拒绝</el-button>
           </el-space>
         </template>
       </el-table-column>

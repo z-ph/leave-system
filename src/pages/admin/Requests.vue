@@ -105,6 +105,7 @@ function onReset() {
       <el-table-column label="结束" prop="endTime" />
       <el-table-column label="创建时间" prop="createTime" />
       <el-table-column label="审核员" prop="adminName" />
+      <el-table-column label="审核意见" prop="remark" />
     </el-table>
     <el-pagination
       :current-page="filters.pageNum"

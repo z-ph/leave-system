@@ -28,9 +28,9 @@ onBeforeUnmount(() => {
   <el-container :style="{ minHeight: '100vh' }">
     <el-aside v-if="!isMobile" :style="{ width: '15%', minHeight: '100vh' }">
       <el-menu :default-active="active" router :style="{ height: '100%' }">
-        <el-menu-item index="/admin/approvals">待审批</el-menu-item>
-        <el-menu-item index="/admin/requests">申请管理</el-menu-item>
-        <el-menu-item index="/">返回用户首页</el-menu-item>
+        <el-menu-item index="/admin/approvals">我的待审批</el-menu-item>
+        <el-menu-item index="/admin/requests">所有申请记录</el-menu-item>
+        <el-menu-item index="/" :style="{color:'red'}">返回用户首页</el-menu-item>
         <el-menu-item
           index="/admin/admins"
           v-if="hasRole(currentUserRole, [Role.SuperAdmin])"

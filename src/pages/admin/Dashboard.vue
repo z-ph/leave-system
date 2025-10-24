@@ -8,7 +8,7 @@ import { isMobile } from "@/hooks/isMobile";
 const router = useRouter();
 const { data: currentUserRole } = useCurrentUserRole();
 onMounted(() => {
-  if (isMobile.value) {
+  if (!isMobile.value) {
     router.push('/admin/approvals');
   }
 });
