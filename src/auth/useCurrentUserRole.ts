@@ -4,7 +4,7 @@ import { getCurrentUserRole } from "./userSession";
 import { Role, isApproverRole, isAdminRole, isEmployeeRole, getRoleLevel, ROLE_NAMES } from "./roles";
 
 export function useCurrentUserRole() {
-  const { data: role } = useQuery<Role | undefined>({
+  const { data: role } = useQuery<Role>({
     queryKey: ["currentUserRole"],
     queryFn: getCurrentUserRole,
   });

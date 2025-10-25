@@ -1,6 +1,7 @@
 import { createWebHistory, createRouter } from "vue-router";
 
 import routes from "./routes";
+import { ROUTE_PATHS } from "./constants";
 import { TokenManager } from "../auth/tokenManager";
 import { hasRole, Role } from "@/auth/roles";
 import { getCurrentUserRole } from "@/auth/userSession";
@@ -19,9 +20,9 @@ router.beforeEach(async (to, _from, next) => {
     return;
   }
 
-  // 未登录跳转到登录页
+  // 未��录跳转到登录页
   if (!isAuthed()) {
-    next({ path: "/login", query: { redirect: to.fullPath } });
+    next({ path: ROUTE_PATHS.LOGIN, query: { redirect: to.fullPath } });
     return;
   }
 
@@ -32,13 +33,13 @@ router.beforeEach(async (to, _from, next) => {
   const allowed = to.meta?.roles;
   if (allowed && allowed.length > 0) {
     if (!hasRole(role, allowed)) {
-      next("/403");
+      next(ROUTE_PATHS.FORBIDDEN);
       return;
     }
   }
 
   // 处理根路径和登录页的重定向
-  if (to.path === '/' || to.path === '/login') {
+  if (to.path === ROUTE_PATHS.LOGIN) {
     const defaultRoute = getDefaultRouteForRole(role);
     next(defaultRoute);
     return;
@@ -61,17 +62,17 @@ function getDefaultRouteForRole(role: Role | undefined): string {
     case Role.DEPARTMENT_DIRECTOR:
     case Role.DEPUTY_DIRECTOR:
     case Role.CENTER_DIRECTOR:
-      return '/admin';
+      return ROUTE_PATHS.ADMIN;
     case Role.EMPLOYEE:
     default:
-      return '/common';
+      return ROUTE_PATHS.COMMON;
   }
 }
 
 // 检查路径是否允许当前角色访问
 function isPathAllowedForRole(path: string, role: Role | undefined): boolean {
-  const isAdminPath = path.startsWith('/admin');
-  const isUserPath = path.startsWith('/common');
+  const isAdminPath = path.startsWith(ROUTE_PATHS.ADMIN);
+  const isUserPath = path.startsWith(ROUTE_PATHS.COMMON);
 
   // 管理员路径
   if (isAdminPath) {

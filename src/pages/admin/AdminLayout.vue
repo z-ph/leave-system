@@ -3,6 +3,7 @@ import { useRoute, useRouter } from "vue-router";
 import { computed, ref, onMounted, onBeforeUnmount } from "vue";
 import { hasRole, Role } from "@/auth/roles";
 import { useCurrentUserRole } from "@/auth/useCurrentUserRole";
+import { ROUTE_PATHS } from "@/router/constants";
 const { role: currentUserRole } = useCurrentUserRole();
 const route = useRoute();
 const router = useRouter();
@@ -41,7 +42,7 @@ onBeforeUnmount(() => {
     <el-container>
       <el-button
         v-if="isMobile"
-        @click="router.push('/admin/dashboard')"
+        @click="router.push(ROUTE_PATHS.ADMIN_DASHBOARD)"
         :style="{ marginBottom: '10px' }"
         >返回管理首页</el-button
       >

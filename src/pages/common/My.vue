@@ -5,6 +5,7 @@ import { usePersonalInfo } from "./hooks/usePersonalInfo";
 import OptionCard from "@/components/OptionCard.vue";
 import { ElMessageBox, ElCard, ElTag } from "element-plus";
 import { Loading, User, Phone, OfficeBuilding, Key, Link } from "@element-plus/icons-vue";
+import { ROUTE_PATHS } from "@/router/constants";
 
 const { data: userInfo } = useUserInfo();
 const {
@@ -114,7 +115,7 @@ function handleChangeUsername() {
 
       <el-space direction="vertical" :size="16" :style="{ width: '100%' }" fill>
         <OptionCard title="修改用户名" @click="handleChangeUsername" />
-        <OptionCard title="查看请假记录" @click="$router.push('/leave-list')" />
+        <OptionCard title="查看请假记录" @click="$router.push(ROUTE_PATHS.LEAVE_LIST)" />
       </el-space>
     </el-card>
 

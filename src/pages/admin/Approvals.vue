@@ -5,15 +5,29 @@ import { ref, computed } from "vue";
 import { ElMessageBox } from "element-plus";
 import { FormStatus } from "@/constants/formStatus";
 import { useUserInfo } from "../common/hooks/useUserInfo";
+import { useCurrentUserRole } from "@/auth/useCurrentUserRole";
+import { canUserApprove } from "@/utils/approvalWorkflow";
+
 const params = ref({ pageNum: 1, pageSize: 10 });
 const { data, isLoading } = useApprovalsQuery(params);
 const total = computed(() => data.value?.total ?? 0);
-const { mutate: approve ,isPending: isApproving} = useApproveMutation();
-const { data: userInfo, isLoading: isLoadingUserInfo } = useUserInfo();
+const { role: currentUserRole } = useCurrentUserRole();
+const { mutate: approve, isPending: isApproving } = useApproveMutation(computed(() => currentUserRole.value ?? 0));
+const { isLoading: isLoadingUserInfo } = useUserInfo();
+
 function handleApprove(row: FromVo, status: FormStatus) {
   ElMessageBox.prompt("请输入审批备注", "审批确认", { inputPlaceholder: "备注(可选)" })
-    .then(({ value }) => approve({ formID: Number(row.id), status, remark: value }))
+    .then(({ value }) => approve({
+      formID: Number(row.id),
+      status,
+      remark: value,
+      leaveRequest: row
+    }))
     .catch(() => {});
+}
+
+function canUserApproveRequest(row: FromVo) {
+  return canUserApprove(row, currentUserRole.value ?? 0);
 }
 </script>
 
@@ -23,7 +37,7 @@ function handleApprove(row: FromVo, status: FormStatus) {
       <span>待审批</span>
     </template>
     <el-skeleton v-if="isLoading||isLoadingUserInfo" :rows="5" animated />
-    <el-table v-else :data="(data?.records?.filter((item) => item.status === FormStatus.Pending&&item.adminId===userInfo?.id) ?? [])">
+    <el-table v-else :data="(data?.records?.filter((item) => item.status === FormStatus.Pending) ?? [])">
       <el-table-column label="申请人" prop="userName" width="120" />
       <el-table-column label="类型" prop="type" />
       <el-table-column label="原因" prop="reason" />
@@ -33,11 +47,40 @@ function handleApprove(row: FromVo, status: FormStatus) {
           {{ row.startTime }} ~ {{ row.endTime }}
         </template>
       </el-table-column>
+      <el-table-column label="天数" prop="day" width="80" />
+      <el-table-column label="审批进度" width="150">
+        <template #default="{ row }">
+          <div v-if="row.approvalProgress">
+            <el-progress
+              :percentage="row.approvalProgress.percentage"
+              :stroke-width="6"
+              status="success"
+            />
+            <div class="mt-1 text-xs text-gray-500">
+              {{ row.approvalProgress.currentStatus }}
+            </div>
+          </div>
+        </template>
+      </el-table-column>
       <el-table-column label="操作" width="220">
         <template #default="{ row }">
           <el-space>
-            <el-button type="success" :loading="isApproving" @click="handleApprove(row, FormStatus.Approved)">同意</el-button>
-            <el-button type="danger" :loading="isApproving" @click="handleApprove(row, FormStatus.Rejected)">拒绝</el-button>
+            <el-button
+              type="success"
+              :loading="isApproving"
+              :disabled="!canUserApproveRequest(row)"
+              @click="handleApprove(row, FormStatus.Approved)"
+            >
+              同意
+            </el-button>
+            <el-button
+              type="danger"
+              :loading="isApproving"
+              :disabled="!canUserApproveRequest(row)"
+              @click="handleApprove(row, FormStatus.Rejected)"
+            >
+              拒绝
+            </el-button>
           </el-space>
         </template>
       </el-table-column>
