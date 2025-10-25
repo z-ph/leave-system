@@ -1,13 +1,13 @@
 import { useMutation } from "@tanstack/vue-query";
 import { api } from "@/api/axios";
-import type { FormDO, ResultBoolean } from "@/api/axios/Api";
+import type { FromVo, ResultBoolean } from "@/api/types";
 import { ElMessage } from "element-plus";
 import type { MutationOptions } from "@tanstack/vue-query";
 import type { AxiosResponse } from "node_modules/axios/index.d.cts";
 
-export function useSubmitForm(options?: MutationOptions<AxiosResponse<ResultBoolean>, Error, FormDO>) {
+export function useSubmitForm(options?: MutationOptions<AxiosResponse<ResultBoolean>, Error, FromVo>) {
   return useMutation({
-    mutationFn: (form: FormDO) => api.from.leaveUpdate(form),
+    mutationFn: (form: FromVo) => api.from.leaveUpdate(form),
     ...options,
     onSuccess: (...args) => {
       ElMessage.success("提交成功");
