@@ -5,7 +5,7 @@ const { code, refreshCode } = useWeCode();
 const copyCode = () => {
   if (!code.value) return;
   navigator.clipboard.writeText(code.value);
-  ElMessage.success('Code copied to clipboard');
+  ElMessage.success({ message: 'Code copied to clipboard' });
 };
 </script>
 

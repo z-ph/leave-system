@@ -10,11 +10,11 @@ export function useSubmitForm(options?: MutationOptions<AxiosResponse<ResultBool
     mutationFn: (form: FromVo) => api.from.leaveUpdate(form),
     ...options,
     onSuccess: (...args) => {
-      ElMessage.success("提交成功");
+      ElMessage.success({ message: "提交成功" });
       options?.onSuccess?.(...args);
     },
     onError: (error, ...args) => {
-      ElMessage.error(error.message);
+      ElMessage.error({ message: error.message });
       options?.onError?.(error, ...args);
     },
   });

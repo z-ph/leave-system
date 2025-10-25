@@ -4,6 +4,28 @@ import { api } from "@/api/axios";
 import { ElMessage } from "element-plus";
 import { useRouter } from "vue-router";
 import { TokenManager } from "@/auth/tokenManager";
+import type { AxiosError } from "axios";
+
+// 微信小程序错误类型
+interface WxError {
+  errMsg: string;
+  errCode?: number;
+}
+
+// 微信小程序登录响应类型
+interface WxLoginResponse {
+  code: string;
+  errMsg: string;
+}
+
+// 微信小程序全局变量类型声明
+declare const wx: {
+  login: (options?: {
+    success?: (res: WxLoginResponse) => void;
+    fail?: (err: WxError) => void;
+    complete?: () => void;
+  }) => void;
+} | undefined;
 
 export interface LoginFormData {
   number: string;
@@ -30,13 +52,13 @@ export function useAccountLogin() {
       const token = response.data;
       if (token) {
         // 保存token
-        TokenManager.saveToken(token);
+        TokenManager.setToken(token);
 
         // 清除相关缓存
         qc.invalidateQueries({ queryKey: ["currentUser"] });
         qc.invalidateQueries({ queryKey: ["currentUserRole"] });
 
-        ElMessage.success("登录成功");
+        ElMessage.success({ message: "登录成功" });
 
         // 登录成功后尝试绑定微信
         await tryBindWechat();
@@ -44,12 +66,22 @@ export function useAccountLogin() {
         // 跳转到首页
         await router.push("/");
       } else {
-        ElMessage.error("登录失败：未获取到token");
+        ElMessage.error({ message: "登录失败：未获取到token" });
       }
     },
-    onError: (error: any) => {
-      const message = error?.response?.data?.msg || error?.message || "登录失败";
-      ElMessage.error(message);
+    onError: (error: unknown) => {
+      let message = "登录失败";
+      if (error && typeof error === 'object' && 'response' in error) {
+        const axiosError = error as AxiosError<{ msg?: string }>;
+        if (axiosError.response?.data?.msg) {
+          message = axiosError.response.data.msg;
+        } else if (axiosError.message) {
+          message = axiosError.message;
+        }
+      } else if (error instanceof Error) {
+        message = error.message;
+      }
+      ElMessage.error({ message });
       isSubmitting.value = false;
     },
     onSettled: () => {
@@ -64,7 +96,7 @@ export function useAccountLogin() {
       const code = await getWechatCode();
       if (code) {
         await api.wx.postWx({ code });
-        ElMessage.success("微信绑定成功");
+        ElMessage.success({ message: "微信绑定成功" });
         // 清除用户信息缓存以更新微信绑定状态
         qc.invalidateQueries({ queryKey: ["currentUser"] });
       }
@@ -77,7 +109,7 @@ export function useAccountLogin() {
   // 获取微信登录凭证
   const getWechatCode = async (): Promise<string | null> => {
     return new Promise((resolve) => {
-      if (typeof wx !== 'undefined' && wx.login) {
+      if (wx?.login) {
         wx.login({
           success: (res) => {
             if (res.code) {
@@ -99,7 +131,7 @@ export function useAccountLogin() {
 
   const handleLogin = async () => {
     if (!formData.value.number || !formData.value.password) {
-      ElMessage.warning("请填写工号和密码");
+      ElMessage.warning({ message: "请填写工号和密码" });
       return;
     }
 

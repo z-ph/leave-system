@@ -2,13 +2,13 @@
 import { ref, reactive, computed } from "vue";
 import type { FormInstance, FormRules } from "element-plus";
 import { useGetAdminList } from "./hooks/useGetAdminList";
-import type { FormDO } from "@/api/axios/Api";
+import type { FromVo } from "@/api/axios/Api";
 import { useUserInfo } from "./hooks/useUserInfo";
 import { useSubmitForm } from "./hooks/useSubmitForm";
 import { LeaveType } from "@/constants/formStatus";
 import NavLayout from "@/components/NavLayout.vue";
 import { Loading } from "@element-plus/icons-vue";
-interface LeaveForm extends FormDO {
+interface LeaveForm extends FromVo {
   center: string;
   type: string;
   startTime: string;
@@ -85,7 +85,7 @@ const rules: FormRules<LeaveForm> = {
     { required: true, message: "请选择结束时间", trigger: "change" },
     { validator: validateEndAfterStart, trigger: "change" },
   ],
-  userId: [{ required: true, message: "请输入申请人", trigger: "blur" }],
+  // userId 不存在于 FromVo 接口中，移除此规则
   reason: [{ required: true, message: "请填写请假事由", trigger: "blur" }],
   phone: [{ required: true, message: "请输入联系电话", trigger: "blur" }],
   adminId: [{ required: true, message: "请选择审核人", trigger: "change" }],
@@ -101,7 +101,7 @@ const handleSubmit = async () => {
 
 const handleReset = () => {
   formRef.value?.resetFields();
-  form.createTime = new Date().toISOString();
+  // FromVo 接口中没有 createTime 属性，如果需要时���戳可以使用其他属性
 };
 const handleAdminChange = (value: number) => {
   form.adminId = value;

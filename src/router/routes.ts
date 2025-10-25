@@ -21,17 +21,17 @@ const routes = [
       {
         path: 'approvals',
         component: () => import('../pages/admin/Approvals.vue'),
-        meta: { requiresAuth: true, roles: [Role.Auditor, Role.SuperAdmin], pageTitle: '待审批' },
+        meta: { requiresAuth: true, roles: [Role.CENTER_DIRECTOR, Role.DEPUTY_DIRECTOR, Role.DEPARTMENT_DIRECTOR, Role.ADMIN], pageTitle: '待审批' },
       },
       {
         path: 'requests',
         component: () => import('../pages/admin/Requests.vue'),
-        meta: { requiresAuth: true, roles: [Role.Auditor, Role.SuperAdmin], pageTitle: '申请管理' },
+        meta: { requiresAuth: true, roles: [Role.CENTER_DIRECTOR, Role.DEPUTY_DIRECTOR, Role.DEPARTMENT_DIRECTOR, Role.ADMIN], pageTitle: '申请管理' },
       },
       {
         path: 'admins',
         component: () => import('../pages/admin/Admins.vue'),
-        meta: { requiresAuth: true, roles: [Role.SuperAdmin], pageTitle: '审核员管理' },
+        meta: { requiresAuth: true, roles: [Role.ADMIN], pageTitle: '审核员管理' },
       },
     ],
   },

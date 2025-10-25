@@ -8,7 +8,7 @@ import { useUserInfo, useUpdateUsername } from "./hooks/useUserInfo";
 import { ElMessageBox } from "element-plus";
 import {  watch } from "vue";
 const router = useRouter();
-const { data: currentUserRole } = useCurrentUserRole();
+const { role: currentUserRole } = useCurrentUserRole();
 const { data: userInfo } = useUserInfo();
 const { mutate: updateUsername } = useUpdateUsername();
 watch(userInfo,(newVal)=>{
@@ -31,7 +31,7 @@ watch(userInfo,(newVal)=>{
   <el-space direction="vertical" :size="16" :style="{ width: '100%' }" fill>
     <OptionCard title="去请假" @click="router.push('/form')" />
     <OptionCard
-      v-if="hasRole(currentUserRole, [Role.Auditor, Role.SuperAdmin])"
+      v-if="hasRole(currentUserRole, [Role.CENTER_DIRECTOR, Role.DEPUTY_DIRECTOR, Role.DEPARTMENT_DIRECTOR, Role.ADMIN])"
       title="管理员入口"
       @click="router.push('/admin')"
     />

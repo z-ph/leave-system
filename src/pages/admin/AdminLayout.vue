@@ -3,7 +3,7 @@ import { useRoute, useRouter } from "vue-router";
 import { computed, ref, onMounted, onBeforeUnmount } from "vue";
 import { hasRole, Role } from "@/auth/roles";
 import { useCurrentUserRole } from "@/auth/useCurrentUserRole";
-const { data: currentUserRole } = useCurrentUserRole();
+const { role: currentUserRole } = useCurrentUserRole();
 const route = useRoute();
 const router = useRouter();
 const active = computed(() => route.path);
@@ -33,7 +33,7 @@ onBeforeUnmount(() => {
         <el-menu-item index="/" :style="{color:'red'}">返回用户首页</el-menu-item>
         <el-menu-item
           index="/admin/admins"
-          v-if="hasRole(currentUserRole, [Role.SuperAdmin])"
+          v-if="hasRole(currentUserRole, [Role.ADMIN])"
           >审核员管理</el-menu-item
         >
       </el-menu>

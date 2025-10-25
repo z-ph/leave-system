@@ -12,6 +12,7 @@ import { useRouter } from "vue-router";
 import { ElMessage } from "element-plus";
 import { jwtDecode } from "jwt-decode";
 import { api } from "@/api/axios";
+
 const CONFIG = {
   appId: "wx7bbdf981cf3342ff",
   scope: "snsapi_base",
@@ -27,7 +28,7 @@ export function redirectToWeChatOAuth(options: GetWeChatCodeUrlOptions) {
 export function useWeCode() {
   const route = useRoute();
   const code = computed(() => {
-    const queryCode = route.query.code ?? "";
+    const queryCode = route.query['code'] ?? "";
     if (Array.isArray(queryCode)) {
       return queryCode[0];
     }
@@ -61,15 +62,23 @@ export function useLogin() {
   const { code } = useWeCode();
   const router = useRouter();
   const loginMutation = useMutation({
-    mutationFn: (code: string) => api.login.loginCreate({ code }),
+    mutationFn: (code: string) => api.wx.postWx({ code }),
     onSuccess: (res) => {
-      TokenManager.setToken(res.data.data as string);
-      TokenManager.setTokenPayload(jwtDecode(res.data.data as string));
-      ElMessage.success("登录成功");
+      // 假设/wx接口在登录场景下返回JWT token
+      // 注意：这基于当前代码的业务逻辑，可能需要与后端确认API设计
+      const token = res.data.data;
+      if (typeof token === 'string') {
+        TokenManager.setToken(token);
+        TokenManager.setTokenPayload(jwtDecode(token));
+        ElMessage.success({ message: "登录成功" });
+      } else {
+        ElMessage.error({ message: "登录响应格式错误：未收到有效的token" });
+      }
       router.push("/");
     },
-    onError: (error) => {
-      ElMessage.error(error.message);
+    onError: (error: unknown) => {
+      const message = error instanceof Error ? error.message : "微信登录失败";
+      ElMessage.error({ message });
     },
   });
   onMounted(() => {

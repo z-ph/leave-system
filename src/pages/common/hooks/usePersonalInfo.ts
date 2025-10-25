@@ -1,7 +1,6 @@
 import { useQuery } from "@tanstack/vue-query";
 import { computed } from "vue";
 import { api } from "@/api/axios";
-import { ROLE_NAMES } from "@/auth/roles";
 import { useCurrentUserRole } from "@/auth/useCurrentUserRole";
 
 export function usePersonalInfo() {
@@ -23,12 +22,12 @@ export function usePersonalInfo() {
 
     return {
       id: user.id,
-      username: user.username || '未知',
-      role: user.role || '未知',
-      roleName: currentRoleName.value || '未知角色',
-      phone: user.phone || '未设置',
-      center: user.center || '未设置',
-      number: user.number || '未设置',
+      username: user.username ?? '未知',
+      role: user.role ?? '未知',
+      roleName: currentRoleName.value ?? '未知角色',
+      phone: user.phone ?? '未设置',
+      center: user.center ?? '未设置',
+      number: user.number ?? '未设置',
       openid: user.openid,
       hasWechatBound: !!user.openid,
     };

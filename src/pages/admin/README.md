@@ -1,17 +1,21 @@
 理解。基于你当前的接口与技术栈（Vue 3 + Vue Router + Element Plus + @tanstack/vue-query + swagger-typescript-api/axios），下面是一套“角色清晰、易扩展、可维护”的代码规范与工程约定。你可以按此落地管理端与通用页面，保证后期快速迭代。
 
 ### 角色与权限约定
-- 角色常量
-  - 普通用户：user
-  - 审核人：auditor
-  - 超级管理员：superAdmin
+- 角色常量（4级审批体系）
+  - 普通员工：EMPLOYEE (0)
+  - 中心主任：CENTER_DIRECTOR (1) - 可审批1天假期
+  - 分管副主任：DEPUTY_DIRECTOR (2) - 可审批3天假期
+  - 部门正职：DEPARTMENT_DIRECTOR (3) - 可审批4天以上假期
+  - 系统管理员：ADMIN (4)
 - 统一角色类型与工具
 ```ts
 // src/auth/roles.ts
 export enum Role {
-  User = "user",
-  Auditor = "auditor",
-  SuperAdmin = "superAdmin",
+  EMPLOYEE = 0,
+  CENTER_DIRECTOR = 1,
+  DEPUTY_DIRECTOR = 2,
+  DEPARTMENT_DIRECTOR = 3,
+  ADMIN = 4,
 }
 
 export function hasRole(userRole: Role | undefined, allowed: Role[]) {
@@ -58,19 +62,19 @@ router.beforeEach((to, _from, next) => {
 ### 路由结构与命名
 - 管理端统一挂载在 `/admin`
   - `/admin/dashboard` 仪表盘（所有角色可见，但内容按角色裁剪）
-  - `/admin/approvals` 待审批（auditor、superAdmin）
-  - `/admin/requests` 申请管理（auditor、superAdmin）
-  - `/admin/users` 用户管理（superAdmin）
-  - `/admin/admins` 审核员管理（superAdmin）
-  - `/admin/audit` 审计日志（superAdmin）
-  - `/admin/settings` 配置（superAdmin）
+  - `/admin/approvals` 待审批（CENTER_DIRECTOR, DEPUTY_DIRECTOR, DEPARTMENT_DIRECTOR, ADMIN）
+  - `/admin/requests` 申请管理（CENTER_DIRECTOR, DEPUTY_DIRECTOR, DEPARTMENT_DIRECTOR, ADMIN）
+  - `/admin/users` 用户管理（ADMIN）
+  - `/admin/admins` 审核员管理（ADMIN）
+  - `/admin/audit` 审计日志（ADMIN）
+  - `/admin/settings` 配置（ADMIN）
 - 每个路由定义 meta：
 ```ts
 // src/router/adminRoutes.ts（示意）
 {
   path: "/admin/approvals",
   component: () => import("@/pages/admin/Approvals.vue"),
-  meta: { requiresAuth: true, roles: [Role.Auditor, Role.SuperAdmin], pageTitle: "待审批" }
+  meta: { requiresAuth: true, roles: [Role.CENTER_DIRECTOR, Role.DEPUTY_DIRECTOR, Role.DEPARTMENT_DIRECTOR, Role.ADMIN], pageTitle: "待审批" }
 }
 ```
 

@@ -10,12 +10,11 @@ const { data: userInfo } = useUserInfo();
 const {
   formattedInfo,
   isLoadingUser,
-  isWechatBound,
   wechatBindStatus,
   wechatBindStatusType
 } = usePersonalInfo();
 
-const { mutateAsync: updateUsername, isPending: isUpdatingUsername } = useUpdateUsername();
+const { mutateAsync: updateUsername } = useUpdateUsername();
 
 function handleChangeUsername() {
   ElMessageBox.prompt("请输入新用户名", "修改用户名", {

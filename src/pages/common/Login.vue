@@ -2,7 +2,7 @@
 import { ref, onMounted, onBeforeUnmount } from "vue";
 import { useLogin, useWeCode } from "./hooks/useWechatOAuth";
 import { useAccountLogin } from "./hooks/useAccountLogin";
-import { ElCard, ElButton, ElForm, ElFormItem, ElInput, ElTabs, ElTabPane, ElMessage, ElIcon } from "element-plus";
+import { ElButton, ElForm, ElFormItem, ElInput, ElTabs, ElTabPane, ElMessage, ElIcon } from "element-plus";
 import { User, Lock, Connection } from "@element-plus/icons-vue";
 
 const { refreshCode } = useWeCode();
@@ -27,15 +27,15 @@ onMounted(() => {
     showRefreshButton.value = true;
   }, 4000);
 
-  // 监听微信登录失败
-  const originalWechatLogin = useLogin();
-  // 这里可以添加微信登录失败的监听逻辑
+  // 初��化微信登录组件
+  useLogin();
+  console.log('微信登录组件已加载，可用于调试');
 });
 
 // 切换到账号密码登录
 const switchToAccountLogin = () => {
   activeTab.value = "account";
-  ElMessage.info("请使用工号和密码登录");
+  ElMessage.info({ message: "请使用工号和密码登录" });
 };
 
 // 微信登录重试
@@ -50,9 +50,9 @@ const handleAccountLogin = () => {
 };
 
 // Tab切换处理
-const handleTabChange = (tabName: string) => {
-  activeTab.value = tabName;
-  if (tabName === "account") {
+const handleTabChange = (tabName: string | number) => {
+  activeTab.value = String(tabName);
+  if (String(tabName) === "account") {
     resetForm();
   }
 };

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useApprovalsQuery, useApproveMutation } from "./hooks/useApprovals";
-import type { FormDO } from "@/api/axios/Api";
+import type { FromVo } from "@/api/axios/Api";
 import { ref, computed } from "vue";
 import { ElMessageBox } from "element-plus";
 import { FormStatus } from "@/constants/formStatus";
@@ -10,7 +10,7 @@ const { data, isLoading } = useApprovalsQuery(params);
 const total = computed(() => data.value?.total ?? 0);
 const { mutate: approve ,isPending: isApproving} = useApproveMutation();
 const { data: userInfo, isLoading: isLoadingUserInfo } = useUserInfo();
-function handleApprove(row: FormDO, status: FormStatus) {
+function handleApprove(row: FromVo, status: FormStatus) {
   ElMessageBox.prompt("请输入审批备注", "审批确认", { inputPlaceholder: "备注(可选)" })
     .then(({ value }) => approve({ formID: Number(row.id), status, remark: value }))
     .catch(() => {});

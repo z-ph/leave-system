@@ -4,7 +4,6 @@ import routes from "./routes";
 import { TokenManager } from "../auth/tokenManager";
 import { hasRole, Role } from "@/auth/roles";
 import { getCurrentUserRole } from "@/auth/userSession";
-import { useAutoRedirect } from "@/hooks/useAutoRedirect";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -30,7 +29,7 @@ router.beforeEach(async (to, _from, next) => {
   const role = await getCurrentUserRole();
 
   // 检查角色权限
-  const allowed = to.meta?.roles as Role[] | undefined;
+  const allowed = to.meta?.roles;
   if (allowed && allowed.length > 0) {
     if (!hasRole(role, allowed)) {
       next("/403");
