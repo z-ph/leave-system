@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/vue-query";
 import { api } from "@/api/axios";
-import type { FromVo, ResultBoolean } from "@/api/types";
+import type { FromVo, ResultBoolean } from "@/api/axios/Api";
 import { ElMessage } from "element-plus";
 import type { MutationOptions } from "@tanstack/vue-query";
 import type { AxiosResponse } from "node_modules/axios/index.d.cts";
