@@ -10,8 +10,8 @@
  * ---------------------------------------------------------------
  */
 
-export interface PageFormDO {
-  records?: FormDO[];
+export interface PageUserVo {
+  records?: UserVo[];
   /** @format int64 */
   total?: number;
   /** @format int64 */
@@ -32,83 +32,64 @@ export interface OrderItem {
   asc?: boolean;
 }
 
-export interface FormDO {
-  /**
-   * 申请ID
-   * @format int64
-   */
+export interface UserVo {
+  /** @format int64 */
   id?: number;
-  /**
-   * 所在中心
-   * 申请中心
-   */
-  center: string;
-  /**
-   * 申请类型
-   * 申请类型
-   */
-  type: string;
-  /**
-   * 申请状态（0-未审批 1-已通过 2-已拒绝）
-   * 申请状态
-   */
+  /** 微信openid */
+  openid?: string;
+  /** 用户名 */
+  username?: string;
+  /** 角色 */
+  role?: string;
+  /** 手机 */
+  phone?: string;
+  /** 申请中心 */
+  center?: string;
+  /** 工号 */
+  number?: string;
+}
+
+export interface FromDTO {
+  /** @format int64 */
+  id?: number;
+  /** 申请中心 */
+  center?: string;
+  /** 电话 */
+  phone?: string;
+  /** 申请类型 */
+  type?: string;
+  /** 申请状态 */
   status?: number;
-  /**
-   * 开始时间（YYYY-MM-DD HH:MM:SS）
-   * 申请开始时间
-   */
-  startTime: string;
-  /**
-   * 结束时间（YYYY-MM-DD HH:MM:SS）
-   * 申请结束时间
-   */
-  endTime: string;
-  /**
-   * 创建时间（YYYY-MM-DD HH:MM:SS）
-   * 创建时间
-   */
+  /** 申请开始时间 */
+  startTime?: string;
+  /** 申请结束时间 */
+  endTime?: string;
+  /** 创建时间 */
   createTime?: string;
-  /**
-   * 请假事由
-   * 申请原因
-   */
-  reason: string;
-  /**
-   * 请假天数
-   * 申请天数
-   */
+  /** 申请原因 */
+  reason?: string;
+  /** 申请天数 */
   day?: number;
   /**
    * 用户ID
-   * 用户openid
    * @format int64
    */
   userId?: number;
-  /**
-   * 用户名称
-   */
+  /** 用户名 */
   userName?: string;
   /**
-   * 指定审核员ID
    * 审核员ID
    * @format int64
    */
   adminId?: number;
-
-  /**
-   * 审核员名称
-   * 审核员名称
-   */
+  /** 审核员姓名 */
   adminName?: string;
-  /**
-   * 联系电话
-   * 联系电话
-   */
-  phone?: string;
+  /** 审核备注 */
+  remark?: string;
 }
 
-export interface PageUserDO {
-  records?: UserDO[];
+export interface PageFromDTO {
+  records?: FromDTO[];
   /** @format int64 */
   total?: number;
   /** @format int64 */
@@ -124,33 +105,9 @@ export interface PageUserDO {
   countId?: string;
 }
 
-export interface UserDO {
-  /** @format int64 */
-  id?: number;
-  /** 微信openid */
-  openid?: string;
-  /**
-   * 用户名
-   * 用户名
-   */
-  username?: string;
-  /**
-   * 0-普通用户 1-审核人 2-管理员
-   * 角色 0-普通用户 1-审核人 2-管理员
-   */
-  role?: number;
-}
-
-export interface ResultListUserDO {
-  code?: number;
-  msg?: string;
-  data?: UserDO[];
-}
-
-export interface ResultPageFormDO {
-  code?: number;
-  msg?: string;
-  data?: PageFormDO;
+export interface LoginDTO {
+  number?: string;
+  password?: string;
 }
 
 export interface ResultString {
@@ -159,11 +116,114 @@ export interface ResultString {
   data?: string;
 }
 
-export interface ResultUserDO {
+export interface ResetPasswordDTO {
+  /**
+   * 修改用户id
+   * @format int64
+   */
+  userId: number;
+  /**
+   * 新密码
+   * @minLength 6
+   * @maxLength 20
+   * @pattern ^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d@$!%*?&]{6,20}$
+   */
+  newPassword?: string;
+}
+
+export interface ChangePasswordDTO {
+  /** 旧密码 */
+  oldPassword: string;
+  /**
+   * 新密码
+   * @minLength 6
+   * @maxLength 20
+   * @pattern ^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d@$!%*?&]{6,20}$
+   */
+  newPassword: string;
+  /** 确认密码 */
+  confirmPassword: string;
+}
+
+export interface ResultPutUserVo {
   code?: number;
   msg?: string;
-  /** com.csmht.sinin.DO.UserDO */
-  data?: UserDO;
+  data?: PutUserVo;
+}
+
+export interface PutUserVo {
+  /** @format int64 */
+  id?: number;
+  /** 用户名 */
+  username?: string;
+  /** 角色 */
+  role?: string;
+  /** 手机 */
+  phone?: string;
+  /** 申请中心 */
+  center?: string;
+  /** 工号 */
+  number?: string;
+  /** 密码 */
+  password?: string;
+}
+
+export interface UserInfoDTO {
+  /** 用户名 */
+  username?: string;
+  /** 角色 */
+  role?: string;
+  /** 申请中心 */
+  center?: string;
+  /** 手机 */
+  phone?: string;
+  /** 工号 */
+  number?: string;
+  pageNum?: number;
+  pageSize?: number;
+}
+
+export interface ResultPageUserVo {
+  code?: number;
+  msg?: string;
+  data?: PageUserVo;
+}
+
+export interface UpdateUserDTO {
+  username?: string;
+  phone?: string;
+  center?: string;
+  number?: string;
+}
+
+export interface UserFromDTO {
+  /**
+   * 用户ID
+   * @format int64
+   */
+  userId?: number;
+  /** 用户名 */
+  userName?: string;
+  /** 申请状态 */
+  status?: number;
+  /** 申请类型 */
+  type?: string;
+  /** 申请中心 */
+  center?: string;
+  pageNum?: number;
+  pageSize?: number;
+}
+
+export interface ResultListUserVo {
+  code?: number;
+  msg?: string;
+  data?: UserVo[];
+}
+
+export interface ResultPageFromDTO {
+  code?: number;
+  msg?: string;
+  data?: PageFromDTO;
 }
 
 export interface ResultBoolean {
@@ -172,10 +232,45 @@ export interface ResultBoolean {
   data?: boolean;
 }
 
-export interface ResultPageUserDO {
+export interface ApproveDTO {
+  /**
+   * 申请ID
+   * @format int64
+   */
+  formID?: number;
+  /** 是否通过 */
+  status?: boolean;
+  /** 备注 */
+  remark?: string;
+  /**
+   * 下一个审核用户id(0为最终审批)
+   * @format int64
+   */
+  nextUserId?: number;
+}
+
+export interface FromVo {
+  /** @format int64 */
+  id?: number;
+  /** 申请类型 */
+  type?: string;
+  /** 申请状态 */
+  status?: number;
+  /** 申请开始时间 */
+  startTime?: string;
+  /** 申请结束时间 */
+  endTime?: string;
+  /** 申请原因 */
+  reason?: string;
+  /** 申请天数 */
+  day?: number;
+}
+
+export interface ResultUserVo {
   code?: number;
   msg?: string;
-  data?: PageUserDO;
+  /** com.csmht.sinin.DO.UserVo */
+  data?: UserVo;
 }
 
 import type {
@@ -186,7 +281,6 @@ import type {
   ResponseType,
 } from "axios";
 import axios from "axios";
-import { TokenManager } from "../../auth/tokenManager";
 
 export type QueryParamsType = Record<string | number, any>;
 
@@ -364,23 +458,16 @@ export class Api<
   /**
    * No description
    *
-   * @name GetRoot
-   * @summary 获取用户列表
-   * @request GET:/
+   * @name PostRoot
+   * @summary 更新当前消息
+   * @request POST:/
    */
-  getRoot = (
-    query?: {
-      /** 页码 */
-      pageNum?: number;
-      /** 每页数量 */
-      pageSize?: number;
-    },
-    params: RequestParams = {},
-  ) =>
-    this.request<ResultPageUserDO, any>({
+  postRoot = (data: UpdateUserDTO, params: RequestParams = {}) =>
+    this.request<ResultBoolean, any>({
       path: `/`,
-      method: "GET",
-      query: query,
+      method: "POST",
+      body: data,
+      type: ContentType.Json,
       format: "json",
       ...params,
     });
@@ -388,14 +475,14 @@ export class Api<
   /**
    * No description
    *
-   * @name PostRoot
-   * @summary 更新当前用户名
-   * @request POST:/
+   * @name PutRoot
+   * @summary 添加用户
+   * @request PUT:/
    */
-  postRoot = (data: UserDO, params: RequestParams = {}) =>
-    this.request<ResultBoolean, any>({
+  putRoot = (data: PutUserVo, params: RequestParams = {}) =>
+    this.request<ResultPutUserVo, any>({
       path: `/`,
-      method: "POST",
+      method: "PUT",
       body: data,
       type: ContentType.Json,
       format: "json",
@@ -407,23 +494,15 @@ export class Api<
      * No description
      *
      * @name LoginCreate
-     * @summary 登录接口(自动注册)
+     * @summary 登录
      * @request POST:/login
      */
-    loginCreate: (
-      query?: {
-        /**
-         * 微信登录凭证（code）
-         * @example "031SH81w3TnVR53QXZZv30EwNw2SH81o"
-         */
-        code?: string;
-      },
-      params: RequestParams = {},
-    ) =>
+    loginCreate: (data: LoginDTO, params: RequestParams = {}) =>
       this.request<ResultString, any>({
         path: `/login`,
         method: "POST",
-        query: query,
+        body: data,
+        type: ContentType.Json,
         format: "json",
         ...params,
       }),
@@ -437,7 +516,7 @@ export class Api<
      * @request GET:/my
      */
     getMy: (params: RequestParams = {}) =>
-      this.request<ResultUserDO, any>({
+      this.request<ResultUserVo, any>({
         path: `/my`,
         method: "GET",
         format: "json",
@@ -449,15 +528,28 @@ export class Api<
      * No description
      *
      * @name AdminCreate
-     * @summary 添加管理员
+     * @summary 修改用户角色
      * @request POST:/admin
      */
-    adminCreate: (data: number, params: RequestParams = {}) =>
+    adminCreate: (
+      query: {
+        /**
+         * 用户id
+         * @example 2
+         */
+        id: number;
+        /**
+         * 角色（中心主任 等）
+         * @example "中心主任"
+         */
+        role: string;
+      },
+      params: RequestParams = {},
+    ) =>
       this.request<ResultBoolean, any>({
         path: `/admin`,
         method: "POST",
-        body: data,
-        type: ContentType.Json,
+        query: query,
         format: "json",
         ...params,
       }),
@@ -470,9 +562,156 @@ export class Api<
      * @request GET:/admin
      */
     adminList: (params: RequestParams = {}) =>
-      this.request<ResultListUserDO, any>({
+      this.request<ResultListUserVo, any>({
         path: `/admin`,
         method: "GET",
+        format: "json",
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @name ResetPasswordCreate
+     * @summary 管理员重置用户密码
+     * @request POST:/admin/reset-password
+     */
+    resetPasswordCreate: (data: ResetPasswordDTO, params: RequestParams = {}) =>
+      this.request<ResultString, any>({
+        path: `/admin/reset-password`,
+        method: "POST",
+        body: data,
+        type: ContentType.Json,
+        format: "json",
+        ...params,
+      }),
+  };
+  all = {
+    /**
+     * No description
+     *
+     * @name GetAll
+     * @summary 获取所有用户列表
+     * @request GET:/all
+     */
+    getAll: (
+      query?: {
+        /** 页码 */
+        pageNum?: number;
+        /** 每页数量 */
+        pageSize?: number;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<ResultPageUserVo, any>({
+        path: `/all`,
+        method: "GET",
+        query: query,
+        format: "json",
+        ...params,
+      }),
+  };
+  info = {
+    /**
+     * No description
+     *
+     * @name InfoCreate
+     * @summary 获取用户消息（支持筛选）
+     * @request POST:/info
+     */
+    infoCreate: (data: UserInfoDTO, params: RequestParams = {}) =>
+      this.request<ResultPageUserVo, any>({
+        path: `/info`,
+        method: "POST",
+        body: data,
+        type: ContentType.Json,
+        format: "json",
+        ...params,
+      }),
+  };
+  excel = {
+    /**
+     * No description
+     *
+     * @name ExcelUpdate
+     * @summary 从Excel导入用户
+     * @request PUT:/excel
+     */
+    excelUpdate: (
+      data: {
+        /**
+         * Excel文件
+         * @format binary
+         */
+        file: File;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<object, any>({
+        path: `/excel`,
+        method: "PUT",
+        body: data,
+        type: ContentType.FormData,
+        format: "json",
+        ...params,
+      }),
+  };
+  wx = {
+    /**
+     * No description
+     *
+     * @name PostWx
+     * @summary 绑定微信openid
+     * @request POST:/wx
+     */
+    postWx: (
+      query?: {
+        /** 微信登录凭证（code） */
+        code?: string;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<ResultBoolean, any>({
+        path: `/wx`,
+        method: "POST",
+        query: query,
+        format: "json",
+        ...params,
+      }),
+  };
+  template = {
+    /**
+     * No description
+     *
+     * @name TemplateList
+     * @summary 获取用户导入模板
+     * @request GET:/template
+     */
+    templateList: (params: RequestParams = {}) =>
+      this.request<object, any>({
+        path: `/template`,
+        method: "GET",
+        format: "json",
+        ...params,
+      }),
+  };
+  changePassword = {
+    /**
+     * No description
+     *
+     * @name ChangePasswordCreate
+     * @summary 修改当前用户密码
+     * @request POST:/change-password
+     */
+    changePasswordCreate: (
+      data: ChangePasswordDTO,
+      params: RequestParams = {},
+    ) =>
+      this.request<ResultBoolean, any>({
+        path: `/change-password`,
+        method: "POST",
+        body: data,
+        type: ContentType.Json,
         format: "json",
         ...params,
       }),
@@ -501,7 +740,7 @@ export class Api<
      * @summary 申请请假
      * @request PUT:/from/leave
      */
-    leaveUpdate: (data: FormDO, params: RequestParams = {}) =>
+    leaveUpdate: (data: FromVo, params: RequestParams = {}) =>
       this.request<ResultBoolean, any>({
         path: `/from/leave`,
         method: "PUT",
@@ -515,22 +754,28 @@ export class Api<
      * No description
      *
      * @name ApproveCreate
-     * @summary 批假
+     * @summary todo批假
      * @request POST:/from/approve
      */
     approveCreate: (
-      body: {
-        /** 申请ID */
-        formID: number;
-        /** 0-未处理 1-已同意 2-未通过 */
-        status: number;
+      data: {
+        /**
+         * 申请ID
+         * @format int64
+         */
+        formID?: number;
+        /** 是否通过 */
+        status?: boolean;
+        /** 备注 */
+        remark?: string;
       },
       params: RequestParams = {},
     ) =>
       this.request<ResultBoolean, any>({
         path: `/from/approve`,
         method: "POST",
-        body: body,
+        body: data,
+        type: ContentType.Json,
         format: "json",
         ...params,
       }),
@@ -544,52 +789,23 @@ export class Api<
      */
     listList: (
       query: {
-        /** 页码 */
+        /**
+         * 页码
+         * @example 1
+         */
         pageNum: number;
-        /** 页数 */
+        /**
+         * 页数
+         * @example 10
+         */
         pageSize: number;
       },
       params: RequestParams = {},
     ) =>
-      this.request<ResultPageFormDO, any>({
+      this.request<ResultPageFromDTO, any>({
         path: `/from/list`,
         method: "GET",
         query: query,
-        format: "json",
-        ...params,
-      }),
-
-    /**
-     * No description
-     *
-     * @name UserFromList
-     * @summary 条件查询用户请假申请列表(同时输入ID和用户名，优先查询ID)
-     * @request GET:/from/userFrom
-     */
-    userFromList: (
-      body: {
-        /**
-         * 用户ID（与用户名同时输入优先使用用户ID）
-         * @format int64
-         */
-        userId?: number;
-        /** 用户名 */
-        userName?: string;
-        /** 申请状态 */
-        status?: number;
-        /** 申请类型 */
-        type?: string;
-        /** 申请中心 */
-        center?: string;
-        pageNum?: number;
-        pageSize?: number;
-      },
-      params: RequestParams = {},
-    ) =>
-      this.request<ResultPageFormDO, any>({
-        path: `/from/userFrom`,
-        method: "POST",
-        body: body,
         format: "json",
         ...params,
       }),
@@ -603,17 +819,40 @@ export class Api<
      */
     getFrom: (
       query: {
-        /** 页码 */
+        /**
+         * 页码
+         * @example 1
+         */
         pageNum: number;
-        /** 页数 */
+        /**
+         * 页数
+         * @example 10
+         */
         pageSize: number;
       },
       params: RequestParams = {},
     ) =>
-      this.request<ResultPageFormDO, any>({
+      this.request<ResultPageFromDTO, any>({
         path: `/from/my`,
         method: "GET",
         query: query,
+        format: "json",
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @name UserFromCreate
+     * @summary 条件查询用户请假申请列表(同时输入ID和用户名，优先查询ID)
+     * @request POST:/from/userFrom
+     */
+    userFromCreate: (data: UserFromDTO, params: RequestParams = {}) =>
+      this.request<ResultPageFromDTO, any>({
+        path: `/from/userFrom`,
+        method: "POST",
+        body: data,
+        type: ContentType.Json,
         format: "json",
         ...params,
       }),
