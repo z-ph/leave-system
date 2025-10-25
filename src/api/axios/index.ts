@@ -6,7 +6,6 @@ export const api = new Api({
 });
 api.instance.interceptors.request.use((config) => {
   const token = TokenManager.getToken();
-  console.log(token);
   if (token) {
     config.headers.token = token;
   }

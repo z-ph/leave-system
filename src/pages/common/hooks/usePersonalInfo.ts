@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/vue-query";
 import { computed } from "vue";
 import { api } from "@/api/axios";
-import { ROLE_NAMES, getRoleFromString } from "@/auth/roles";
+import { ROLE_NAMES } from "@/auth/roles";
 import { useCurrentUserRole } from "@/auth/useCurrentUserRole";
 
 export function usePersonalInfo() {
