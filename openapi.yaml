@@ -7,33 +7,33 @@ tags: []
 paths:
   /login:
     post:
-      summary: 登录接口(自动注册)
+      summary: 登录
       deprecated: false
       description: ''
       tags: []
       parameters:
-        - name: code
-          in: query
-          description: 微信登录凭证（code）
-          required: false
-          example: 031SH81w3TnVR53QXZZv30EwNw2SH81o
-          schema:
-            type: string
         - name: token
           in: header
           description: ''
           example: >-
-            eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjEwNDAxMTM1NDM1fQ.LUA1j7hpIcmlc337zKcNqfn4w4HFdBQfE9d4u8DJGzU
+            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjksImV4cCI6MTc2MzkxNjkyNX0.Kr3Y6zu3vqojQkEArpQc98z8OFQZXBNENnU12NAs1es
           schema:
             type: string
             default: >-
-              eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjEwNDAxMTM1NDM1fQ.LUA1j7hpIcmlc337zKcNqfn4w4HFdBQfE9d4u8DJGzU
+              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjksImV4cCI6MTc2MzkxNjkyNX0.Kr3Y6zu3vqojQkEArpQc98z8OFQZXBNENnU12NAs1es
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginDTO'
+              description: 登录信息
+            examples: {}
       responses:
         '200':
           description: ''
           content:
             application/json:
-              schema:
+              schema: &ref_2
                 $ref: '#/components/schemas/ResultString'
                 description: 登录凭证（JWT）
               example:
@@ -43,8 +43,218 @@ paths:
           headers: {}
       security: []
   /:
+    post:
+      summary: 更新当前消息
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: token
+          in: header
+          description: ''
+          example: >-
+            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjksImV4cCI6MTc2MzkxNjkyNX0.Kr3Y6zu3vqojQkEArpQc98z8OFQZXBNENnU12NAs1es
+          schema:
+            type: string
+            default: >-
+              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjksImV4cCI6MTc2MzkxNjkyNX0.Kr3Y6zu3vqojQkEArpQc98z8OFQZXBNENnU12NAs1es
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserDTO'
+              description: 用户信息
+            example:
+              username: 倪梓睿
+              phone: '15458176977'
+              center: 工程训练中心
+              number: '47'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema: &ref_0
+                $ref: '#/components/schemas/ResultBoolean'
+                description: 是否更新成功
+              example:
+                code: 0
+                msg: ''
+                data: false
+          headers: {}
+      security: []
+    put:
+      summary: 添加用户
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: token
+          in: header
+          description: ''
+          example: >-
+            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjksImV4cCI6MTc2MzkxNjkyNX0.Kr3Y6zu3vqojQkEArpQc98z8OFQZXBNENnU12NAs1es
+          schema:
+            type: string
+            default: >-
+              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjksImV4cCI6MTc2MzkxNjkyNX0.Kr3Y6zu3vqojQkEArpQc98z8OFQZXBNENnU12NAs1es
+      requestBody:
+        content:
+          application/json:
+            schema: &ref_5
+              $ref: '#/components/schemas/PutUserVo'
+              description: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResultPutUserVo'
+                description: 添加后的用户信息
+              examples:
+                '1':
+                  summary: 成功示例
+                  description: ''
+                  value:
+                    code: 0
+                    msg: ''
+                    data:
+                      id: 0
+                      username: ''
+                      role: ''
+                      phone: ''
+                      center: ''
+                      number: ''
+                      password: ''
+                '2':
+                  summary: 成功示例
+                  description: ''
+                  value:
+                    code: 1
+                    msg: null
+                    data:
+                      id: null
+                      username: 靖浩宇
+                      role: mollit Excepteur
+                      phone: '98832720065'
+                      center: Duis cillum quis
+                      number: '9'
+                      password: b9405cbd-dea8-41f6-8a04-fca52cc49ddf
+          headers: {}
+      security: []
+  /my:
     get:
-      summary: 获取用户列表
+      summary: 获取当前登录用户信息
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: token
+          in: header
+          description: ''
+          example: >-
+            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjksImV4cCI6MTc2MzkxNjkyNX0.Kr3Y6zu3vqojQkEArpQc98z8OFQZXBNENnU12NAs1es
+          schema:
+            type: string
+            default: >-
+              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjksImV4cCI6MTc2MzkxNjkyNX0.Kr3Y6zu3vqojQkEArpQc98z8OFQZXBNENnU12NAs1es
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResultUserVo'
+                description: 当前登录用户信息
+              example:
+                code: 0
+                msg: ''
+                data:
+                  id: 0
+                  openid: ''
+                  username: ''
+                  role: 0
+          headers: {}
+      security: []
+  /admin:
+    post:
+      summary: 修改用户角色
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: id
+          in: query
+          description: 用户id
+          required: true
+          example: 2
+          schema:
+            type: integer
+        - name: role
+          in: query
+          description: 角色（中心主任 等）
+          required: true
+          example: 中心主任
+          schema:
+            type: string
+        - name: token
+          in: header
+          description: ''
+          example: >-
+            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjksImV4cCI6MTc2MzkxNjkyNX0.Kr3Y6zu3vqojQkEArpQc98z8OFQZXBNENnU12NAs1es
+          schema:
+            type: string
+            default: >-
+              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjksImV4cCI6MTc2MzkxNjkyNX0.Kr3Y6zu3vqojQkEArpQc98z8OFQZXBNENnU12NAs1es
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema: *ref_0
+              example:
+                code: 0
+                msg: ''
+                data: false
+          headers: {}
+      security: []
+    get:
+      summary: 获取审核员列表
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: token
+          in: header
+          description: ''
+          example: >-
+            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjksImV4cCI6MTc2MzkxNjkyNX0.Kr3Y6zu3vqojQkEArpQc98z8OFQZXBNENnU12NAs1es
+          schema:
+            type: string
+            default: >-
+              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjksImV4cCI6MTc2MzkxNjkyNX0.Kr3Y6zu3vqojQkEArpQc98z8OFQZXBNENnU12NAs1es
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResultListUserVo'
+                description: 审核员列表
+              example:
+                code: 0
+                msg: ''
+                data:
+                  - id: 0
+                    openid: ''
+                    username: ''
+                    role: 0
+          headers: {}
+      security: []
+  /all:
+    get:
+      summary: 获取所有用户列表
       deprecated: false
       description: ''
       tags: []
@@ -65,18 +275,18 @@ paths:
           in: header
           description: ''
           example: >-
-            eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjEwNDAxMTM1NDM1fQ.LUA1j7hpIcmlc337zKcNqfn4w4HFdBQfE9d4u8DJGzU
+            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjksImV4cCI6MTc2MzkxNjkyNX0.Kr3Y6zu3vqojQkEArpQc98z8OFQZXBNENnU12NAs1es
           schema:
             type: string
             default: >-
-              eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjEwNDAxMTM1NDM1fQ.LUA1j7hpIcmlc337zKcNqfn4w4HFdBQfE9d4u8DJGzU
+              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjksImV4cCI6MTc2MzkxNjkyNX0.Kr3Y6zu3vqojQkEArpQc98z8OFQZXBNENnU12NAs1es
       responses:
         '200':
           description: ''
           content:
             application/json:
-              schema:
-                $ref: '#/components/schemas/ResultPageUserDO'
+              schema: &ref_1
+                $ref: '#/components/schemas/ResultPageUserVo'
                 description: 用户列表分页信息
               example:
                 code: 0
@@ -100,8 +310,9 @@ paths:
                   countId: ''
           headers: {}
       security: []
+  /info:
     post:
-      summary: 更新当前用户名
+      summary: 获取用户消息（支持筛选）
       deprecated: false
       description: ''
       tags: []
@@ -110,35 +321,51 @@ paths:
           in: header
           description: ''
           example: >-
-            eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjEwNDAxMTM1NDM1fQ.LUA1j7hpIcmlc337zKcNqfn4w4HFdBQfE9d4u8DJGzU
+            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjksImV4cCI6MTc2MzkxNjkyNX0.Kr3Y6zu3vqojQkEArpQc98z8OFQZXBNENnU12NAs1es
           schema:
             type: string
             default: >-
-              eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjEwNDAxMTM1NDM1fQ.LUA1j7hpIcmlc337zKcNqfn4w4HFdBQfE9d4u8DJGzU
+              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjksImV4cCI6MTc2MzkxNjkyNX0.Kr3Y6zu3vqojQkEArpQc98z8OFQZXBNENnU12NAs1es
       requestBody:
         content:
           application/json:
-            schema: &ref_3
-              $ref: '#/components/schemas/UserDO'
-              description: com.csmht.sinin.DO.UserDO
-            examples: {}
+            schema:
+              $ref: '#/components/schemas/UserInfoDTO'
+              description: 更新用户信息
       responses:
         '200':
           description: ''
           content:
             application/json:
-              schema: &ref_0
-                $ref: '#/components/schemas/ResultBoolean'
-                description: 是否更新成功
+              schema: *ref_1
               example:
                 code: 0
                 msg: ''
-                data: false
+                data:
+                  records:
+                    - id: 0
+                      openid: ''
+                      username: ''
+                      role: ''
+                      phone: ''
+                      center: ''
+                      number: ''
+                  total: 0
+                  size: 0
+                  current: 0
+                  orders:
+                    - column: ''
+                      asc: false
+                  optimizeCountSql: false
+                  searchCount: false
+                  optimizeJoinOfCountSql: false
+                  maxLimit: 0
+                  countId: ''
           headers: {}
       security: []
-  /my:
-    get:
-      summary: 获取当前登录用户信息
+  /excel:
+    put:
+      summary: 从Excel导入用户
       deprecated: false
       description: ''
       tags: []
@@ -147,51 +374,55 @@ paths:
           in: header
           description: ''
           example: >-
-            eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjEwNDAxMTM1NDM1fQ.LUA1j7hpIcmlc337zKcNqfn4w4HFdBQfE9d4u8DJGzU
+            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjksImV4cCI6MTc2MzkxNjkyNX0.Kr3Y6zu3vqojQkEArpQc98z8OFQZXBNENnU12NAs1es
           schema:
             type: string
             default: >-
-              eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjEwNDAxMTM1NDM1fQ.LUA1j7hpIcmlc337zKcNqfn4w4HFdBQfE9d4u8DJGzU
+              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjksImV4cCI6MTc2MzkxNjkyNX0.Kr3Y6zu3vqojQkEArpQc98z8OFQZXBNENnU12NAs1es
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  description: Excel文件
+                  type: string
+                  format: binary
+              required:
+                - file
       responses:
         '200':
           description: ''
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ResultUserDO'
-                description: 当前登录用户信息
-              example:
-                code: 0
-                msg: ''
-                data:
-                  id: 0
-                  openid: ''
-                  username: ''
-                  role: 0
+                type: object
+                properties: {}
           headers: {}
       security: []
-  /admin:
+  /wx:
     post:
-      summary: 添加管理员
+      summary: 绑定微信openid
       deprecated: false
       description: ''
       tags: []
       parameters:
+        - name: code
+          in: query
+          description: 微信登录凭证（code）
+          required: false
+          schema:
+            type: string
         - name: token
           in: header
           description: ''
           example: >-
-            eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjEwNDAxMTM1NDM1fQ.LUA1j7hpIcmlc337zKcNqfn4w4HFdBQfE9d4u8DJGzU
+            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjksImV4cCI6MTc2MzkxNjkyNX0.Kr3Y6zu3vqojQkEArpQc98z8OFQZXBNENnU12NAs1es
           schema:
             type: string
             default: >-
-              eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjEwNDAxMTM1NDM1fQ.LUA1j7hpIcmlc337zKcNqfn4w4HFdBQfE9d4u8DJGzU
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: integer
-              description: 用户id
+              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjksImV4cCI6MTc2MzkxNjkyNX0.Kr3Y6zu3vqojQkEArpQc98z8OFQZXBNENnU12NAs1es
       responses:
         '200':
           description: ''
@@ -204,8 +435,9 @@ paths:
                 data: false
           headers: {}
       security: []
+  /template:
     get:
-      summary: 获取审核员列表
+      summary: 获取用户导入模板
       deprecated: false
       description: ''
       tags: []
@@ -214,27 +446,91 @@ paths:
           in: header
           description: ''
           example: >-
-            eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjEwNDAxMTM1NDM1fQ.LUA1j7hpIcmlc337zKcNqfn4w4HFdBQfE9d4u8DJGzU
+            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjksImV4cCI6MTc2MzkxNjkyNX0.Kr3Y6zu3vqojQkEArpQc98z8OFQZXBNENnU12NAs1es
           schema:
             type: string
             default: >-
-              eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjEwNDAxMTM1NDM1fQ.LUA1j7hpIcmlc337zKcNqfn4w4HFdBQfE9d4u8DJGzU
+              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjksImV4cCI6MTc2MzkxNjkyNX0.Kr3Y6zu3vqojQkEArpQc98z8OFQZXBNENnU12NAs1es
       responses:
         '200':
           description: ''
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ResultListUserDO'
-                description: 审核员列表
+                type: object
+                properties: {}
+          headers: {}
+      security: []
+  /change-password:
+    post:
+      summary: 修改当前用户密码
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: token
+          in: header
+          description: ''
+          example: >-
+            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjksImV4cCI6MTc2MzkxNjkyNX0.Kr3Y6zu3vqojQkEArpQc98z8OFQZXBNENnU12NAs1es
+          schema:
+            type: string
+            default: >-
+              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjksImV4cCI6MTc2MzkxNjkyNX0.Kr3Y6zu3vqojQkEArpQc98z8OFQZXBNENnU12NAs1es
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChangePasswordDTO'
+              description: 密码修改信息
+            example:
+              oldPassword: '123456789'
+              newPassword: '123456'
+              confirmPassword: '123456'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema: *ref_0
               example:
                 code: 0
                 msg: ''
-                data:
-                  - id: 0
-                    openid: ''
-                    username: ''
-                    role: 0
+                data: false
+          headers: {}
+      security: []
+  /admin/reset-password:
+    post:
+      summary: 管理员重置用户密码
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: token
+          in: header
+          description: ''
+          example: >-
+            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjksImV4cCI6MTc2MzkxNjkyNX0.Kr3Y6zu3vqojQkEArpQc98z8OFQZXBNENnU12NAs1es
+          schema:
+            type: string
+            default: >-
+              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjksImV4cCI6MTc2MzkxNjkyNX0.Kr3Y6zu3vqojQkEArpQc98z8OFQZXBNENnU12NAs1es
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResetPasswordDTO'
+              description: 重置密码信息
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema: *ref_2
+              example:
+                code: 0
+                msg: ''
+                data: ''
           headers: {}
       security: []
   /hello:
@@ -248,11 +544,11 @@ paths:
           in: header
           description: ''
           example: >-
-            eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjEwNDAxMTM1NDM1fQ.LUA1j7hpIcmlc337zKcNqfn4w4HFdBQfE9d4u8DJGzU
+            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjksImV4cCI6MTc2MzkxNjkyNX0.Kr3Y6zu3vqojQkEArpQc98z8OFQZXBNENnU12NAs1es
           schema:
             type: string
             default: >-
-              eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjEwNDAxMTM1NDM1fQ.LUA1j7hpIcmlc337zKcNqfn4w4HFdBQfE9d4u8DJGzU
+              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjksImV4cCI6MTc2MzkxNjkyNX0.Kr3Y6zu3vqojQkEArpQc98z8OFQZXBNENnU12NAs1es
       responses:
         '200':
           description: ''
@@ -274,17 +570,17 @@ paths:
           in: header
           description: ''
           example: >-
-            eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjEwNDAxMTM1NDM1fQ.LUA1j7hpIcmlc337zKcNqfn4w4HFdBQfE9d4u8DJGzU
+            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjksImV4cCI6MTc2MzkxNjkyNX0.Kr3Y6zu3vqojQkEArpQc98z8OFQZXBNENnU12NAs1es
           schema:
             type: string
             default: >-
-              eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjEwNDAxMTM1NDM1fQ.LUA1j7hpIcmlc337zKcNqfn4w4HFdBQfE9d4u8DJGzU
+              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjksImV4cCI6MTc2MzkxNjkyNX0.Kr3Y6zu3vqojQkEArpQc98z8OFQZXBNENnU12NAs1es
       requestBody:
         content:
           application/json:
-            schema: &ref_2
-              $ref: '#/components/schemas/FormDO'
-              description: com.csmht.sinin.DO.FormDO
+            schema:
+              $ref: '#/components/schemas/FromVo'
+              description: ''
             examples: {}
       responses:
         '200':
@@ -292,40 +588,60 @@ paths:
           content:
             application/json:
               schema: *ref_0
-              example:
-                code: 0
-                msg: ''
-                data: false
+              examples:
+                '1':
+                  summary: 成功示例
+                  description: ''
+                  value:
+                    code: 0
+                    msg: ''
+                    data: false
+                '2':
+                  summary: 成功示例
+                  description: ''
+                  value:
+                    code: 1
+                    msg: null
+                    data: true
           headers: {}
       security: []
   /from/approve:
     post:
-      summary: 批假
+      summary: todo批假
       deprecated: false
       description: ''
       tags: []
       parameters:
-        - name: formID
-          in: query
-          description: 申请ID
-          required: true
-          schema:
-            type: integer
-        - name: status
-          in: query
-          description: 0-未处理 1-已同意 2-未通过
-          required: true
-          schema:
-            type: integer
         - name: token
           in: header
           description: ''
           example: >-
-            eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjEwNDAxMTM1NDM1fQ.LUA1j7hpIcmlc337zKcNqfn4w4HFdBQfE9d4u8DJGzU
+            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjksImV4cCI6MTc2MzkxNjkyNX0.Kr3Y6zu3vqojQkEArpQc98z8OFQZXBNENnU12NAs1es
           schema:
             type: string
             default: >-
-              eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjEwNDAxMTM1NDM1fQ.LUA1j7hpIcmlc337zKcNqfn4w4HFdBQfE9d4u8DJGzU
+              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjksImV4cCI6MTc2MzkxNjkyNX0.Kr3Y6zu3vqojQkEArpQc98z8OFQZXBNENnU12NAs1es
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                formID:
+                  type: integer
+                  description: 申请ID
+                  format: int64
+                status:
+                  type: boolean
+                  description: 是否通过
+                remark:
+                  type: string
+                  description: 备注
+            example:
+              formID: 94
+              status: true
+              remark: ad ipsum
       responses:
         '200':
           description: ''
@@ -349,124 +665,33 @@ paths:
           in: query
           description: 页码
           required: true
+          example: 1
           schema:
             type: integer
         - name: pageSize
           in: query
           description: 页数
           required: true
+          example: 10
           schema:
             type: integer
         - name: token
           in: header
           description: ''
           example: >-
-            eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjEwNDAxMTM1NDM1fQ.LUA1j7hpIcmlc337zKcNqfn4w4HFdBQfE9d4u8DJGzU
+            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjksImV4cCI6MTc2MzkxNjkyNX0.Kr3Y6zu3vqojQkEArpQc98z8OFQZXBNENnU12NAs1es
           schema:
             type: string
             default: >-
-              eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjEwNDAxMTM1NDM1fQ.LUA1j7hpIcmlc337zKcNqfn4w4HFdBQfE9d4u8DJGzU
+              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjksImV4cCI6MTc2MzkxNjkyNX0.Kr3Y6zu3vqojQkEArpQc98z8OFQZXBNENnU12NAs1es
       responses:
         '200':
           description: ''
           content:
             application/json:
-              schema: &ref_1
-                $ref: '#/components/schemas/ResultPageFormDO'
+              schema: &ref_3
+                $ref: '#/components/schemas/ResultPageFromDTO'
                 description: ''
-              example:
-                code: 0
-                msg: ''
-                data:
-                  records:
-                    - id: 0
-                      center: ''
-                      type: ''
-                      status: 0
-                      startTime: ''
-                      endTime: ''
-                      createTime: ''
-                      reason: ''
-                      day: 0
-                      userId: ''
-                  total: 0
-                  size: 0
-                  current: 0
-                  orders:
-                    - column: ''
-                      asc: false
-                  optimizeCountSql: false
-                  searchCount: false
-                  optimizeJoinOfCountSql: false
-                  maxLimit: 0
-                  countId: ''
-          headers: {}
-      security: []
-  /from/userFrom:
-    get:
-      summary: 条件查询用户请假申请列表(同时输入ID和用户名，优先查询ID)
-      deprecated: false
-      description: ''
-      tags: []
-      parameters:
-        - name: userId
-          in: query
-          description: 用户ID（与用户名同时输入优先使用用户ID）
-          required: false
-          schema:
-            type: integer
-            format: int64
-        - name: userName
-          in: query
-          description: 用户名
-          required: false
-          schema:
-            type: string
-        - name: status
-          in: query
-          description: 申请状态
-          required: false
-          schema:
-            type: integer
-        - name: type
-          in: query
-          description: 申请类型
-          required: false
-          schema:
-            type: string
-        - name: center
-          in: query
-          description: 申请中心
-          required: false
-          schema:
-            type: string
-        - name: pageNum
-          in: query
-          description: ''
-          required: false
-          schema:
-            type: integer
-        - name: pageSize
-          in: query
-          description: ''
-          required: false
-          schema:
-            type: integer
-        - name: token
-          in: header
-          description: ''
-          example: >-
-            eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjEwNDAxMTM1NDM1fQ.LUA1j7hpIcmlc337zKcNqfn4w4HFdBQfE9d4u8DJGzU
-          schema:
-            type: string
-            default: >-
-              eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjEwNDAxMTM1NDM1fQ.LUA1j7hpIcmlc337zKcNqfn4w4HFdBQfE9d4u8DJGzU
-      responses:
-        '200':
-          description: ''
-          content:
-            application/json:
-              schema: *ref_1
               example:
                 code: 0
                 msg: ''
@@ -506,29 +731,31 @@ paths:
           in: query
           description: 页码
           required: true
+          example: 1
           schema:
             type: integer
         - name: pageSize
           in: query
           description: 页数
           required: true
+          example: 10
           schema:
             type: integer
         - name: token
           in: header
           description: ''
           example: >-
-            eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjEwNDAxMTM1NDM1fQ.LUA1j7hpIcmlc337zKcNqfn4w4HFdBQfE9d4u8DJGzU
+            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjksImV4cCI6MTc2MzkxNjkyNX0.Kr3Y6zu3vqojQkEArpQc98z8OFQZXBNENnU12NAs1es
           schema:
             type: string
             default: >-
-              eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjEwNDAxMTM1NDM1fQ.LUA1j7hpIcmlc337zKcNqfn4w4HFdBQfE9d4u8DJGzU
+              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjksImV4cCI6MTc2MzkxNjkyNX0.Kr3Y6zu3vqojQkEArpQc98z8OFQZXBNENnU12NAs1es
       responses:
         '200':
           description: ''
           content:
             application/json:
-              schema: *ref_1
+              schema: *ref_3
               example:
                 code: 0
                 msg: ''
@@ -557,14 +784,104 @@ paths:
                   countId: ''
           headers: {}
       security: []
+  /from/userFrom:
+    post:
+      summary: 条件查询用户请假申请列表(同时输入ID和用户名，优先查询ID)
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: token
+          in: header
+          description: ''
+          example: >-
+            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjksImV4cCI6MTc2MzkxNjkyNX0.Kr3Y6zu3vqojQkEArpQc98z8OFQZXBNENnU12NAs1es
+          schema:
+            type: string
+            default: >-
+              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjksImV4cCI6MTc2MzkxNjkyNX0.Kr3Y6zu3vqojQkEArpQc98z8OFQZXBNENnU12NAs1es
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserFromDTO'
+              description: 查询参数
+            example:
+              userName: 李
+              pageNum: 1
+              pageSize: 10
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema: *ref_3
+              examples:
+                '1':
+                  summary: 成功示例
+                  description: ''
+                  value:
+                    code: 0
+                    msg: ''
+                    data:
+                      records:
+                        - id: 0
+                          center: ''
+                          type: ''
+                          status: 0
+                          startTime: ''
+                          endTime: ''
+                          createTime: ''
+                          reason: ''
+                          day: 0
+                          userId: 0
+                          adminId: 0
+                      total: 0
+                      size: 0
+                      current: 0
+                      orders:
+                        - column: ''
+                          asc: false
+                      optimizeCountSql: false
+                      searchCount: false
+                      optimizeJoinOfCountSql: false
+                      maxLimit: 0
+                      countId: ''
+                '2':
+                  summary: 成功示例
+                  description: ''
+                  value:
+                    code: 1
+                    msg: null
+                    data:
+                      records:
+                        - id: 1
+                          center: Excepteur anim ullamco
+                          type: dolore
+                          status: 0
+                          startTime: '2025-05-26 02:34:42'
+                          endTime: '2025-09-17 11:42:53'
+                          createTime: '2025-10-24 13:12:53'
+                          reason: do non aliquip exercitation
+                          day: 53
+                          userId: 6
+                          adminId: 6
+                      total: 1
+                      size: 28
+                      current: 1
+                      pages: 1
+          headers: {}
+      security: []
 components:
   schemas:
-    PageFormDO:
+    PageUserVo:
       type: object
       properties:
         records:
           type: array
-          items: *ref_2
+          items: &ref_6
+            $ref: '#/components/schemas/UserVo'
+            description: com.csmht.sinin.DO.UserVo
           description: ''
         total:
           type: integer
@@ -609,62 +926,90 @@ components:
         asc:
           type: boolean
           description: ''
-    FormDO:
+    UserVo:
       type: object
       properties:
         id:
           type: integer
           description: ''
           format: int64
-          title: 申请ID
+        openid:
+          type: string
+          description: 微信openid
+        username:
+          type: string
+          description: 用户名
+        role:
+          type: string
+          description: 角色
+        phone:
+          type: string
+          description: 手机
         center:
           type: string
           description: 申请中心
-          title: 所在中心
+        number:
+          type: string
+          description: 工号
+    FromDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: ''
+          format: int64
+        center:
+          type: string
+          description: 申请中心
+        phone:
+          type: string
+          description: 电话
         type:
           type: string
           description: 申请类型
-          title: 申请类型
         status:
           type: integer
           description: 申请状态
-          title: 申请状态（0-未审批 1-已通过 2-已拒绝）
         startTime:
           type: string
           description: 申请开始时间
-          title: 开始时间（YYYY-MM-DD HH:MM:SS）
         endTime:
           type: string
           description: 申请结束时间
-          title: 结束时间（YYYY-MM-DD HH:MM:SS）
         createTime:
           type: string
           description: 创建时间
-          title: 创建时间（YYYY-MM-DD HH:MM:SS）
         reason:
           type: string
           description: 申请原因
-          title: 请假事由
         day:
           type: integer
           description: 申请天数
-          title: 请假天数
         userId:
           type: integer
-          description: 用户openid
+          description: 用户ID
           format: int64
-          title: 用户ID
+        userName:
+          type: string
+          description: 用户名
         adminId:
           type: integer
           description: 审核员ID
           format: int64
-          title: 指定审核员ID
-    PageUserDO:
+        adminName:
+          type: string
+          description: 审核员姓名
+        remark:
+          type: string
+          description: 审核备注
+    PageFromDTO:
       type: object
       properties:
         records:
           type: array
-          items: *ref_3
+          items:
+            $ref: '#/components/schemas/FromDTO'
+            description: com.csmht.sinin.DTO.FromDTO
           description: ''
         total:
           type: integer
@@ -698,48 +1043,14 @@ components:
         countId:
           type: string
           description: ''
-    UserDO:
+    LoginDTO:
       type: object
       properties:
-        id:
-          type: integer
-          description: ''
-          format: int64
-        openid:
-          type: string
-          description: 微信openid
-        username:
-          type: string
-          description: 用户名
-          title: 用户名
-        role:
-          type: integer
-          description: 角色 0-学生 1-老师
-          title: 0-学生 1-老师
-    ResultListUserDO:
-      type: object
-      properties:
-        code:
-          type: integer
-          description: ''
-        msg:
+        number:
           type: string
           description: ''
-        data:
-          type: array
-          items: *ref_3
-          description: ''
-    ResultPageFormDO:
-      type: object
-      properties:
-        code:
-          type: integer
-          description: ''
-        msg:
+        password:
           type: string
-          description: ''
-        data:
-          $ref: '#/components/schemas/PageFormDO'
           description: ''
     ResultString:
       type: object
@@ -753,7 +1064,46 @@ components:
         data:
           type: string
           description: ''
-    ResultUserDO:
+    ResetPasswordDTO:
+      type: object
+      properties:
+        userId:
+          type: integer
+          description: ''
+          format: int64
+          title: 修改用户id
+        newPassword:
+          type: string
+          description: ''
+          minLength: 6
+          maxLength: 20
+          pattern: ^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d@$!%*?&]{6,20}$
+          title: 新密码
+      required:
+        - userId
+    ChangePasswordDTO:
+      type: object
+      properties:
+        oldPassword:
+          type: string
+          description: ''
+          title: 旧密码
+        newPassword:
+          type: string
+          description: ''
+          minLength: 6
+          maxLength: 20
+          pattern: ^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d@$!%*?&]{6,20}$
+          title: 新密码
+        confirmPassword:
+          type: string
+          description: ''
+          title: 确认密码
+      required:
+        - oldPassword
+        - newPassword
+        - confirmPassword
+    ResultPutUserVo:
       type: object
       properties:
         code:
@@ -762,7 +1112,133 @@ components:
         msg:
           type: string
           description: ''
-        data: *ref_3
+        data: *ref_5
+    PutUserVo:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: ''
+          format: int64
+        username:
+          type: string
+          description: 用户名
+        role:
+          type: string
+          description: 角色
+        phone:
+          type: string
+          description: 手机
+        center:
+          type: string
+          description: 申请中心
+        number:
+          type: string
+          description: 工号
+        password:
+          type: string
+          description: 密码
+    UserInfoDTO:
+      type: object
+      properties:
+        username:
+          type: string
+          description: 用户名
+        role:
+          type: string
+          description: 角色
+        center:
+          type: string
+          description: 申请中心
+        phone:
+          type: string
+          description: 手机
+        number:
+          type: string
+          description: 工号
+        pageNum:
+          type: integer
+          description: ''
+        pageSize:
+          type: integer
+          description: ''
+    ResultPageUserVo:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: ''
+        msg:
+          type: string
+          description: ''
+        data:
+          $ref: '#/components/schemas/PageUserVo'
+          description: ''
+    UpdateUserDTO:
+      type: object
+      properties:
+        username:
+          type: string
+          description: ''
+        phone:
+          type: string
+          description: ''
+        center:
+          type: string
+          description: ''
+        number:
+          type: string
+          description: ''
+    UserFromDTO:
+      type: object
+      properties:
+        userId:
+          type: integer
+          description: 用户ID
+          format: int64
+        userName:
+          type: string
+          description: 用户名
+        status:
+          type: integer
+          description: 申请状态
+        type:
+          type: string
+          description: 申请类型
+        center:
+          type: string
+          description: 申请中心
+        pageNum:
+          type: integer
+          description: ''
+        pageSize:
+          type: integer
+          description: ''
+    ResultListUserVo:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: ''
+        msg:
+          type: string
+          description: ''
+        data:
+          type: array
+          items: *ref_6
+          description: ''
+    ResultPageFromDTO:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: ''
+        msg:
+          type: string
+          description: ''
+        data:
+          $ref: '#/components/schemas/PageFromDTO'
+          description: ''
     ResultBoolean:
       type: object
       properties:
@@ -775,7 +1251,49 @@ components:
         data:
           type: boolean
           description: ''
-    ResultPageUserDO:
+    ApproveDTO:
+      type: object
+      properties:
+        formID:
+          type: integer
+          description: 申请ID
+          format: int64
+        status:
+          type: boolean
+          description: 是否通过
+        remark:
+          type: string
+          description: 备注
+        nextUserId:
+          type: integer
+          description: 下一个审核用户id(0为最终审批)
+          format: int64
+    FromVo:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: ''
+          format: int64
+        type:
+          type: string
+          description: 申请类型
+        status:
+          type: integer
+          description: 申请状态
+        startTime:
+          type: string
+          description: 申请开始时间
+        endTime:
+          type: string
+          description: 申请结束时间
+        reason:
+          type: string
+          description: 申请原因
+        day:
+          type: integer
+          description: 申请天数
+    ResultUserVo:
       type: object
       properties:
         code:
@@ -784,8 +1302,6 @@ components:
         msg:
           type: string
           description: ''
-        data:
-          $ref: '#/components/schemas/PageUserDO'
-          description: ''
+        data: *ref_6
   securitySchemes: {}
 servers: []
