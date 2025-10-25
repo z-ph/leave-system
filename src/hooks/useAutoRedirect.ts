@@ -25,7 +25,6 @@ export function useAutoRedirect() {
   // 检查是否需要重定向
   const shouldRedirect = computed(() => {
     const currentPath = router.currentRoute.value.path;
-    const defaultRoute = getDefaultRoute.value;
 
     // 如果当前路径是登录页或根路径，需要重定向
     if (currentPath === '/login' || currentPath === '/') {

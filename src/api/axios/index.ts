@@ -7,7 +7,7 @@ export const api = new Api({
 api.instance.interceptors.request.use((config) => {
   const token = TokenManager.getToken();
   if (token) {
-    config.headers.token = token;
+    config.headers['token'] = token;
   }
   return config;
 });

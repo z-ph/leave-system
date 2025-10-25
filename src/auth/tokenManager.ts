@@ -1,4 +1,13 @@
-import {jwtDecode} from 'jwt-decode';
+import {jwtDecode, type JwtPayload} from 'jwt-decode';
+
+// 自定义JWT payload类型
+interface CustomJwtPayload extends JwtPayload {
+  userId?: number;
+  username?: string;
+  role?: number;
+  center?: string;
+  // 其他可能的用户信息字段
+}
 
 export class TokenManager {
   //存储在localStorage中 'token'
@@ -24,12 +33,12 @@ export class TokenManager {
     if (!expireTime) return true;
     return expireTime < Date.now() / 1000;
   }
-  static getTokenPayload() {
+  static getTokenPayload(): CustomJwtPayload | null {
     const token = this.getToken();
     if (!token) return null;
     return jwtDecode(token);
   }
-  static setTokenPayload(payload: any) {
+  static setTokenPayload(payload: CustomJwtPayload) {
     localStorage.setItem(this.PAYLOAD_KEY, JSON.stringify(payload));
   }
   static removeTokenPayload() {
