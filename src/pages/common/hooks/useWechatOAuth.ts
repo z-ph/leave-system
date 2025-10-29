@@ -66,9 +66,8 @@ export function useWechatLogin() {
       }
       router.push("/");
     },
-    onError: (_error: unknown) => {
-      const message = "微信登录失败：该微信尚未绑定账号，请使用帐号密码登录";
-      ElMessage.error({ message });
+    onError: (error: Error) => {
+      ElMessage.error({ message: error.message });
     },
   });
   watch(code, (newCode) => {
