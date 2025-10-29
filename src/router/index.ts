@@ -25,33 +25,6 @@ router.beforeEach(async (to, _from, next) => {
     next({ path: ROUTE_PATHS.LOGIN, query: { redirect: to.fullPath } });
     return;
   }
-
-  // 获取用户角色
-  const role = await getCurrentUserRole();
-
-  // 检查角色权限
-  const allowed = to.meta?.roles;
-  if (allowed && allowed.length > 0) {
-    if (!hasRole(role, allowed)) {
-      next(ROUTE_PATHS.FORBIDDEN);
-      return;
-    }
-  }
-
-  // 处理根路径和登录页的重定向
-  if (to.path === ROUTE_PATHS.LOGIN) {
-    const defaultRoute = getDefaultRouteForRole(role);
-    next(defaultRoute);
-    return;
-  }
-
-  // 处理角色不匹配的路径
-  if (!isPathAllowedForRole(to.path, role)) {
-    const defaultRoute = getDefaultRouteForRole(role);
-    next(defaultRoute);
-    return;
-  }
-
   next();
 });
 
