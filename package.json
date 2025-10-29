@@ -13,7 +13,8 @@
     "type-check-vue": "vue-tsc --noEmit",
     "type-check-ts": "tsc --noEmit --project tsconfig.app.json --strict",
     "generate:api": "openapi --input openapi.json --output src/api/generated/",
-    "gen:api": "npx swagger-typescript-api generate -p ./openapi.yaml -o ./src/api/axios --axios"
+    "gen:api": "npx swagger-typescript-api generate -p ./openapi.yaml -o ./src/api/axios --axios",
+    "build:nocheck":"vite build"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.2",
