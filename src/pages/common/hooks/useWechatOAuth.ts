@@ -87,5 +87,5 @@ export function useWatchCodeLogin(){
     if (newCode) {
       loginWechat();
     }
-  });
+  }, { immediate: true });
 }
