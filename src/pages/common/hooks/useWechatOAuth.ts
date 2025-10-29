@@ -4,7 +4,7 @@ interface GetWeChatCodeUrlOptions {
   state: string;
   redirectUri: string;
 }
-import { computed, onMounted } from "vue";
+import { computed, watch } from "vue";
 import { useRoute } from "vue-router";
 import { useMutation } from "@tanstack/vue-query";
 import { TokenManager } from "@/auth/tokenManager";
@@ -34,16 +34,6 @@ export function useWeCode() {
     }
     return queryCode;
   });
-  onMounted(() => {
-    if (!code.value) {
-      redirectToWeChatOAuth({
-        appId: CONFIG.appId,
-        scope: CONFIG.scope,
-        state: CONFIG.state,
-        redirectUri: window.location.href,
-      });
-    }
-  });
   const refreshCode = () => {
     redirectToWeChatOAuth({
       appId: CONFIG.appId,
@@ -58,11 +48,11 @@ export function useWeCode() {
   };
 }
 
-export function useLogin() {
+export function useWechatLogin() {
   const { code } = useWeCode();
   const router = useRouter();
   const loginMutation = useMutation({
-    mutationFn: (code: string) => api.wx.postWx({ code }),
+    mutationFn: () => api.wx.postWx({ code: code.value ?? "" }),
     onSuccess: (res) => {
       // 假设/wx接口在登录场景下返回JWT token
       // 注意：这基于当前代码的业务逻辑，可能需要与后端确认API设计
@@ -76,19 +66,26 @@ export function useLogin() {
       }
       router.push("/");
     },
-    onError: (error: unknown) => {
-      const message = error instanceof Error ? error.message : "微信登录失败";
+    onError: (_error: unknown) => {
+      const message = "微信登录失败：该微信尚未绑定账号，请使用帐号密码登录";
       ElMessage.error({ message });
     },
   });
-  onMounted(() => {
-    console.log('code', code.value);
-    if (code.value) {
-      console.log(code.value);
-      loginMutation.mutate(code.value);
+  watch(code, (newCode) => {
+    if (newCode) {
+      loginMutation.mutate();
     }
   });
   return {
-    loginMutation,
+    ...loginMutation,
+    code,
   };
+}
+export function useWatchCodeLogin(){
+  const { code, mutate: loginWechat } = useWechatLogin();
+  watch(code, (newCode) => {
+    if (newCode) {
+      loginWechat();
+    }
+  });
 }
