@@ -1,10 +1,9 @@
 import { ref } from "vue";
-import { useMutation, useQueryClient } from "@tanstack/vue-query";
+import { useMutation } from "@tanstack/vue-query";
 import { api } from "@/api/axios";
 import { ElMessage } from "element-plus";
 import { useRouter } from "vue-router";
 import { TokenManager } from "@/auth/tokenManager";
-import type { AxiosError } from "axios";
 import { jwtDecode } from "jwt-decode";
 import { ROUTE_PATHS } from "@/router/constants";
 
