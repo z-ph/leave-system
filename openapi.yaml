@@ -16,18 +16,20 @@ paths:
           in: header
           description: ''
           example: >-
-            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjksImV4cCI6MTc2MzkxNjkyNX0.Kr3Y6zu3vqojQkEArpQc98z8OFQZXBNENnU12NAs1es
+            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
           schema:
             type: string
             default: >-
-              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjksImV4cCI6MTc2MzkxNjkyNX0.Kr3Y6zu3vqojQkEArpQc98z8OFQZXBNENnU12NAs1es
+              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/LoginDTO'
               description: 登录信息
-            examples: {}
+            example:
+              number: '9'
+              password: '123456'
       responses:
         '200':
           description: ''
@@ -53,11 +55,11 @@ paths:
           in: header
           description: ''
           example: >-
-            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjksImV4cCI6MTc2MzkxNjkyNX0.Kr3Y6zu3vqojQkEArpQc98z8OFQZXBNENnU12NAs1es
+            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
           schema:
             type: string
             default: >-
-              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjksImV4cCI6MTc2MzkxNjkyNX0.Kr3Y6zu3vqojQkEArpQc98z8OFQZXBNENnU12NAs1es
+              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
       requestBody:
         content:
           application/json:
@@ -93,15 +95,15 @@ paths:
           in: header
           description: ''
           example: >-
-            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjksImV4cCI6MTc2MzkxNjkyNX0.Kr3Y6zu3vqojQkEArpQc98z8OFQZXBNENnU12NAs1es
+            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
           schema:
             type: string
             default: >-
-              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjksImV4cCI6MTc2MzkxNjkyNX0.Kr3Y6zu3vqojQkEArpQc98z8OFQZXBNENnU12NAs1es
+              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
       requestBody:
         content:
           application/json:
-            schema: &ref_5
+            schema: &ref_6
               $ref: '#/components/schemas/PutUserVo'
               description: ''
       responses:
@@ -154,11 +156,11 @@ paths:
           in: header
           description: ''
           example: >-
-            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjksImV4cCI6MTc2MzkxNjkyNX0.Kr3Y6zu3vqojQkEArpQc98z8OFQZXBNENnU12NAs1es
+            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
           schema:
             type: string
             default: >-
-              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjksImV4cCI6MTc2MzkxNjkyNX0.Kr3Y6zu3vqojQkEArpQc98z8OFQZXBNENnU12NAs1es
+              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
       responses:
         '200':
           description: ''
@@ -184,29 +186,22 @@ paths:
       description: ''
       tags: []
       parameters:
-        - name: id
-          in: query
-          description: 用户id
-          required: true
-          example: 2
-          schema:
-            type: integer
-        - name: role
-          in: query
-          description: 角色（中心主任 等）
-          required: true
-          example: 中心主任
-          schema:
-            type: string
         - name: token
           in: header
           description: ''
           example: >-
-            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjksImV4cCI6MTc2MzkxNjkyNX0.Kr3Y6zu3vqojQkEArpQc98z8OFQZXBNENnU12NAs1es
+            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
           schema:
             type: string
             default: >-
-              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjksImV4cCI6MTc2MzkxNjkyNX0.Kr3Y6zu3vqojQkEArpQc98z8OFQZXBNENnU12NAs1es
+              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateRoleDTO'
+              description: 用户id
+            examples: {}
       responses:
         '200':
           description: ''
@@ -229,11 +224,11 @@ paths:
           in: header
           description: ''
           example: >-
-            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjksImV4cCI6MTc2MzkxNjkyNX0.Kr3Y6zu3vqojQkEArpQc98z8OFQZXBNENnU12NAs1es
+            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
           schema:
             type: string
             default: >-
-              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjksImV4cCI6MTc2MzkxNjkyNX0.Kr3Y6zu3vqojQkEArpQc98z8OFQZXBNENnU12NAs1es
+              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
       responses:
         '200':
           description: ''
@@ -275,11 +270,11 @@ paths:
           in: header
           description: ''
           example: >-
-            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjksImV4cCI6MTc2MzkxNjkyNX0.Kr3Y6zu3vqojQkEArpQc98z8OFQZXBNENnU12NAs1es
+            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
           schema:
             type: string
             default: >-
-              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjksImV4cCI6MTc2MzkxNjkyNX0.Kr3Y6zu3vqojQkEArpQc98z8OFQZXBNENnU12NAs1es
+              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
       responses:
         '200':
           description: ''
@@ -321,11 +316,11 @@ paths:
           in: header
           description: ''
           example: >-
-            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjksImV4cCI6MTc2MzkxNjkyNX0.Kr3Y6zu3vqojQkEArpQc98z8OFQZXBNENnU12NAs1es
+            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
           schema:
             type: string
             default: >-
-              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjksImV4cCI6MTc2MzkxNjkyNX0.Kr3Y6zu3vqojQkEArpQc98z8OFQZXBNENnU12NAs1es
+              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
       requestBody:
         content:
           application/json:
@@ -374,11 +369,11 @@ paths:
           in: header
           description: ''
           example: >-
-            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjksImV4cCI6MTc2MzkxNjkyNX0.Kr3Y6zu3vqojQkEArpQc98z8OFQZXBNENnU12NAs1es
+            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
           schema:
             type: string
             default: >-
-              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjksImV4cCI6MTc2MzkxNjkyNX0.Kr3Y6zu3vqojQkEArpQc98z8OFQZXBNENnU12NAs1es
+              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
       requestBody:
         content:
           multipart/form-data:
@@ -418,11 +413,11 @@ paths:
           in: header
           description: ''
           example: >-
-            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjksImV4cCI6MTc2MzkxNjkyNX0.Kr3Y6zu3vqojQkEArpQc98z8OFQZXBNENnU12NAs1es
+            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
           schema:
             type: string
             default: >-
-              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjksImV4cCI6MTc2MzkxNjkyNX0.Kr3Y6zu3vqojQkEArpQc98z8OFQZXBNENnU12NAs1es
+              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
       responses:
         '200':
           description: ''
@@ -446,11 +441,11 @@ paths:
           in: header
           description: ''
           example: >-
-            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjksImV4cCI6MTc2MzkxNjkyNX0.Kr3Y6zu3vqojQkEArpQc98z8OFQZXBNENnU12NAs1es
+            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
           schema:
             type: string
             default: >-
-              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjksImV4cCI6MTc2MzkxNjkyNX0.Kr3Y6zu3vqojQkEArpQc98z8OFQZXBNENnU12NAs1es
+              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
       responses:
         '200':
           description: ''
@@ -472,11 +467,11 @@ paths:
           in: header
           description: ''
           example: >-
-            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjksImV4cCI6MTc2MzkxNjkyNX0.Kr3Y6zu3vqojQkEArpQc98z8OFQZXBNENnU12NAs1es
+            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
           schema:
             type: string
             default: >-
-              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjksImV4cCI6MTc2MzkxNjkyNX0.Kr3Y6zu3vqojQkEArpQc98z8OFQZXBNENnU12NAs1es
+              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
       requestBody:
         content:
           application/json:
@@ -510,11 +505,11 @@ paths:
           in: header
           description: ''
           example: >-
-            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjksImV4cCI6MTc2MzkxNjkyNX0.Kr3Y6zu3vqojQkEArpQc98z8OFQZXBNENnU12NAs1es
+            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
           schema:
             type: string
             default: >-
-              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjksImV4cCI6MTc2MzkxNjkyNX0.Kr3Y6zu3vqojQkEArpQc98z8OFQZXBNENnU12NAs1es
+              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
       requestBody:
         content:
           application/json:
@@ -533,6 +528,79 @@ paths:
                 data: ''
           headers: {}
       security: []
+  /wxlogin:
+    put:
+      summary: wxlogin
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: code
+          in: query
+          description: ''
+          required: false
+          schema:
+            type: string
+        - name: token
+          in: header
+          description: ''
+          example: >-
+            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
+          schema:
+            type: string
+            default: >-
+              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema: *ref_2
+              example:
+                code: 0
+                msg: ''
+                data: ''
+          headers: {}
+      security: []
+  /excel/role:
+    put:
+      summary: putRoleExcel
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: token
+          in: header
+          description: ''
+          example: >-
+            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
+          schema:
+            type: string
+            default: >-
+              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+              required:
+                - file
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema: *ref_0
+              example:
+                code: 0
+                msg: ''
+                data: false
+          headers: {}
+      security: []
   /hello:
     get:
       summary: hello
@@ -544,11 +612,11 @@ paths:
           in: header
           description: ''
           example: >-
-            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjksImV4cCI6MTc2MzkxNjkyNX0.Kr3Y6zu3vqojQkEArpQc98z8OFQZXBNENnU12NAs1es
+            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
           schema:
             type: string
             default: >-
-              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjksImV4cCI6MTc2MzkxNjkyNX0.Kr3Y6zu3vqojQkEArpQc98z8OFQZXBNENnU12NAs1es
+              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
       responses:
         '200':
           description: ''
@@ -570,17 +638,17 @@ paths:
           in: header
           description: ''
           example: >-
-            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjksImV4cCI6MTc2MzkxNjkyNX0.Kr3Y6zu3vqojQkEArpQc98z8OFQZXBNENnU12NAs1es
+            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
           schema:
             type: string
             default: >-
-              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjksImV4cCI6MTc2MzkxNjkyNX0.Kr3Y6zu3vqojQkEArpQc98z8OFQZXBNENnU12NAs1es
+              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
       requestBody:
         content:
           application/json:
-            schema:
+            schema: &ref_4
               $ref: '#/components/schemas/FromVo'
-              description: ''
+              description: com.csmht.sinin.DTO.FromVo
             examples: {}
       responses:
         '200':
@@ -607,7 +675,7 @@ paths:
       security: []
   /from/approve:
     post:
-      summary: todo批假
+      summary: 批假
       deprecated: false
       description: ''
       tags: []
@@ -616,28 +684,17 @@ paths:
           in: header
           description: ''
           example: >-
-            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjksImV4cCI6MTc2MzkxNjkyNX0.Kr3Y6zu3vqojQkEArpQc98z8OFQZXBNENnU12NAs1es
+            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
           schema:
             type: string
             default: >-
-              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjksImV4cCI6MTc2MzkxNjkyNX0.Kr3Y6zu3vqojQkEArpQc98z8OFQZXBNENnU12NAs1es
+              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
       requestBody:
         content:
           application/json:
             schema:
+              $ref: '#/components/schemas/ApproveDTO'
               description: ''
-              type: object
-              properties:
-                formID:
-                  type: integer
-                  description: 申请ID
-                  format: int64
-                status:
-                  type: boolean
-                  description: 是否通过
-                remark:
-                  type: string
-                  description: 备注
             example:
               formID: 94
               status: true
@@ -679,11 +736,11 @@ paths:
           in: header
           description: ''
           example: >-
-            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjksImV4cCI6MTc2MzkxNjkyNX0.Kr3Y6zu3vqojQkEArpQc98z8OFQZXBNENnU12NAs1es
+            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
           schema:
             type: string
             default: >-
-              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjksImV4cCI6MTc2MzkxNjkyNX0.Kr3Y6zu3vqojQkEArpQc98z8OFQZXBNENnU12NAs1es
+              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
       responses:
         '200':
           description: ''
@@ -745,43 +802,54 @@ paths:
           in: header
           description: ''
           example: >-
-            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjksImV4cCI6MTc2MzkxNjkyNX0.Kr3Y6zu3vqojQkEArpQc98z8OFQZXBNENnU12NAs1es
+            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
           schema:
             type: string
             default: >-
-              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjksImV4cCI6MTc2MzkxNjkyNX0.Kr3Y6zu3vqojQkEArpQc98z8OFQZXBNENnU12NAs1es
+              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
       responses:
         '200':
           description: ''
           content:
             application/json:
-              schema: *ref_3
+              schema:
+                $ref: '#/components/schemas/ResultPageFromVo'
+                description: ''
               example:
-                code: 0
-                msg: ''
+                code: 1
+                msg: null
                 data:
                   records:
-                    - id: 0
-                      center: ''
-                      type: ''
+                    - id: 96
+                      type: aliquip in voluptate dolore
                       status: 0
-                      startTime: ''
-                      endTime: ''
-                      createTime: ''
-                      reason: ''
-                      day: 0
-                      userId: ''
+                      startTime: '2022-09-30 06:29:39'
+                      endTime: '1989-02-15 00:57:29'
+                      reason: incididunt dolor laboris exercitation
+                      day: 91
+                      approve:
+                        id: null
+                        adminId: null
+                        adminName: null
+                        remark: null
+                        approved: null
+                    - id: 94
+                      type: ullamco sed
+                      status: 2
+                      startTime: '2021-04-11 20:37:44'
+                      endTime: '2013-12-20 00:21:24'
+                      reason: esse ad et amet
+                      day: 7
+                      approve:
+                        id: 4
+                        adminId: 9
+                        adminName: 靖浩宇
+                        remark: '2222222'
+                        approved: true
                   total: 0
-                  size: 0
-                  current: 0
-                  orders:
-                    - column: ''
-                      asc: false
-                  optimizeCountSql: false
-                  searchCount: false
-                  optimizeJoinOfCountSql: false
-                  maxLimit: 0
-                  countId: ''
+                  size: 10
+                  current: 1
+                  pages: 0
           headers: {}
       security: []
   /from/userFrom:
@@ -795,11 +863,11 @@ paths:
           in: header
           description: ''
           example: >-
-            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjksImV4cCI6MTc2MzkxNjkyNX0.Kr3Y6zu3vqojQkEArpQc98z8OFQZXBNENnU12NAs1es
+            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
           schema:
             type: string
             default: >-
-              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjksImV4cCI6MTc2MzkxNjkyNX0.Kr3Y6zu3vqojQkEArpQc98z8OFQZXBNENnU12NAs1es
+              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
       requestBody:
         content:
           application/json:
@@ -872,6 +940,75 @@ paths:
                       pages: 1
           headers: {}
       security: []
+  /from/aboutMy:
+    get:
+      summary: 获取当前用户待审批请假申请列表（时间排序）
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: pageNum
+          in: query
+          description: 页码
+          required: true
+          example: 1
+          schema:
+            type: integer
+        - name: pageSize
+          in: query
+          description: 页数
+          required: true
+          example: 10
+          schema:
+            type: integer
+        - name: token
+          in: header
+          description: ''
+          example: >-
+            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
+          schema:
+            type: string
+            default: >-
+              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema: *ref_3
+              example:
+                code: 0
+                msg: ''
+                data:
+                  records:
+                    - id: 0
+                      center: ''
+                      phone: ''
+                      type: ''
+                      status: 0
+                      startTime: ''
+                      endTime: ''
+                      createTime: ''
+                      reason: ''
+                      day: 0
+                      userId: 0
+                      userName: ''
+                      adminId: 0
+                      adminName: ''
+                      remark: ''
+                  total: 0
+                  size: 0
+                  current: 0
+                  orders:
+                    - column: ''
+                      asc: false
+                  optimizeCountSql: false
+                  searchCount: false
+                  optimizeJoinOfCountSql: false
+                  maxLimit: 0
+                  countId: ''
+          headers: {}
+      security: []
 components:
   schemas:
     PageUserVo:
@@ -879,7 +1016,7 @@ components:
       properties:
         records:
           type: array
-          items: &ref_6
+          items: &ref_7
             $ref: '#/components/schemas/UserVo'
             description: com.csmht.sinin.DO.UserVo
           description: ''
@@ -897,7 +1034,7 @@ components:
           format: int64
         orders:
           type: array
-          items: &ref_4
+          items: &ref_5
             $ref: '#/components/schemas/OrderItem'
             description: com.baomidou.mybatisplus.core.metadata.OrderItem
           description: ''
@@ -951,6 +1088,93 @@ components:
         number:
           type: string
           description: 工号
+    PageFromVo:
+      type: object
+      properties:
+        records:
+          type: array
+          items: *ref_4
+          description: ''
+        total:
+          type: integer
+          description: ''
+          format: int64
+        size:
+          type: integer
+          description: ''
+          format: int64
+        current:
+          type: integer
+          description: ''
+          format: int64
+        orders:
+          type: array
+          items: *ref_5
+          description: ''
+        optimizeCountSql:
+          type: boolean
+          description: ''
+        searchCount:
+          type: boolean
+          description: ''
+        optimizeJoinOfCountSql:
+          type: boolean
+          description: ''
+        maxLimit:
+          type: integer
+          description: ''
+          format: int64
+        countId:
+          type: string
+          description: ''
+    FromVo:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: ''
+          format: int64
+        type:
+          type: string
+          description: 申请类型
+        status:
+          type: integer
+          description: 申请状态
+        startTime:
+          type: string
+          description: 申请开始时间
+        endTime:
+          type: string
+          description: 申请结束时间
+        reason:
+          type: string
+          description: 申请原因
+        day:
+          type: integer
+          description: 申请天数
+        approve:
+          $ref: '#/components/schemas/ApproveVO'
+          description: 审核信息
+    ApproveVO:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: ''
+          format: int64
+        adminId:
+          type: integer
+          description: 审核员ID
+          format: int64
+        adminName:
+          type: string
+          description: 审核员姓名
+        remark:
+          type: string
+          description: 审核备注
+        approved:
+          type: boolean
+          description: ''
     FromDTO:
       type: object
       properties:
@@ -1025,7 +1249,7 @@ components:
           format: int64
         orders:
           type: array
-          items: *ref_4
+          items: *ref_5
           description: ''
         optimizeCountSql:
           type: boolean
@@ -1112,7 +1336,7 @@ components:
         msg:
           type: string
           description: ''
-        data: *ref_5
+        data: *ref_6
     PutUserVo:
       type: object
       properties:
@@ -1138,6 +1362,21 @@ components:
         password:
           type: string
           description: 密码
+    UpdateUserDTO:
+      type: object
+      properties:
+        username:
+          type: string
+          description: ''
+        phone:
+          type: string
+          description: ''
+        center:
+          type: string
+          description: ''
+        number:
+          type: string
+          description: ''
     UserInfoDTO:
       type: object
       properties:
@@ -1174,20 +1413,17 @@ components:
         data:
           $ref: '#/components/schemas/PageUserVo'
           description: ''
-    UpdateUserDTO:
+    ResultBoolean:
       type: object
       properties:
-        username:
+        code:
+          type: integer
+          description: ''
+        msg:
           type: string
           description: ''
-        phone:
-          type: string
-          description: ''
-        center:
-          type: string
-          description: ''
-        number:
-          type: string
+        data:
+          type: boolean
           description: ''
     UserFromDTO:
       type: object
@@ -1196,18 +1432,28 @@ components:
           type: integer
           description: 用户ID
           format: int64
+          title: 请假用户ID
         userName:
           type: string
           description: 用户名
+          title: 用户名
         status:
-          type: integer
+          type: array
+          items:
+            type: integer
           description: 申请状态
+          title: 状态列表
         type:
           type: string
           description: 申请类型
+          title: 分类
         center:
           type: string
           description: 申请中心
+          title: 所在中心
+        nextUserRole:
+          type: string
+          description: 下一个审核员ID(-1为教育部部正职)
         pageNum:
           type: integer
           description: ''
@@ -1225,7 +1471,32 @@ components:
           description: ''
         data:
           type: array
-          items: *ref_6
+          items: *ref_7
+          description: ''
+    UpdateRoleDTO:
+      type: object
+      properties:
+        userId:
+          type: integer
+          description: ''
+          format: int64
+        role:
+          type: string
+          description: ''
+        manageCenter:
+          type: string
+          description: ''
+    ResultPageFromVo:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: ''
+        msg:
+          type: string
+          description: ''
+        data:
+          $ref: '#/components/schemas/PageFromVo'
           description: ''
     ResultPageFromDTO:
       type: object
@@ -1239,7 +1510,7 @@ components:
         data:
           $ref: '#/components/schemas/PageFromDTO'
           description: ''
-    ResultBoolean:
+    ResultUserVo:
       type: object
       properties:
         code:
@@ -1248,9 +1519,7 @@ components:
         msg:
           type: string
           description: ''
-        data:
-          type: boolean
-          description: ''
+        data: *ref_7
     ApproveDTO:
       type: object
       properties:
@@ -1264,44 +1533,5 @@ components:
         remark:
           type: string
           description: 备注
-        nextUserId:
-          type: integer
-          description: 下一个审核用户id(0为最终审批)
-          format: int64
-    FromVo:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: ''
-          format: int64
-        type:
-          type: string
-          description: 申请类型
-        status:
-          type: integer
-          description: 申请状态
-        startTime:
-          type: string
-          description: 申请开始时间
-        endTime:
-          type: string
-          description: 申请结束时间
-        reason:
-          type: string
-          description: 申请原因
-        day:
-          type: integer
-          description: 申请天数
-    ResultUserVo:
-      type: object
-      properties:
-        code:
-          type: integer
-          description: ''
-        msg:
-          type: string
-          description: ''
-        data: *ref_6
   securitySchemes: {}
 servers: []

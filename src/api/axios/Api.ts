@@ -1,3 +1,6 @@
+/* eslint-disable */
+/* tslint:disable */
+// @ts-nocheck
 /*
  * ---------------------------------------------------------------
  * ## THIS FILE WAS GENERATED VIA SWAGGER-TYPESCRIPT-API        ##
@@ -44,6 +47,57 @@ export interface UserVo {
   center?: string;
   /** 工号 */
   number?: string;
+}
+
+export interface PageFromVo {
+  records?: FromVo[];
+  /** @format int64 */
+  total?: number;
+  /** @format int64 */
+  size?: number;
+  /** @format int64 */
+  current?: number;
+  orders?: OrderItem[];
+  optimizeCountSql?: boolean;
+  searchCount?: boolean;
+  optimizeJoinOfCountSql?: boolean;
+  /** @format int64 */
+  maxLimit?: number;
+  countId?: string;
+}
+
+export interface FromVo {
+  /** @format int64 */
+  id?: number;
+  /** 申请类型 */
+  type?: string;
+  /** 申请状态 */
+  status?: number;
+  /** 申请开始时间 */
+  startTime?: string;
+  /** 申请结束时间 */
+  endTime?: string;
+  /** 申请原因 */
+  reason?: string;
+  /** 申请天数 */
+  day?: number;
+  /** 审核信息 */
+  approve?: ApproveVO;
+}
+
+export interface ApproveVO {
+  /** @format int64 */
+  id?: number;
+  /**
+   * 审核员ID
+   * @format int64
+   */
+  adminId?: number;
+  /** 审核员姓名 */
+  adminName?: string;
+  /** 审核备注 */
+  remark?: string;
+  approved?: boolean;
 }
 
 export interface FromDTO {
@@ -165,6 +219,13 @@ export interface PutUserVo {
   password?: string;
 }
 
+export interface UpdateUserDTO {
+  username?: string;
+  phone?: string;
+  center?: string;
+  number?: string;
+}
+
 export interface UserInfoDTO {
   /** 用户名 */
   username?: string;
@@ -186,27 +247,41 @@ export interface ResultPageUserVo {
   data?: PageUserVo;
 }
 
-export interface UpdateUserDTO {
-  username?: string;
-  phone?: string;
-  center?: string;
-  number?: string;
+export interface ResultBoolean {
+  code?: number;
+  msg?: string;
+  data?: boolean;
 }
 
 export interface UserFromDTO {
   /**
+   * 请假用户ID
    * 用户ID
    * @format int64
    */
   userId?: number;
-  /** 用户名 */
+  /**
+   * 用户名
+   * 用户名
+   */
   userName?: string;
-  /** 申请状态 */
-  status?: number;
-  /** 申请类型 */
+  /**
+   * 状态列表
+   * 申请状态
+   */
+  status?: number[];
+  /**
+   * 分类
+   * 申请类型
+   */
   type?: string;
-  /** 申请中心 */
+  /**
+   * 所在中心
+   * 申请中心
+   */
   center?: string;
+  /** 下一个审核员ID(-1为教育部部正职) */
+  nextUserRole?: string;
   pageNum?: number;
   pageSize?: number;
 }
@@ -217,16 +292,30 @@ export interface ResultListUserVo {
   data?: UserVo[];
 }
 
+export interface UpdateRoleDTO {
+  /** @format int64 */
+  userId?: number;
+  role?: string;
+  manageCenter?: string;
+}
+
+export interface ResultPageFromVo {
+  code?: number;
+  msg?: string;
+  data?: PageFromVo;
+}
+
 export interface ResultPageFromDTO {
   code?: number;
   msg?: string;
   data?: PageFromDTO;
 }
 
-export interface ResultBoolean {
+export interface ResultUserVo {
   code?: number;
   msg?: string;
-  data?: boolean;
+  /** com.csmht.sinin.DO.UserVo */
+  data?: UserVo;
 }
 
 export interface ApproveDTO {
@@ -239,35 +328,6 @@ export interface ApproveDTO {
   status?: boolean;
   /** 备注 */
   remark?: string;
-  /**
-   * 下一个审核用户id(0为最终审批)
-   * @format int64
-   */
-  nextUserId?: number;
-}
-
-export interface FromVo {
-  /** @format int64 */
-  id?: number;
-  /** 申请类型 */
-  type?: string;
-  /** 申请状态 */
-  status?: number;
-  /** 申请开始时间 */
-  startTime?: string;
-  /** 申请结束时间 */
-  endTime?: string;
-  /** 申请原因 */
-  reason?: string;
-  /** 申请天数 */
-  day?: number;
-}
-
-export interface ResultUserVo {
-  code?: number;
-  msg?: string;
-  /** com.csmht.sinin.DO.UserVo */
-  data?: UserVo;
 }
 
 import type {
@@ -528,25 +588,12 @@ export class Api<
      * @summary 修改用户角色
      * @request POST:/admin
      */
-    adminCreate: (
-      query: {
-        /**
-         * 用户id
-         * @example 2
-         */
-        id: number;
-        /**
-         * 角色（中心主任 等）
-         * @example "中心主任"
-         */
-        role: string;
-      },
-      params: RequestParams = {},
-    ) =>
+    adminCreate: (data: UpdateRoleDTO, params: RequestParams = {}) =>
       this.request<ResultBoolean, any>({
         path: `/admin`,
         method: "POST",
-        query: query,
+        body: data,
+        type: ContentType.Json,
         format: "json",
         ...params,
       }),
@@ -652,6 +699,29 @@ export class Api<
         format: "json",
         ...params,
       }),
+
+    /**
+     * No description
+     *
+     * @name RoleUpdate
+     * @summary putRoleExcel
+     * @request PUT:/excel/role
+     */
+    roleUpdate: (
+      data: {
+        /** @format binary */
+        file: File;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<ResultBoolean, any>({
+        path: `/excel/role`,
+        method: "PUT",
+        body: data,
+        type: ContentType.FormData,
+        format: "json",
+        ...params,
+      }),
   };
   wx = {
     /**
@@ -713,6 +783,28 @@ export class Api<
         ...params,
       }),
   };
+  wxlogin = {
+    /**
+     * No description
+     *
+     * @name WxloginUpdate
+     * @summary wxlogin
+     * @request PUT:/wxlogin
+     */
+    wxloginUpdate: (
+      query?: {
+        code?: string;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<ResultString, any>({
+        path: `/wxlogin`,
+        method: "PUT",
+        query: query,
+        format: "json",
+        ...params,
+      }),
+  };
   hello = {
     /**
      * No description
@@ -751,23 +843,10 @@ export class Api<
      * No description
      *
      * @name ApproveCreate
-     * @summary todo批假
+     * @summary 批假
      * @request POST:/from/approve
      */
-    approveCreate: (
-      data: {
-        /**
-         * 申请ID
-         * @format int64
-         */
-        formID?: number;
-        /** 是否通过 */
-        status?: boolean;
-        /** 备注 */
-        remark?: string;
-      },
-      params: RequestParams = {},
-    ) =>
+    approveCreate: (data: ApproveDTO, params: RequestParams = {}) =>
       this.request<ResultBoolean, any>({
         path: `/from/approve`,
         method: "POST",
@@ -829,7 +908,7 @@ export class Api<
       },
       params: RequestParams = {},
     ) =>
-      this.request<ResultPageFromDTO, any>({
+      this.request<ResultPageFromVo, any>({
         path: `/from/my`,
         method: "GET",
         query: query,
@@ -850,6 +929,36 @@ export class Api<
         method: "POST",
         body: data,
         type: ContentType.Json,
+        format: "json",
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @name AboutMyList
+     * @summary 获取当前用户待审批请假申请列表（时间排序）
+     * @request GET:/from/aboutMy
+     */
+    aboutMyList: (
+      query: {
+        /**
+         * 页码
+         * @example 1
+         */
+        pageNum: number;
+        /**
+         * 页数
+         * @example 10
+         */
+        pageSize: number;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<ResultPageFromDTO, any>({
+        path: `/from/aboutMy`,
+        method: "GET",
+        query: query,
         format: "json",
         ...params,
       }),
