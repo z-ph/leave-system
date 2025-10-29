@@ -27,11 +27,8 @@ onMounted(() => {
     showRefreshButton.value = true;
   }, 4000);
 
-  // 初��化微信登录组件
-  useLogin();
-  console.log('微信登录组件已加载，可用于调试');
 });
-
+useLogin();
 // 切换到账号密码登录
 const switchToAccountLogin = () => {
   activeTab.value = "account";

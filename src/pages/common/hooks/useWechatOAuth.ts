@@ -82,7 +82,9 @@ export function useLogin() {
     },
   });
   onMounted(() => {
+    console.log('code', code.value);
     if (code.value) {
+      console.log(code.value);
       loginMutation.mutate(code.value);
     }
   });
