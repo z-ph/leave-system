@@ -52,7 +52,7 @@ export function useWechatLogin() {
   const { code } = useWeCode();
   const router = useRouter();
   const loginMutation = useMutation({
-    mutationFn: () => api.wx.postWx({ code: code.value ?? "" }),
+    mutationFn: () => api.wxlogin.wxloginUpdate({ code: code.value ?? "" }),
     onSuccess: (res) => {
       // 假设/wx接口在登录场景下返回JWT token
       // 注意：这基于当前代码的业务逻辑，可能需要与后端确认API设计
