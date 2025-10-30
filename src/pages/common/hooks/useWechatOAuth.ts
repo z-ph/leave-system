@@ -85,11 +85,15 @@ export function useWatchCodeLogin() {
   };
 }
 export function useWatchCodeBindWechat() {
+  const router = useRouter();
+  const route = useRoute();
   const { code, refreshCode: bindWechat } = useWeCode();
   const bindWechatMutation = useMutation({
     mutationFn: () => api.wx.postWx({ code: code.value ?? "" }),
     onSuccess: () => {
       ElMessage.success({ message: "绑定微信成功" });
+      //清楚code
+      router.replace({ query: { ...route.query, code: undefined } });
     },
     onError: (error: Error) => {
       ElMessage.error({ message: error.message });
