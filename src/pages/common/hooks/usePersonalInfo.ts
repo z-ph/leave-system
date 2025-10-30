@@ -6,7 +6,7 @@ import { ElMessage } from "element-plus";
 import { TokenManager } from "@/auth/tokenManager";
 
 export function usePersonalInfo() {
-  const { data: currentUser, isLoading: isLoadingUser } = useQuery({
+  const { data: currentUser, isLoading: isLoadingUser, refetch } = useQuery({
     queryKey: ["currentUser",TokenManager.getTokenPayload()?.userId],
     queryFn: async () => {
       const res = await api.my.getMy();
@@ -38,6 +38,7 @@ export function usePersonalInfo() {
     currentUser,
     formattedInfo,
     isLoadingUser,
+    refetch,
   };
 }
 export function useChangePassword() {

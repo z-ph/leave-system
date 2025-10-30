@@ -8,13 +8,13 @@ import { getRoleGrade, Role } from "@/constants/role";
 import { TokenManager } from "@/auth/tokenManager";
 import { usePersonalInfo } from "./hooks/usePersonalInfo";
 import { useWatchCodeBindWechat, useWatchCodeUnbindWechat } from "./hooks/useWechatOAuth";
-const { bindWechat } = useWatchCodeBindWechat();
-const {mutate: unbindWechat} = useWatchCodeUnbindWechat();
+const { formattedInfo, isLoadingUser, refetch } = usePersonalInfo();
+const { bindWechat } = useWatchCodeBindWechat(refetch);
+const {mutate: unbindWechat} = useWatchCodeUnbindWechat(refetch);
 const router = useRouter();
 const currentUserRole = TokenManager.getTokenPayload()?.role;
 // 根据角色获取角色等级
 const roleGrade = computed(() => getRoleGrade(currentUserRole));
-const { formattedInfo, isLoadingUser } = usePersonalInfo();
 const handleBindWechat = () => {
   if (formattedInfo.value?.openid) {
     return;
