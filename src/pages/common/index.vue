@@ -40,8 +40,9 @@ const handleUnbindWechat = () => {
         v-if="!formattedInfo.openid"
         title="绑定微信"
         @click="handleBindWechat"
+        :style="{color:'green'}"
       />
-      <OptionCard v-else title="解绑微信" @click="handleUnbindWechat" />
+      <OptionCard v-else title="解绑微信" @click="handleUnbindWechat" :style="{color:'red'}" />
     </template>
     <OptionCard
       v-if="roleGrade > getRoleGrade(Role.normal)"
