@@ -130,6 +130,13 @@ const handleReset = () => {
             </el-form-item>
           </el-col>
 
+          <el-col :span="24">
+            <el-form-item label="占用工作日">
+              <el-input v-model="form.day" placeholder="请输入占用工作日">
+                <template #append>天</template>
+              </el-input>
+            </el-form-item>
+          </el-col>
 
           <el-col :span="24">
             <el-form-item label="申请人" prop="applicant">
