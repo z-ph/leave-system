@@ -16,11 +16,11 @@ paths:
           in: header
           description: ''
           example: >-
-            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
+            eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoi5pWZ5a2m6YOo5q2j6IGMIiwiaXNBZG1pbiI6dHJ1ZSwidXNlcmlkIjo5LCJleHAiOjE3NjQ0MTA1MjB9.1s_lZ4Mclhu8hwhdP_-72LucVdLGu2wrjCXc9yasUxY
           schema:
             type: string
             default: >-
-              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
+              eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoi5pWZ5a2m6YOo5q2j6IGMIiwiaXNBZG1pbiI6dHJ1ZSwidXNlcmlkIjo5LCJleHAiOjE3NjQ0MTA1MjB9.1s_lZ4Mclhu8hwhdP_-72LucVdLGu2wrjCXc9yasUxY
       requestBody:
         content:
           application/json:
@@ -55,11 +55,11 @@ paths:
           in: header
           description: ''
           example: >-
-            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
+            eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoi5pWZ5a2m6YOo5q2j6IGMIiwiaXNBZG1pbiI6dHJ1ZSwidXNlcmlkIjo5LCJleHAiOjE3NjQ0MTA1MjB9.1s_lZ4Mclhu8hwhdP_-72LucVdLGu2wrjCXc9yasUxY
           schema:
             type: string
             default: >-
-              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
+              eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoi5pWZ5a2m6YOo5q2j6IGMIiwiaXNBZG1pbiI6dHJ1ZSwidXNlcmlkIjo5LCJleHAiOjE3NjQ0MTA1MjB9.1s_lZ4Mclhu8hwhdP_-72LucVdLGu2wrjCXc9yasUxY
       requestBody:
         content:
           application/json:
@@ -95,11 +95,11 @@ paths:
           in: header
           description: ''
           example: >-
-            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
+            eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoi5pWZ5a2m6YOo5q2j6IGMIiwiaXNBZG1pbiI6dHJ1ZSwidXNlcmlkIjo5LCJleHAiOjE3NjQ0MTA1MjB9.1s_lZ4Mclhu8hwhdP_-72LucVdLGu2wrjCXc9yasUxY
           schema:
             type: string
             default: >-
-              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
+              eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoi5pWZ5a2m6YOo5q2j6IGMIiwiaXNBZG1pbiI6dHJ1ZSwidXNlcmlkIjo5LCJleHAiOjE3NjQ0MTA1MjB9.1s_lZ4Mclhu8hwhdP_-72LucVdLGu2wrjCXc9yasUxY
       requestBody:
         content:
           application/json:
@@ -156,11 +156,11 @@ paths:
           in: header
           description: ''
           example: >-
-            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
+            eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoi5pWZ5a2m6YOo5q2j6IGMIiwiaXNBZG1pbiI6dHJ1ZSwidXNlcmlkIjo5LCJleHAiOjE3NjQ0MTA1MjB9.1s_lZ4Mclhu8hwhdP_-72LucVdLGu2wrjCXc9yasUxY
           schema:
             type: string
             default: >-
-              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
+              eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoi5pWZ5a2m6YOo5q2j6IGMIiwiaXNBZG1pbiI6dHJ1ZSwidXNlcmlkIjo5LCJleHAiOjE3NjQ0MTA1MjB9.1s_lZ4Mclhu8hwhdP_-72LucVdLGu2wrjCXc9yasUxY
       responses:
         '200':
           description: ''
@@ -190,11 +190,11 @@ paths:
           in: header
           description: ''
           example: >-
-            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
+            eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoi5pWZ5a2m6YOo5q2j6IGMIiwiaXNBZG1pbiI6dHJ1ZSwidXNlcmlkIjo5LCJleHAiOjE3NjQ0MTA1MjB9.1s_lZ4Mclhu8hwhdP_-72LucVdLGu2wrjCXc9yasUxY
           schema:
             type: string
             default: >-
-              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
+              eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoi5pWZ5a2m6YOo5q2j6IGMIiwiaXNBZG1pbiI6dHJ1ZSwidXNlcmlkIjo5LCJleHAiOjE3NjQ0MTA1MjB9.1s_lZ4Mclhu8hwhdP_-72LucVdLGu2wrjCXc9yasUxY
       requestBody:
         content:
           application/json:
@@ -224,11 +224,11 @@ paths:
           in: header
           description: ''
           example: >-
-            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
+            eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoi5pWZ5a2m6YOo5q2j6IGMIiwiaXNBZG1pbiI6dHJ1ZSwidXNlcmlkIjo5LCJleHAiOjE3NjQ0MTA1MjB9.1s_lZ4Mclhu8hwhdP_-72LucVdLGu2wrjCXc9yasUxY
           schema:
             type: string
             default: >-
-              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
+              eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoi5pWZ5a2m6YOo5q2j6IGMIiwiaXNBZG1pbiI6dHJ1ZSwidXNlcmlkIjo5LCJleHAiOjE3NjQ0MTA1MjB9.1s_lZ4Mclhu8hwhdP_-72LucVdLGu2wrjCXc9yasUxY
       responses:
         '200':
           description: ''
@@ -270,11 +270,11 @@ paths:
           in: header
           description: ''
           example: >-
-            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
+            eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoi5pWZ5a2m6YOo5q2j6IGMIiwiaXNBZG1pbiI6dHJ1ZSwidXNlcmlkIjo5LCJleHAiOjE3NjQ0MTA1MjB9.1s_lZ4Mclhu8hwhdP_-72LucVdLGu2wrjCXc9yasUxY
           schema:
             type: string
             default: >-
-              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
+              eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoi5pWZ5a2m6YOo5q2j6IGMIiwiaXNBZG1pbiI6dHJ1ZSwidXNlcmlkIjo5LCJleHAiOjE3NjQ0MTA1MjB9.1s_lZ4Mclhu8hwhdP_-72LucVdLGu2wrjCXc9yasUxY
       responses:
         '200':
           description: ''
@@ -316,11 +316,11 @@ paths:
           in: header
           description: ''
           example: >-
-            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
+            eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoi5pWZ5a2m6YOo5q2j6IGMIiwiaXNBZG1pbiI6dHJ1ZSwidXNlcmlkIjo5LCJleHAiOjE3NjQ0MTA1MjB9.1s_lZ4Mclhu8hwhdP_-72LucVdLGu2wrjCXc9yasUxY
           schema:
             type: string
             default: >-
-              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
+              eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoi5pWZ5a2m6YOo5q2j6IGMIiwiaXNBZG1pbiI6dHJ1ZSwidXNlcmlkIjo5LCJleHAiOjE3NjQ0MTA1MjB9.1s_lZ4Mclhu8hwhdP_-72LucVdLGu2wrjCXc9yasUxY
       requestBody:
         content:
           application/json:
@@ -369,11 +369,11 @@ paths:
           in: header
           description: ''
           example: >-
-            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
+            eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoi5pWZ5a2m6YOo5q2j6IGMIiwiaXNBZG1pbiI6dHJ1ZSwidXNlcmlkIjo5LCJleHAiOjE3NjQ0MTA1MjB9.1s_lZ4Mclhu8hwhdP_-72LucVdLGu2wrjCXc9yasUxY
           schema:
             type: string
             default: >-
-              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
+              eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoi5pWZ5a2m6YOo5q2j6IGMIiwiaXNBZG1pbiI6dHJ1ZSwidXNlcmlkIjo5LCJleHAiOjE3NjQ0MTA1MjB9.1s_lZ4Mclhu8hwhdP_-72LucVdLGu2wrjCXc9yasUxY
       requestBody:
         content:
           multipart/form-data:
@@ -413,11 +413,38 @@ paths:
           in: header
           description: ''
           example: >-
-            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
+            eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoi5pWZ5a2m6YOo5q2j6IGMIiwiaXNBZG1pbiI6dHJ1ZSwidXNlcmlkIjo5LCJleHAiOjE3NjQ0MTA1MjB9.1s_lZ4Mclhu8hwhdP_-72LucVdLGu2wrjCXc9yasUxY
           schema:
             type: string
             default: >-
-              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
+              eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoi5pWZ5a2m6YOo5q2j6IGMIiwiaXNBZG1pbiI6dHJ1ZSwidXNlcmlkIjo5LCJleHAiOjE3NjQ0MTA1MjB9.1s_lZ4Mclhu8hwhdP_-72LucVdLGu2wrjCXc9yasUxY
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema: *ref_0
+              example:
+                code: 0
+                msg: ''
+                data: false
+          headers: {}
+      security: []
+    delete:
+      summary: 解绑微信
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: token
+          in: header
+          description: ''
+          example: >-
+            eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoi5pWZ5a2m6YOo5q2j6IGMIiwiaXNBZG1pbiI6dHJ1ZSwidXNlcmlkIjo5LCJleHAiOjE3NjQ0MTA1MjB9.1s_lZ4Mclhu8hwhdP_-72LucVdLGu2wrjCXc9yasUxY
+          schema:
+            type: string
+            default: >-
+              eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoi5pWZ5a2m6YOo5q2j6IGMIiwiaXNBZG1pbiI6dHJ1ZSwidXNlcmlkIjo5LCJleHAiOjE3NjQ0MTA1MjB9.1s_lZ4Mclhu8hwhdP_-72LucVdLGu2wrjCXc9yasUxY
       responses:
         '200':
           description: ''
@@ -441,11 +468,11 @@ paths:
           in: header
           description: ''
           example: >-
-            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
+            eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoi5pWZ5a2m6YOo5q2j6IGMIiwiaXNBZG1pbiI6dHJ1ZSwidXNlcmlkIjo5LCJleHAiOjE3NjQ0MTA1MjB9.1s_lZ4Mclhu8hwhdP_-72LucVdLGu2wrjCXc9yasUxY
           schema:
             type: string
             default: >-
-              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
+              eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoi5pWZ5a2m6YOo5q2j6IGMIiwiaXNBZG1pbiI6dHJ1ZSwidXNlcmlkIjo5LCJleHAiOjE3NjQ0MTA1MjB9.1s_lZ4Mclhu8hwhdP_-72LucVdLGu2wrjCXc9yasUxY
       responses:
         '200':
           description: ''
@@ -467,11 +494,11 @@ paths:
           in: header
           description: ''
           example: >-
-            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
+            eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoi5pWZ5a2m6YOo5q2j6IGMIiwiaXNBZG1pbiI6dHJ1ZSwidXNlcmlkIjo5LCJleHAiOjE3NjQ0MTA1MjB9.1s_lZ4Mclhu8hwhdP_-72LucVdLGu2wrjCXc9yasUxY
           schema:
             type: string
             default: >-
-              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
+              eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoi5pWZ5a2m6YOo5q2j6IGMIiwiaXNBZG1pbiI6dHJ1ZSwidXNlcmlkIjo5LCJleHAiOjE3NjQ0MTA1MjB9.1s_lZ4Mclhu8hwhdP_-72LucVdLGu2wrjCXc9yasUxY
       requestBody:
         content:
           application/json:
@@ -505,11 +532,11 @@ paths:
           in: header
           description: ''
           example: >-
-            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
+            eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoi5pWZ5a2m6YOo5q2j6IGMIiwiaXNBZG1pbiI6dHJ1ZSwidXNlcmlkIjo5LCJleHAiOjE3NjQ0MTA1MjB9.1s_lZ4Mclhu8hwhdP_-72LucVdLGu2wrjCXc9yasUxY
           schema:
             type: string
             default: >-
-              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
+              eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoi5pWZ5a2m6YOo5q2j6IGMIiwiaXNBZG1pbiI6dHJ1ZSwidXNlcmlkIjo5LCJleHAiOjE3NjQ0MTA1MjB9.1s_lZ4Mclhu8hwhdP_-72LucVdLGu2wrjCXc9yasUxY
       requestBody:
         content:
           application/json:
@@ -545,11 +572,11 @@ paths:
           in: header
           description: ''
           example: >-
-            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
+            eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoi5pWZ5a2m6YOo5q2j6IGMIiwiaXNBZG1pbiI6dHJ1ZSwidXNlcmlkIjo5LCJleHAiOjE3NjQ0MTA1MjB9.1s_lZ4Mclhu8hwhdP_-72LucVdLGu2wrjCXc9yasUxY
           schema:
             type: string
             default: >-
-              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
+              eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoi5pWZ5a2m6YOo5q2j6IGMIiwiaXNBZG1pbiI6dHJ1ZSwidXNlcmlkIjo5LCJleHAiOjE3NjQ0MTA1MjB9.1s_lZ4Mclhu8hwhdP_-72LucVdLGu2wrjCXc9yasUxY
       responses:
         '200':
           description: ''
@@ -573,11 +600,11 @@ paths:
           in: header
           description: ''
           example: >-
-            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
+            eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoi5pWZ5a2m6YOo5q2j6IGMIiwiaXNBZG1pbiI6dHJ1ZSwidXNlcmlkIjo5LCJleHAiOjE3NjQ0MTA1MjB9.1s_lZ4Mclhu8hwhdP_-72LucVdLGu2wrjCXc9yasUxY
           schema:
             type: string
             default: >-
-              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
+              eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoi5pWZ5a2m6YOo5q2j6IGMIiwiaXNBZG1pbiI6dHJ1ZSwidXNlcmlkIjo5LCJleHAiOjE3NjQ0MTA1MjB9.1s_lZ4Mclhu8hwhdP_-72LucVdLGu2wrjCXc9yasUxY
       requestBody:
         content:
           multipart/form-data:
@@ -612,11 +639,11 @@ paths:
           in: header
           description: ''
           example: >-
-            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
+            eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoi5pWZ5a2m6YOo5q2j6IGMIiwiaXNBZG1pbiI6dHJ1ZSwidXNlcmlkIjo5LCJleHAiOjE3NjQ0MTA1MjB9.1s_lZ4Mclhu8hwhdP_-72LucVdLGu2wrjCXc9yasUxY
           schema:
             type: string
             default: >-
-              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
+              eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoi5pWZ5a2m6YOo5q2j6IGMIiwiaXNBZG1pbiI6dHJ1ZSwidXNlcmlkIjo5LCJleHAiOjE3NjQ0MTA1MjB9.1s_lZ4Mclhu8hwhdP_-72LucVdLGu2wrjCXc9yasUxY
       responses:
         '200':
           description: ''
@@ -638,11 +665,11 @@ paths:
           in: header
           description: ''
           example: >-
-            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
+            eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoi5pWZ5a2m6YOo5q2j6IGMIiwiaXNBZG1pbiI6dHJ1ZSwidXNlcmlkIjo5LCJleHAiOjE3NjQ0MTA1MjB9.1s_lZ4Mclhu8hwhdP_-72LucVdLGu2wrjCXc9yasUxY
           schema:
             type: string
             default: >-
-              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
+              eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoi5pWZ5a2m6YOo5q2j6IGMIiwiaXNBZG1pbiI6dHJ1ZSwidXNlcmlkIjo5LCJleHAiOjE3NjQ0MTA1MjB9.1s_lZ4Mclhu8hwhdP_-72LucVdLGu2wrjCXc9yasUxY
       requestBody:
         content:
           application/json:
@@ -684,11 +711,11 @@ paths:
           in: header
           description: ''
           example: >-
-            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
+            eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoi5pWZ5a2m6YOo5q2j6IGMIiwiaXNBZG1pbiI6dHJ1ZSwidXNlcmlkIjo5LCJleHAiOjE3NjQ0MTA1MjB9.1s_lZ4Mclhu8hwhdP_-72LucVdLGu2wrjCXc9yasUxY
           schema:
             type: string
             default: >-
-              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
+              eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoi5pWZ5a2m6YOo5q2j6IGMIiwiaXNBZG1pbiI6dHJ1ZSwidXNlcmlkIjo5LCJleHAiOjE3NjQ0MTA1MjB9.1s_lZ4Mclhu8hwhdP_-72LucVdLGu2wrjCXc9yasUxY
       requestBody:
         content:
           application/json:
@@ -736,11 +763,11 @@ paths:
           in: header
           description: ''
           example: >-
-            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
+            eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoi5pWZ5a2m6YOo5q2j6IGMIiwiaXNBZG1pbiI6dHJ1ZSwidXNlcmlkIjo5LCJleHAiOjE3NjQ0MTA1MjB9.1s_lZ4Mclhu8hwhdP_-72LucVdLGu2wrjCXc9yasUxY
           schema:
             type: string
             default: >-
-              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
+              eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoi5pWZ5a2m6YOo5q2j6IGMIiwiaXNBZG1pbiI6dHJ1ZSwidXNlcmlkIjo5LCJleHAiOjE3NjQ0MTA1MjB9.1s_lZ4Mclhu8hwhdP_-72LucVdLGu2wrjCXc9yasUxY
       responses:
         '200':
           description: ''
@@ -802,11 +829,11 @@ paths:
           in: header
           description: ''
           example: >-
-            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
+            eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoi5pWZ5a2m6YOo5q2j6IGMIiwiaXNBZG1pbiI6dHJ1ZSwidXNlcmlkIjo5LCJleHAiOjE3NjQ0MTA1MjB9.1s_lZ4Mclhu8hwhdP_-72LucVdLGu2wrjCXc9yasUxY
           schema:
             type: string
             default: >-
-              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
+              eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoi5pWZ5a2m6YOo5q2j6IGMIiwiaXNBZG1pbiI6dHJ1ZSwidXNlcmlkIjo5LCJleHAiOjE3NjQ0MTA1MjB9.1s_lZ4Mclhu8hwhdP_-72LucVdLGu2wrjCXc9yasUxY
       responses:
         '200':
           description: ''
@@ -863,11 +890,11 @@ paths:
           in: header
           description: ''
           example: >-
-            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
+            eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoi5pWZ5a2m6YOo5q2j6IGMIiwiaXNBZG1pbiI6dHJ1ZSwidXNlcmlkIjo5LCJleHAiOjE3NjQ0MTA1MjB9.1s_lZ4Mclhu8hwhdP_-72LucVdLGu2wrjCXc9yasUxY
           schema:
             type: string
             default: >-
-              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
+              eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoi5pWZ5a2m6YOo5q2j6IGMIiwiaXNBZG1pbiI6dHJ1ZSwidXNlcmlkIjo5LCJleHAiOjE3NjQ0MTA1MjB9.1s_lZ4Mclhu8hwhdP_-72LucVdLGu2wrjCXc9yasUxY
       requestBody:
         content:
           application/json:
@@ -965,11 +992,11 @@ paths:
           in: header
           description: ''
           example: >-
-            eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
+            eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoi5pWZ5a2m6YOo5q2j6IGMIiwiaXNBZG1pbiI6dHJ1ZSwidXNlcmlkIjo5LCJleHAiOjE3NjQ0MTA1MjB9.1s_lZ4Mclhu8hwhdP_-72LucVdLGu2wrjCXc9yasUxY
           schema:
             type: string
             default: >-
-              eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjEsImV4cCI6MTc2NDMzNTg5NH0.wiXvQpzYP90kcTiGagdHoz72pYBluXLcQ2H3bJoNBzM
+              eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoi5pWZ5a2m6YOo5q2j6IGMIiwiaXNBZG1pbiI6dHJ1ZSwidXNlcmlkIjo5LCJleHAiOjE3NjQ0MTA1MjB9.1s_lZ4Mclhu8hwhdP_-72LucVdLGu2wrjCXc9yasUxY
       responses:
         '200':
           description: ''
@@ -1088,6 +1115,12 @@ components:
         number:
           type: string
           description: 工号
+        manageCenter:
+          type: string
+          description: 管理中心
+        isAdmin:
+          type: boolean
+          description: 是否是管理员
     PageFromVo:
       type: object
       properties:
@@ -1430,18 +1463,18 @@ components:
       properties:
         userId:
           type: integer
-          description: 用户ID
+          description: 请假用户ID
           format: int64
           title: 请假用户ID
         userName:
           type: string
-          description: 用户名
-          title: 用户名
+          description: 请假用户名
+          title: 请假用户名
         status:
           type: array
           items:
             type: integer
-          description: 申请状态
+          description: 申请状态（0-未审核 1-已经审核  2-被拒绝 3-已同意）
           title: 状态列表
         type:
           type: string
@@ -1454,6 +1487,7 @@ components:
         nextUserRole:
           type: string
           description: 下一个审核员ID(-1为教育部部正职)
+          title: 审核员ID（-1 为教育部正职）
         pageNum:
           type: integer
           description: ''

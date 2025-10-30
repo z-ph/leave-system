@@ -47,6 +47,10 @@ export interface UserVo {
   center?: string;
   /** 工号 */
   number?: string;
+  /** 管理中心 */
+  manageCenter?: string;
+  /** 是否是管理员 */
+  isAdmin?: boolean;
 }
 
 export interface PageFromVo {
@@ -256,18 +260,18 @@ export interface ResultBoolean {
 export interface UserFromDTO {
   /**
    * 请假用户ID
-   * 用户ID
+   * 请假用户ID
    * @format int64
    */
   userId?: number;
   /**
-   * 用户名
-   * 用户名
+   * 请假用户名
+   * 请假用户名
    */
   userName?: string;
   /**
    * 状态列表
-   * 申请状态
+   * 申请状态（0-未审核 1-已经审核  2-被拒绝 3-已同意）
    */
   status?: number[];
   /**
@@ -280,7 +284,10 @@ export interface UserFromDTO {
    * 申请中心
    */
   center?: string;
-  /** 下一个审核员ID(-1为教育部部正职) */
+  /**
+   * 审核员ID（-1 为教育部正职）
+   * 下一个审核员ID(-1为教育部部正职)
+   */
   nextUserRole?: string;
   pageNum?: number;
   pageSize?: number;
@@ -742,6 +749,21 @@ export class Api<
         path: `/wx`,
         method: "POST",
         query: query,
+        format: "json",
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @name DeleteWx
+     * @summary 解绑微信
+     * @request DELETE:/wx
+     */
+    deleteWx: (params: RequestParams = {}) =>
+      this.request<ResultBoolean, any>({
+        path: `/wx`,
+        method: "DELETE",
         format: "json",
         ...params,
       }),
