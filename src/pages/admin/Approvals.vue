@@ -4,22 +4,19 @@ import type { FromVo } from "@/api/axios/Api";
 import { ref, computed, watch } from "vue";
 import { ElMessageBox } from "element-plus";
 import { FormStatus } from "@/constants/formStatus";
-import { useCurrentUserRole } from "@/auth/useCurrentUserRole";
-import { canUserApprove } from "@/utils/approvalWorkflow";
 import { useRequestsQuery, type RequestFilters } from "./hooks/useRequests";
 import {usePersonalInfo} from "../common/hooks/usePersonalInfo";
 import type { Center } from "@/constants/center";
 const { formattedInfo: userInfo,isLoadingUser } = usePersonalInfo();
-const params = ref<RequestFilters>({ pageNum: 1, pageSize: 10, center: undefined });
 watch(userInfo, (newVal) => {
   if (newVal) {
     params.value.center = newVal.manageCenter as Center;
   }
 });
+const params = ref<RequestFilters>({ pageNum: 1, pageSize: 10, center: undefined });
 const { data, isLoading } = useRequestsQuery(params);
 const total = computed(() => data.value?.total ?? 0);
-const { role: currentUserRole } = useCurrentUserRole();
-const { mutate: approve, isPending: isApproving } = useApproveMutation(computed(() => currentUserRole.value ?? 0));
+const { mutate: approve, isPending: isApproving } = useApproveMutation();
 
 function handleApprove(row: FromVo, status: FormStatus) {
   ElMessageBox.prompt("请输入审批备注", "审批确认", { inputPlaceholder: "备注(可选)" })
@@ -32,9 +29,6 @@ function handleApprove(row: FromVo, status: FormStatus) {
     .catch(() => {});
 }
 
-function canUserApproveRequest(row: FromVo) {
-  return canUserApprove(row, currentUserRole.value ?? 0);
-}
 </script>
 
 <template>
@@ -74,7 +68,6 @@ function canUserApproveRequest(row: FromVo) {
             <el-button
               type="success"
               :loading="isApproving"
-              :disabled="!canUserApproveRequest(row)"
               @click="handleApprove(row, FormStatus.Approved)"
             >
               同意
@@ -82,7 +75,6 @@ function canUserApproveRequest(row: FromVo) {
             <el-button
               type="danger"
               :loading="isApproving"
-              :disabled="!canUserApproveRequest(row)"
               @click="handleApprove(row, FormStatus.Rejected)"
             >
               拒绝
