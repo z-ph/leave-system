@@ -18,6 +18,7 @@ export const ROUTE_PATHS = {
   MY: '/my',
   FORM: '/form',
   LEAVE_LIST: '/leave-list',
+  CHANGE_PASSWORD: '/change-password',
 } as const;
 
 // 路由组常量
@@ -30,6 +31,7 @@ export const ROUTE_GROUPS = {
 export const PAGE_TITLES = {
   DASHBOARD: '仪表盘',
   APPROVALS: '待审批',
-  REQUESTS: '申请管理',
+  REQUESTS: '所有申请记录',
   ADMINS: '审核员管理',
+  USER_HOME: '用户首页',
 } as const;

@@ -62,6 +62,10 @@ const routes = [
     path: ROUTE_PATHS.LEAVE_LIST,
     component: () => import('../pages/common/LeaveList.vue'),
   },
+  {
+    path: ROUTE_PATHS.CHANGE_PASSWORD,
+    component: () => import('../pages/common/ChangePassword.vue'),
+  },
 ] satisfies RouteRecordRaw[];
 
 export default routes;

@@ -1,12 +1,12 @@
+import { Role } from '@/constants/role';
 import {jwtDecode, type JwtPayload} from 'jwt-decode';
 
 // 自定义JWT payload类型
 interface CustomJwtPayload extends JwtPayload {
-  userId?: number;
-  username?: string;
-  role?: number;
-  center?: string;
-  // 其他可能的用户信息字段
+  exp: number;
+  isAdmin: boolean;
+  role: Role;
+  userId: number;
 }
 
 export class TokenManager {
