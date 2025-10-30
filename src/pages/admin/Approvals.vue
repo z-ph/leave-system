@@ -1,34 +1,34 @@
 <script setup lang="ts">
-import {  useApproveMutation } from "./hooks/useApprovals";
+import { useApproveMutation } from "./hooks/useApprovals";
 import type { FromVo } from "@/api/axios/Api";
-import { ref, computed, watch } from "vue";
+import { ref, computed } from "vue";
 import { ElMessageBox } from "element-plus";
 import { FormStatus } from "@/constants/formStatus";
 import { useRequestsQuery, type RequestFilters } from "./hooks/useRequests";
-import {usePersonalInfo} from "../common/hooks/usePersonalInfo";
-import type { Center } from "@/constants/center";
-const { formattedInfo: userInfo,isLoadingUser } = usePersonalInfo();
-watch(userInfo, (newVal) => {
-  if (newVal) {
-    params.value.center = newVal.manageCenter as Center;
-  }
+import { usePersonalInfo } from "../common/hooks/usePersonalInfo";
+const { isLoadingUser } = usePersonalInfo();
+const params = ref<RequestFilters>({
+  pageNum: 1,
+  pageSize: 10,
 });
-const params = ref<RequestFilters>({ pageNum: 1, pageSize: 10, center: undefined });
 const { data, isLoading } = useRequestsQuery(params);
 const total = computed(() => data.value?.total ?? 0);
 const { mutate: approve, isPending: isApproving } = useApproveMutation();
 
 function handleApprove(row: FromVo, status: FormStatus) {
-  ElMessageBox.prompt("请输入审批备注", "审批确认", { inputPlaceholder: "备注(可选)" })
-    .then(({ value }) => approve({
-      formID: Number(row.id),
-      status,
-      remark: value,
-      leaveRequest: row
-    }))
+  ElMessageBox.prompt("请输入审批备注", "审批确认", {
+    inputPlaceholder: "备注(可选)",
+  })
+    .then(({ value }) =>
+      approve({
+        formID: Number(row.id),
+        status,
+        remark: value,
+        leaveRequest: row,
+      })
+    )
     .catch(() => {});
 }
-
 </script>
 
 <template>
@@ -36,8 +36,14 @@ function handleApprove(row: FromVo, status: FormStatus) {
     <template #header>
       <span>待审批</span>
     </template>
-    <el-skeleton v-if="isLoading||isLoadingUser" :rows="5" animated />
-    <el-table v-else :data="(data?.records?.filter((item) => item.status === FormStatus.Pending) ?? [])">
+    <el-skeleton v-if="isLoading || isLoadingUser" :rows="5" animated />
+    <el-table
+      v-else
+      :data="
+        data?.records?.filter((item) => item.status === FormStatus.Pending) ??
+        []
+      "
+    >
       <el-table-column label="申请人" prop="userName" width="120" />
       <el-table-column label="类型" prop="type" />
       <el-table-column label="原因" prop="reason" />
@@ -92,5 +98,3 @@ function handleApprove(row: FromVo, status: FormStatus) {
     />
   </el-card>
 </template>
-
-
