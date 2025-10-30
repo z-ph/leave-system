@@ -12,6 +12,7 @@ import { useRouter } from "vue-router";
 import { ElMessage } from "element-plus";
 import { jwtDecode } from "jwt-decode";
 import { api } from "@/api/axios";
+import { ROUTE_PATHS } from "@/router/constants";
 
 const CONFIG = {
   appId: "wx7bbdf981cf3342ff",
@@ -48,9 +49,9 @@ export function useWeCode() {
   };
 }
 
-export function useWechatLogin() {
-  const { code, refreshCode } = useWeCode();
+export function useWatchCodeLogin() {
   const router = useRouter();
+  const { code, refreshCode } = useWeCode();
   const loginMutation = useMutation({
     mutationFn: () => api.wxlogin.wxloginUpdate({ code: code.value ?? "" }),
     onSuccess: (res) => {
@@ -64,39 +65,26 @@ export function useWechatLogin() {
       } else {
         ElMessage.error({ message: "登录响应格式错误：未收到有效的token" });
       }
-      router.push("/");
+      router.push(ROUTE_PATHS.COMMON_INDEX);
     },
     onError: (error: Error) => {
       ElMessage.error({ message: error.message });
     },
   });
-  watch(code, (newCode) => {
-    if (newCode) {
-      loginMutation.mutate();
-    }
-  });
-  return {
-    ...loginMutation,
-    code,
-    WeiLogin: refreshCode,
-  };
-}
-export function useWatchCodeLogin() {
-  const { code, mutate: loginWechat, WeiLogin } = useWechatLogin();
   watch(
     code,
     (newCode) => {
       if (newCode) {
-        loginWechat();
+        loginMutation.mutate();
       }
     },
     { immediate: true }
   );
   return {
-    WeiLogin,
+    WeiLogin: refreshCode,
   };
 }
-export function useBindWechat() {
+export function useWatchCodeBindWechat() {
   const { code, refreshCode: bindWechat } = useWeCode();
   const bindWechatMutation = useMutation({
     mutationFn: () => api.wx.postWx({ code: code.value ?? "" }),
@@ -107,19 +95,11 @@ export function useBindWechat() {
       ElMessage.error({ message: error.message });
     },
   });
-  return {
-    ...bindWechatMutation,
-    code,
-    bindWechat,
-  };
-}
-export function useWatchCodeBindWechat() {
-  const { code, mutate, bindWechat } = useBindWechat();
   watch(
     code,
     (newCode) => {
       if (newCode) {
-        mutate();
+        bindWechatMutation.mutate();
       }
     },
     { immediate: true }
@@ -127,4 +107,16 @@ export function useWatchCodeBindWechat() {
   return {
     bindWechat,
   };
+}
+
+export function useWatchCodeUnbindWechat() {
+  return useMutation({
+    mutationFn: () => api.wx.deleteWx(),
+    onSuccess: () => {
+      ElMessage.success({ message: "解绑微信成功" });
+    },
+    onError: (error: Error) => {
+      ElMessage.error({ message: error.message });
+    },
+  });
 }
