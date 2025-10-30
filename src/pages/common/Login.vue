@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { useAccountLogin } from "./hooks/useAccountLogin";
-import { useWechatLogin } from "./hooks/useWechatOAuth";
+import { useWatchCodeLogin } from "./hooks/useWechatOAuth";
 const { formData, mutate: handleLogin } = useAccountLogin();
-const { WeiLogin } = useWechatLogin();
+const { WeiLogin } = useWatchCodeLogin();
 </script>
 
 <template>

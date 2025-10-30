@@ -7,8 +7,8 @@ import { computed } from "vue";
 import { getRoleGrade, Role } from "@/constants/role";
 import { TokenManager } from "@/auth/tokenManager";
 import { usePersonalInfo } from "./hooks/usePersonalInfo";
-import { useBindWechat } from "./hooks/useWechatOAuth";
-const { bindWechat } = useBindWechat();
+import { useWatchCodeBindWechat } from "./hooks/useWechatOAuth";
+const { bindWechat } = useWatchCodeBindWechat();
 const router = useRouter();
 const currentUserRole = TokenManager.getTokenPayload()?.role;
 // 根据角色获取角色等级
