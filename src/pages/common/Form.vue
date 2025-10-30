@@ -56,7 +56,7 @@ const rules: FormRules<LeaveForm> = {
     { required: true, message: "请选择结束时间", trigger: "change" },
     { validator: validateEndAfterStart, trigger: "change" },
   ],
-  // userId 不存在于 FromVo 接口中，移除此规则
+  day: [{ required: true, message: "请输入占用工作日", trigger: "change" }],
   reason: [{ required: true, message: "请填写请假事由", trigger: "blur" }],
 };
 
