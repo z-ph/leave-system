@@ -1,27 +1,26 @@
 <script setup lang="ts">
 import { ref, reactive, computed } from "vue";
 import type { FormInstance, FormRules } from "element-plus";
-import { useGetAdminList } from "./hooks/useGetAdminList";
 import type { FromVo } from "@/api/axios/Api";
-import { useUserInfo } from "./hooks/useUserInfo";
 import { useSubmitForm } from "./hooks/useSubmitForm";
 import { LeaveType } from "@/constants/formStatus";
 import NavLayout from "@/components/NavLayout.vue";
 import { Loading } from "@element-plus/icons-vue";
+import { usePersonalInfo } from "./hooks/usePersonalInfo";
 interface LeaveForm extends FromVo {
-  center: string;
   type: string;
   startTime: string;
   endTime: string;
   reason: string;
   day?: number;
-  adminId?: number;
-  phone: string;
 }
-const { data: adminList } = useGetAdminList();
-const { data: userInfo } = useUserInfo();
-const { mutate: submitForm,isPending: isSubmitting } = useSubmitForm({ onSuccess: () => handleReset() });
+const { formattedInfo: userInfo } = usePersonalInfo();
+const { mutate: submitForm, isPending: isSubmitting } = useSubmitForm({
+  onSuccess: () => handleReset(),
+});
 const username = computed(() => userInfo.value?.username);
+const center = computed(() => userInfo.value?.center);
+const phone = computed(() => userInfo.value?.phone);
 const leaveTypeOptions: Array<{ label: LeaveType; value: LeaveType }> = [
   { label: LeaveType.Leave, value: LeaveType.Leave },
   { label: LeaveType.SickLeave, value: LeaveType.SickLeave },
@@ -32,38 +31,11 @@ const leaveTypeOptions: Array<{ label: LeaveType; value: LeaveType }> = [
 
 const formRef = ref<FormInstance>();
 const form = reactive<LeaveForm>({
-  center: "",
   type: "",
   startTime: "",
   endTime: "",
   reason: "",
-  phone: "",
 });
-
-function calculateWorkdays(
-  startTime: string | undefined,
-  endTime: string | undefined
-): number {
-  if (!startTime || !endTime) return 0;
-  const start = new Date(startTime);
-  const end = new Date(endTime);
-  if (end < start) return 0;
-  let workdayCount = 0;
-  const cursor = new Date(start);
-  // 逐日累加，包含起止当日
-  while (cursor <= end) {
-    const day = cursor.getDay();
-    if (day !== 0 && day !== 6) {
-      workdayCount += 1;
-    }
-    cursor.setDate(cursor.getDate() + 1);
-  }
-  return workdayCount;
-}
-
-const workdayCount = computed(() =>
-  calculateWorkdays(form.startTime, form.endTime)
-);
 
 const validateEndAfterStart = (
   _: unknown,
@@ -78,7 +50,6 @@ const validateEndAfterStart = (
 };
 
 const rules: FormRules<LeaveForm> = {
-  center: [{ required: true, message: "请输入所在中心", trigger: "blur" }],
   type: [{ required: true, message: "请选择请假类别", trigger: "change" }],
   startTime: [{ required: true, message: "请选择开始时间", trigger: "change" }],
   endTime: [
@@ -87,8 +58,6 @@ const rules: FormRules<LeaveForm> = {
   ],
   // userId 不存在于 FromVo 接口中，移除此规则
   reason: [{ required: true, message: "请填写请假事由", trigger: "blur" }],
-  phone: [{ required: true, message: "请输入联系电话", trigger: "blur" }],
-  adminId: [{ required: true, message: "请选择审核人", trigger: "change" }],
 };
 
 const handleSubmit = async () => {
@@ -103,10 +72,6 @@ const handleReset = () => {
   formRef.value?.resetFields();
   // FromVo 接口中没有 createTime 属性，如果需要时���戳可以使用其他属性
 };
-const handleAdminChange = (value: number) => {
-  form.adminId = value;
-  form.day = workdayCount.value;
-};
 </script>
 
 <template>
@@ -119,7 +84,7 @@ const handleAdminChange = (value: number) => {
         <el-row :gutter="12">
           <el-col :span="24">
             <el-form-item label="所在中心" prop="center">
-              <el-input v-model="form.center" placeholder="请输入所在中心" />
+              <el-input :value="center" placeholder="请输入所在中心" disabled />
             </el-form-item>
           </el-col>
 
@@ -139,6 +104,7 @@ const handleAdminChange = (value: number) => {
           <el-col :span="24">
             <el-form-item label="开始时间" prop="startTime">
               <el-date-picker
+                :editable="false"
                 v-model="form.startTime"
                 type="datetime"
                 format="YYYY-MM-DD HH:mm:ss"
@@ -150,8 +116,10 @@ const handleAdminChange = (value: number) => {
           </el-col>
 
           <el-col :span="24">
+            <!-- 不要触发输入法，只允许点击弹出的框进行选择时间-->
             <el-form-item label="结束时间" prop="endTime">
               <el-date-picker
+              :editable="false"
                 v-model="form.endTime"
                 type="datetime"
                 format="YYYY-MM-DD HH:mm:ss"
@@ -162,17 +130,10 @@ const handleAdminChange = (value: number) => {
             </el-form-item>
           </el-col>
 
-          <el-col :span="24">
-            <el-form-item label="占用工作日">
-              <el-input :model-value="workdayCount" readonly>
-                <template #append>天</template>
-              </el-input>
-            </el-form-item>
-          </el-col>
 
           <el-col :span="24">
             <el-form-item label="申请人" prop="applicant">
-              <el-input :value="username" readonly v-if="username"/>
+              <el-input :value="username" readonly v-if="username" disabled/>
               <el-icon v-else>
                 <Loading />
               </el-icon>
@@ -181,28 +142,7 @@ const handleAdminChange = (value: number) => {
 
           <el-col :span="24">
             <el-form-item label="联系电话" prop="phone">
-              <el-input v-model="form.phone" placeholder="请输入联系电话" />
-            </el-form-item>
-          </el-col>
-
-          <el-col :span="24">
-            <el-form-item label="审核人" prop="adminId">
-              <el-select
-                v-if="adminList"
-                v-model="form.adminId"
-                placeholder="请选择审核人"
-                @change="handleAdminChange"
-              >
-                <el-option
-                  v-for="admin in adminList"
-                  :key="admin.id"
-                  :label="admin.username"
-                  :value="admin.id as number"
-                />
-              </el-select>
-              <el-icon v-else>
-                <Loading />
-              </el-icon>
+              <el-input :value="phone" placeholder="请输入联系电话" disabled/>
             </el-form-item>
           </el-col>
 
@@ -218,7 +158,12 @@ const handleAdminChange = (value: number) => {
           </el-col>
 
           <el-col :span="24" style="text-align: center; margin-top: 8px">
-            <el-button type="primary" @click="handleSubmit" :loading="isSubmitting">提交</el-button>
+            <el-button
+              type="primary"
+              @click="handleSubmit"
+              :loading="isSubmitting"
+              >提交</el-button
+            >
             <el-button @click="handleReset">重置</el-button>
           </el-col>
         </el-row>

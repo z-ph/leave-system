@@ -1,19 +1,25 @@
 <script setup lang="ts">
-import { useApprovalsQuery, useApproveMutation } from "./hooks/useApprovals";
+import {  useApproveMutation } from "./hooks/useApprovals";
 import type { FromVo } from "@/api/axios/Api";
-import { ref, computed } from "vue";
+import { ref, computed, watch } from "vue";
 import { ElMessageBox } from "element-plus";
 import { FormStatus } from "@/constants/formStatus";
-import { useUserInfo } from "../common/hooks/useUserInfo";
 import { useCurrentUserRole } from "@/auth/useCurrentUserRole";
 import { canUserApprove } from "@/utils/approvalWorkflow";
-
-const params = ref({ pageNum: 1, pageSize: 10 });
-const { data, isLoading } = useApprovalsQuery(params);
+import { useRequestsQuery, type RequestFilters } from "./hooks/useRequests";
+import {usePersonalInfo} from "../common/hooks/usePersonalInfo";
+import type { Center } from "@/constants/center";
+const { formattedInfo: userInfo,isLoadingUser } = usePersonalInfo();
+const params = ref<RequestFilters>({ pageNum: 1, pageSize: 10, center: undefined });
+watch(userInfo, (newVal) => {
+  if (newVal) {
+    params.value.center = newVal.manageCenter as Center;
+  }
+});
+const { data, isLoading } = useRequestsQuery(params);
 const total = computed(() => data.value?.total ?? 0);
 const { role: currentUserRole } = useCurrentUserRole();
 const { mutate: approve, isPending: isApproving } = useApproveMutation(computed(() => currentUserRole.value ?? 0));
-const { isLoading: isLoadingUserInfo } = useUserInfo();
 
 function handleApprove(row: FromVo, status: FormStatus) {
   ElMessageBox.prompt("请输入审批备注", "审批确认", { inputPlaceholder: "备注(可选)" })
@@ -36,7 +42,7 @@ function canUserApproveRequest(row: FromVo) {
     <template #header>
       <span>待审批</span>
     </template>
-    <el-skeleton v-if="isLoading||isLoadingUserInfo" :rows="5" animated />
+    <el-skeleton v-if="isLoading||isLoadingUser" :rows="5" animated />
     <el-table v-else :data="(data?.records?.filter((item) => item.status === FormStatus.Pending) ?? [])">
       <el-table-column label="申请人" prop="userName" width="120" />
       <el-table-column label="类型" prop="type" />

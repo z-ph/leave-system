@@ -1,4 +1,4 @@
-import { useQuery, useMutation, useQueryClient } from "@tanstack/vue-query";
+import { useMutation, useQueryClient } from "@tanstack/vue-query";
 import { api } from "@/api/axios";
 import { ElMessage } from "element-plus";
 import type { Ref } from "vue";
@@ -12,29 +12,6 @@ import {
   getApprovalProgress
 } from "@/utils/approvalWorkflow";
 
-export function useApprovalsQuery(params: Ref<{ pageNum: number; pageSize: number }>) {
-  return useQuery({
-    queryKey: ["approvals", params],
-    queryFn: async () => {
-      const res = await api.from.listList(params.value);
-      return res.data.data;
-    },
-    placeholderData: (prev) => prev,
-    select: (data) => {
-      // 为每个申请添加审批进度信息
-      if (!data?.records) return data;
-
-      return {
-        ...data,
-        records: data.records.map((request: FromVo) => ({
-          ...request,
-          approvalProgress: getApprovalProgress(request),
-          requiredLevels: getRequiredApprovalLevels(request.day ?? 0)
-        }))
-      };
-    }
-  });
-}
 
 export function useApproveMutation(userRole: Ref<number>) {
   const qc = useQueryClient();
