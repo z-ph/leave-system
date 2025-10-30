@@ -1,162 +1,105 @@
 <script setup lang="ts">
 import BottomNav from "@/components/BottomNav.vue";
-import { useUserInfo, useUpdateUsername } from "./hooks/useUserInfo";
 import { usePersonalInfo } from "./hooks/usePersonalInfo";
 import OptionCard from "@/components/OptionCard.vue";
-import { ElMessageBox, ElCard, ElTag } from "element-plus";
+import { ElCard, ElTag, ElContainer, ElHeader, ElSpace, ElDescriptions, ElDescriptionsItem } from "element-plus";
 import { Loading, User, Phone, OfficeBuilding, Key, Link } from "@element-plus/icons-vue";
 import { ROUTE_PATHS } from "@/router/constants";
 
-const { data: userInfo } = useUserInfo();
 const {
   formattedInfo,
   isLoadingUser,
-  wechatBindStatus,
-  wechatBindStatusType
 } = usePersonalInfo();
 
-const { mutateAsync: updateUsername } = useUpdateUsername();
 
-function handleChangeUsername() {
-  ElMessageBox.prompt("请输入新用户名", "修改用户名", {
-    confirmButtonText: "确定",
-    cancelButtonText: "取消",
-    inputValue: userInfo.value?.username ?? "",
-    inputPlaceholder: "用户名",
-  }).then(async ({ value }) => {
-    if (!value || value.trim().length === 0) return;
-    await updateUsername(value.trim());
-  }).catch(() => {});
-}
+
 </script>
 
 <template>
-  <div class="my-page">
-    <h2 style="text-align: center">我的信息</h2>
+  <el-container style="padding: 16px; max-width: 600px; margin: 0 auto; padding-bottom: 80px;">
+    <el-header style="text-align: center; padding: 0; height: auto; margin-bottom: 16px;">
+      <h2>我的信息</h2>
+    </el-header>
 
     <!-- 个人信息卡片 -->
-    <el-card class="info-card" shadow="hover">
+    <el-card style="margin-bottom: 16px;" shadow="hover">
       <template #header>
-        <div class="card-header">
+        <el-space alignment="center" :size="8">
           <el-icon><User /></el-icon>
-          <span>基本信息</span>
-        </div>
+          <span style="font-weight: 600;">基本信息</span>
+        </el-space>
       </template>
 
-      <div v-if="isLoadingUser" class="loading-container">
-        <el-icon class="loading-icon"><Loading /></el-icon>
+      <el-space v-if="isLoadingUser" direction="vertical" alignment="center" :size="8" style="padding: 40px 0; color: #909399;">
+        <el-icon style="font-size: 24px; animation: rotate 2s linear infinite;"><Loading /></el-icon>
         <span>加载中...</span>
-      </div>
+      </el-space>
 
-      <div v-else-if="formattedInfo" class="info-grid">
-        <div class="info-item">
-          <div class="info-label">
+      <el-descriptions v-else-if="formattedInfo" :column="1" :size="'large'" border>
+        <el-descriptions-item label="姓名">
+          <el-space alignment="center" :size="8">
             <el-icon><User /></el-icon>
-            <span>姓名</span>
-          </div>
-          <div class="info-value">{{ formattedInfo.username }}</div>
-        </div>
+            <span style="font-weight: 600;">{{ formattedInfo.username }}</span>
+          </el-space>
+        </el-descriptions-item>
 
-        <div class="info-item">
-          <div class="info-label">
+        <el-descriptions-item label="所属中心">
+          <el-space alignment="center" :size="8">
             <el-icon><OfficeBuilding /></el-icon>
-            <span>所属中心</span>
-          </div>
-          <div class="info-value">{{ formattedInfo.center }}</div>
-        </div>
+            <span style="font-weight: 600;">{{ formattedInfo.center }}</span>
+          </el-space>
+        </el-descriptions-item>
 
-        <div class="info-item">
-          <div class="info-label">
+        <el-descriptions-item label="工号">
+          <el-space alignment="center" :size="8">
             <el-icon><Key /></el-icon>
-            <span>工号</span>
-          </div>
-          <div class="info-value">{{ formattedInfo.number }}</div>
-        </div>
+            <span style="font-weight: 600;">{{ formattedInfo.number }}</span>
+          </el-space>
+        </el-descriptions-item>
 
-        <div class="info-item">
-          <div class="info-label">
+        <el-descriptions-item label="手机号码">
+          <el-space alignment="center" :size="8">
             <el-icon><Phone /></el-icon>
-            <span>手机号码</span>
-          </div>
-          <div class="info-value">{{ formattedInfo.phone }}</div>
-        </div>
+            <span style="font-weight: 600;">{{ formattedInfo.phone }}</span>
+          </el-space>
+        </el-descriptions-item>
 
-        <div class="info-item">
-          <div class="info-label">
+        <el-descriptions-item label="角色">
+          <el-space alignment="center" :size="8">
             <el-icon><User /></el-icon>
-            <span>角色</span>
-          </div>
-          <div class="info-value">
             <el-tag type="info">{{ formattedInfo.roleName }}</el-tag>
-          </div>
-        </div>
+          </el-space>
+        </el-descriptions-item>
 
-        <div class="info-item">
-          <div class="info-label">
+        <el-descriptions-item label="微信绑定">
+          <el-space alignment="center" :size="8">
             <el-icon><Link /></el-icon>
-            <span>微信绑定</span>
-          </div>
-          <div class="info-value">
-            <el-tag :type="wechatBindStatusType">
-              {{ wechatBindStatus }}
+            <el-tag :type="!formattedInfo.openid ? 'danger' : 'success'">
+              {{ !formattedInfo.openid ? '未绑定' : '已绑定' }}
             </el-tag>
-          </div>
-        </div>
-      </div>
+          </el-space>
+        </el-descriptions-item>
+      </el-descriptions>
     </el-card>
 
     <!-- 功能选项 -->
-    <el-card class="options-card" shadow="hover">
+    <el-card style="margin-bottom: 16px;" shadow="hover">
       <template #header>
-        <div class="card-header">
-          <span>功能选项</span>
-        </div>
+        <el-space alignment="center" :size="8">
+          <span style="font-weight: 600;">功能选项</span>
+        </el-space>
       </template>
 
-      <el-space direction="vertical" :size="16" :style="{ width: '100%' }" fill>
-        <OptionCard title="修改用户名" @click="handleChangeUsername" />
+      <el-space direction="vertical" :size="16" fill>
         <OptionCard title="查看请假记录" @click="$router.push(ROUTE_PATHS.LEAVE_LIST)" />
       </el-space>
     </el-card>
 
     <BottomNav />
-  </div>
+  </el-container>
 </template>
 
 <style scoped>
-.my-page {
-  padding: 16px;
-  max-width: 600px;
-  margin: 0 auto;
-  padding-bottom: 80px; /* 为底部导航留空间 */
-}
-
-.info-card, .options-card {
-  margin-bottom: 16px;
-}
-
-.card-header {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-weight: 600;
-}
-
-.loading-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 40px 0;
-  color: #909399;
-}
-
-.loading-icon {
-  font-size: 24px;
-  margin-bottom: 8px;
-  animation: rotate 2s linear infinite;
-}
-
 @keyframes rotate {
   from {
     transform: rotate(0deg);
@@ -164,39 +107,6 @@ function handleChangeUsername() {
   to {
     transform: rotate(360deg);
   }
-}
-
-.info-grid {
-  display: grid;
-  gap: 16px;
-}
-
-.info-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 0;
-  border-bottom: 1px solid #f0f0f0;
-}
-
-.info-item:last-child {
-  border-bottom: none;
-}
-
-.info-label {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: #606266;
-  font-weight: 500;
-  min-width: 100px;
-}
-
-.info-value {
-  color: #303133;
-  font-weight: 600;
-  text-align: right;
-  flex: 1;
 }
 
 @media (max-width: 768px) {

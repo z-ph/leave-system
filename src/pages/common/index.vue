@@ -4,26 +4,9 @@ import BottomNav from "@/components/BottomNav.vue";
 import { useRouter } from "vue-router";
 import { hasRole, Role } from "@/auth/roles";
 import { useCurrentUserRole } from "@/auth/useCurrentUserRole";
-import { useUserInfo, useUpdateUsername } from "./hooks/useUserInfo";
-import { ElMessageBox } from "element-plus";
-import {  watch } from "vue";
 const router = useRouter();
 const { role: currentUserRole } = useCurrentUserRole();
-const { data: userInfo } = useUserInfo();
-const { mutate: updateUsername } = useUpdateUsername();
-watch(userInfo,(newVal)=>{
-  // 检测到用户名为空时，弹出修改框，提示用户输入用户名
-  if (newVal?.username==='未知用户') {
-    ElMessageBox.prompt("请输入您的姓名", "第一次登录注册", {
-      confirmButtonText: "确定",
-      cancelButtonText: "取消",
-      inputValue: userInfo.value?.username ?? "",
-      inputPlaceholder: "用户名",
-    }).then(({ value }) => {
-      updateUsername(value);
-    });
-  }
-})
+
 </script>
 
 <template>

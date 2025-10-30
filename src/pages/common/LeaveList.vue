@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import NavLayout from "@/components/NavLayout.vue";
-import { useGetLeaveList } from "./hooks/useUserInfo";
+import { useGetLeaveList } from "./hooks/useLeaveList";
 import { getFormStatusLabel, getFormStatusTagType } from "@/constants/formStatus";
 import { ref, computed } from "vue";
 const pageNum = ref(1);

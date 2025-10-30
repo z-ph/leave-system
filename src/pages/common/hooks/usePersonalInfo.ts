@@ -2,13 +2,14 @@ import { useQuery } from "@tanstack/vue-query";
 import { computed } from "vue";
 import { api } from "@/api/axios";
 import { useCurrentUserRole } from "@/auth/useCurrentUserRole";
+import type { UserInfo } from "../types/user";
 
 export function usePersonalInfo() {
   const { data: currentUser, isLoading: isLoadingUser } = useQuery({
     queryKey: ["currentUser"],
     queryFn: async () => {
       const res = await api.my.getMy();
-      return res.data.data;
+      return res.data.data as UserInfo;
     },
     staleTime: 5 * 60 * 1000, // 5分钟缓存
   });
@@ -33,27 +34,10 @@ export function usePersonalInfo() {
     };
   });
 
-  // 检查是否有微信绑定
-  const isWechatBound = computed(() => {
-    return !!currentUser.value?.openid;
-  });
-
-  // 获取微信绑定状态文本
-  const wechatBindStatus = computed(() => {
-    return isWechatBound.value ? '已绑定' : '未绑定';
-  });
-
-  // 获取微信绑定状态类型
-  const wechatBindStatusType = computed(() => {
-    return isWechatBound.value ? 'success' : 'warning';
-  });
 
   return {
     currentUser,
     formattedInfo,
     isLoadingUser,
-    isWechatBound,
-    wechatBindStatus,
-    wechatBindStatusType,
   };
 }
