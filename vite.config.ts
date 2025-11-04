@@ -8,6 +8,7 @@ import { ElementPlusResolver } from "unplugin-vue-components/resolvers";
 import { fileURLToPath } from "url";
 // https://vite.dev/config/
 export default defineConfig({
+  base:"/leave/",
   plugins: [
     vue(),
     AutoImport({

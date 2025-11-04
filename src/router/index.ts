@@ -5,7 +5,7 @@ import { ROUTE_PATHS } from "./constants";
 import { TokenManager } from "../auth/tokenManager";
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory(import.meta.env.BASE_URL),
   routes,
 });
 
