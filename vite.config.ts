@@ -12,7 +12,7 @@ export default defineConfig(({ mode }) => {
   const wechatAppId = process.env.WECHAT_APP_ID;
   return {
     define: {
-      "$wechat_app_id$": wechatAppId,
+      "$wechat_app_id$": JSON.stringify(wechatAppId),
     },
     base: env.BASE_URL,
     plugins: [
