@@ -1,6 +1,6 @@
 import { TokenManager } from "@/auth/tokenManager";
 import { Api } from "./Api";
-const baseURL = import.meta.env.DEV ? "/api" : "https://csmht.xin/sinin";
+const baseURL = import.meta.env.DEV ? "/api" : "https://gdutsyjx.gdut.edu.cn/qjxt/api";
 export const api = new Api({
   baseURL,
 });

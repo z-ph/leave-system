@@ -15,7 +15,7 @@ import { api } from "@/api/axios";
 import { ROUTE_PATHS } from "@/router/constants";
 
 const CONFIG = {
-  appId: "wx7bbdf981cf3342ff",
+  appId: "wx64e54eb19f699276",
   scope: "snsapi_base",
   state: "123",
 };
