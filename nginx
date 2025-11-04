@@ -1,0 +1,5 @@
+location /leave/ {
+        alias /path/to/your/vue-project/dist/; # 替换为你的dist目录的绝对路径
+        index index.html index.htm;
+        try_files $uri $uri/ /admin/index.html;
+    }
