@@ -13,13 +13,12 @@ import { ElMessage } from "element-plus";
 import { jwtDecode } from "jwt-decode";
 import { api } from "@/api/axios";
 import { ROUTE_PATHS } from "@/router/constants";
-declare const $wechat_app_id$: string;
+declare const __wechat_app_id__: string;
 const CONFIG = {
-  appId: $wechat_app_id$,
+  appId: __wechat_app_id__,
   scope: "snsapi_base",
   state: "123",
 };
-console.log(CONFIG.appId);
 export function redirectToWeChatOAuth(options: GetWeChatCodeUrlOptions) {
   const { appId, scope, state, redirectUri } = options;
   const urlObj = new URL(redirectUri);

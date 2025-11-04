@@ -9,20 +9,13 @@ import { fileURLToPath } from "url";
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), "");
-  console.log(env.WECHAT_APP_ID);
-  console.log(env.API_BASE_URL);
-  console.log(env.BASE);
-  console.log(process.env.WECHAT_APP_ID);
-  console.log(process.env.API_BASE_URL);
-  console.log(process.env.BASE);
   const wechatAppId = env.WECHAT_APP_ID||process.env.WECHAT_APP_ID;
-  console.log(wechatAppId);
   const apiBaseUrl = env.API_BASE_URL||process.env.API_BASE_URL;
   const base = env.BASE||process.env.BASE;
   return {
     define: {
-      "$wechat_app_id$": JSON.stringify(wechatAppId),
-      "$api_base_url$": JSON.stringify(apiBaseUrl),
+      "__wechat_app_id__": JSON.stringify(wechatAppId),
+      "__api_base_url__": JSON.stringify(apiBaseUrl),
     },
     base: base,
     plugins: [

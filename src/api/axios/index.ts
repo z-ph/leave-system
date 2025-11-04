@@ -1,8 +1,7 @@
 import { TokenManager } from "@/auth/tokenManager";
 import { Api } from "./Api";
-declare const $api_base_url$: string;
-const baseURL = import.meta.env.DEV ? "/api" : $api_base_url$;
-console.log(baseURL);
+declare const __api_base_url__: string;
+const baseURL = import.meta.env.DEV ? "/api" : __api_base_url__;
 export const api = new Api({
   baseURL,
 });
