@@ -15,7 +15,7 @@ import { api } from "@/api/axios";
 import { ROUTE_PATHS } from "@/router/constants";
 declare const $wechat_app_id$: string;
 const CONFIG = {
-  appId: import.meta.env.VITE_WECHAT_APP_ID||$wechat_app_id$,
+  appId: $wechat_app_id$,
   scope: "snsapi_base",
   state: "123",
 };
