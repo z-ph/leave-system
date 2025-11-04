@@ -15,7 +15,7 @@ import { api } from "@/api/axios";
 import { ROUTE_PATHS } from "@/router/constants";
 
 const CONFIG = {
-  appId: "wx64e54eb19f699276",
+  appId: import.meta.env.VITE_WECHAT_APP_ID,
   scope: "snsapi_base",
   state: "123",
 };
